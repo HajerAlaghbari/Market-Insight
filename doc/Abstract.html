@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ملخص البحث — Abstract</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Times+New+Roman&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.pg{margin:0!important;width:21cm!important;min-height:29.7cm!important;border:none!important;box-shadow:none!important}}
+.pg{width:21cm;min-height:29.7cm;background:#fff;margin:1cm auto;padding:2cm 2.2cm;box-shadow:0 4px 20px rgba(0,0,0,.15);position:relative}
+
+/* ─── Arabic abstract ─── */
+.ar-title{
+  font-size:17pt;
+  font-weight:700;
+  color:#3d1f00;
+  text-align:center;
+  margin-bottom:.5cm;
+  border-bottom:2px solid #7B3F00;
+  padding-bottom:.2cm;
+  direction:rtl;
+}
+.ar-body{
+  font-size:13pt;
+  line-height:2.1;
+  text-align:justify;
+  color:#111;
+  direction:rtl;
+  margin-bottom:.6cm;
+}
+
+/* ─── Divider ─── */
+.divider{
+  border:none;
+  border-top:1.5px dashed #7B3F00;
+  margin:1cm 0;
+}
+
+/* ─── English abstract ─── */
+.en-title{
+  font-family:'Times New Roman',Times,serif;
+  font-size:17pt;
+  font-weight:700;
+  color:#3d1f00;
+  text-align:center;
+  margin-bottom:.5cm;
+  border-bottom:2px solid #7B3F00;
+  padding-bottom:.2cm;
+  direction:ltr;
+}
+.en-body{
+  font-family:'Times New Roman',Times,serif;
+  font-size:12.5pt;
+  line-height:2;
+  text-align:justify;
+  color:#111;
+  direction:ltr;
+}
+
+.pn{position:absolute;bottom:.6cm;left:50%;transform:translateX(-50%);font-size:11pt;color:#7B3F00;font-weight:700;border-top:1px solid #7B3F00;padding-top:.06cm;width:1.4cm;text-align:center;font-family:'Amiri',serif}
+</style>
+</head>
+<body>
+
+<div class="pg">
+
+  <!-- ═══ ملخص البحث (عربي) ═══ -->
+  <div class="ar-title">ملخص البحث</div>
+  <div class="ar-body">
+    يشهد قطاع التداول المالي تحولات متسارعة مدفوعةً بالتطور التقني وتوافر البيانات الضخمة في الوقت الفعلي، مما جعل اتخاذ قرارات التداول الدقيقة والسريعة تحدياً حقيقياً يواجه المتداولين الأفراد الذين يفتقرون في الغالب إلى أدوات تحليلية احترافية. يهدف هذا البحث إلى تصميم وتطوير نظام Market Insight، وهو تطبيق ذكي للهاتف المحمول يعتمد على تقنيات الذكاء الاصطناعي والتعلم الآلي لتحليل الأسواق المالية المتعددة وتوليد توصيات تداول دقيقة وموثوقة في الوقت الفعلي، مُتاحةً لأي مستخدم بصرف النظر عن مستوى خبرته.
+    <br><br>
+    يُعاني المتداولون الأفراد من عدة تحديات جوهرية؛ أبرزها صعوبة تحليل كميات ضخمة من البيانات السعرية والإخبارية في آنٍ واحد، والاعتماد على الحدس الشخصي بدلاً من تحليل موضوعي مبني على أرقام، فضلاً عن غياب أدوات تقييم أداء القرارات السابقة. ولمعالجة هذه التحديات، جرى بناء نموذج هجين متكامل يدمج <strong>خمسة عشر مؤشراً فنياً</strong> (EMA, RSI, MACD, ATR, Stochastic وغيرها) مع <strong>أربع ميزات إخبارية</strong> مُستخرَجة من تحليل مشاعر الأخبار المالية، في نموذج XGBoost ثلاثي التصنيف يُولّد توصيات BUY أو SELL أو HOLD مصحوبةً بمستوى الثقة وقوة الإشارة ومستويات الربح ووقف الخسارة.
+    <br><br>
+    اعتمد البحث على منهجية <strong>Waterfall</strong> في تطوير النظام وفق مراحل متسلسلة: تحليل المتطلبات، ثم تصميم النظام، يليه التنفيذ، وأخيراً الاختبار والتقييم. في مرحلة التصميم جرى توثيق النظام بمخططات UML شاملة (Use Case, Class, Activity, Sequence)، وتصميم قاعدة البيانات على Firebase Firestore. وفي مرحلة التنفيذ جرى بناء الواجهة الأمامية بإطار Flutter بدعم كامل للعربية والإنجليزية، والخادم الخلفي بـ FastAPI/Python مع نقاط نهاية تُغطي جميع وظائف النظام. ويغطي النظام أربعة أسواق مالية حقيقية: <strong>العملات الرقمية</strong> من Binance، و<strong>المعادن النفيسة</strong> والعملات الأجنبية والأسهم الأمريكية من Yahoo Finance، عبر ثمانية إطارات زمنية مختلفة.
+    <br><br>
+    يُقدّم المشروع كذلك نظام تداول وهمي (Paper Trading) بميزانية افتراضية قدرها $10,000 لتدريب المستخدمين على اتخاذ قرارات التداول دون مخاطر مالية حقيقية، إلى جانب صفحة مراجعة الإشارات التي تُتيح تقييم دقة النموذج موضوعياً عبر مقارنة كل توصية بالسعر الفعلي بعد انتهاء أفقها الزمني. يُتوقَّع من هذا النظام أن يُسهم في تمكين المتداولين الأفراد من اتخاذ قرارات مستنيرة تعتمد على التحليل الكمي الموضوعي، وأن يُشكّل نموذجاً عملياً يثبت جدوى دمج التحليل الفني مع تحليل مشاعر الأخبار في منظومة ذكاء اصطناعي واحدة متكاملة.
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══ Abstract (English) ═══ -->
+  <div class="en-title">Abstract</div>
+  <div class="en-body">
+    The financial trading sector is undergoing rapid transformation driven by technological advancement and the availability of massive real-time data streams, making accurate and timely trading decisions a genuine challenge for individual traders who often lack access to professional analytical tools. This research aims to design and develop Market Insight, a smart mobile application that leverages artificial intelligence and machine learning techniques to analyze multiple financial markets and generate accurate, reliable trading recommendations in real time, accessible to any user regardless of their level of expertise.
+    <br><br>
+    Individual traders face several core challenges: the difficulty of simultaneously analyzing large volumes of price and news data, reliance on personal intuition rather than objective data-driven analysis, and the absence of tools for evaluating past decision performance. To address these challenges, a comprehensive hybrid model was built that integrates <strong>fifteen technical indicators</strong> (EMA, RSI, MACD, ATR, Stochastic, and others) with <strong>four news-derived features</strong> extracted from financial news sentiment analysis, within a three-class XGBoost model that generates BUY, SELL, or HOLD recommendations accompanied by a confidence level, signal strength classification, and calculated take-profit and stop-loss levels.
+    <br><br>
+    The research adopted the <strong>Waterfall methodology</strong> for system development, proceeding through sequential stages: requirements analysis, system design, implementation, and finally testing and evaluation. The design phase involved comprehensive UML documentation (Use Case, Class, Activity, and Sequence diagrams) and database schema design on Firebase Firestore. The implementation phase covered building the frontend with Flutter — with full Arabic and English localization — and the backend with FastAPI/Python, exposing endpoints that cover all system functionalities. The system supports four real financial markets: <strong>cryptocurrencies</strong> via Binance, and <strong>precious metals</strong>, foreign exchange pairs, and US stocks via Yahoo Finance, across eight different timeframes.
+    <br><br>
+    The project additionally presents a Paper Trading system with a virtual balance of $10,000, enabling users to practice trading decisions without real financial risk, alongside a Signal Review page that allows objective evaluation of model accuracy by comparing each recommendation against the actual market price upon expiry of its time horizon. This system is expected to empower individual traders to make informed decisions based on objective quantitative analysis, and to serve as a practical proof-of-concept demonstrating the viability of combining technical analysis with financial news sentiment analysis within a single, integrated artificial intelligence framework.
+  </div>
+
+  <div class="pn">v</div>
+</div>
+
+</body>
+</html>

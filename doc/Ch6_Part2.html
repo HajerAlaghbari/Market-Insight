@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الفصل السادس — الجزء الثاني</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Fira+Mono&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4;direction:rtl}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.pg{margin:0!important;width:21cm!important;min-height:29.7cm!important;page-break-after:always;border:4px double #7B3F00!important;box-shadow:none!important}}
+.pg{width:21cm;min-height:29.7cm;background:#fff;margin:1cm auto;padding:1.4cm 1.7cm;border:4px double #7B3F00;box-shadow:0 4px 20px rgba(0,0,0,.17);position:relative}
+h1{font-size:15pt;color:#fff;background:#7B3F00;padding:.18cm .4cm;margin-bottom:.28cm;text-align:center;border-radius:2px}
+h2{font-size:13pt;font-weight:700;color:#7B3F00;border-right:5px solid #7B3F00;padding-right:.28cm;margin:.28cm 0 .18cm}
+h3{font-size:11.5pt;font-weight:700;color:#5a2e00;margin:.15cm 0 .08cm}
+p{font-size:11.5pt;line-height:1.85;text-align:justify;color:#222;margin-bottom:.1cm}
+ul{font-size:11.5pt;line-height:1.85;color:#222;padding-right:.4cm}
+li{margin-bottom:.04cm}
+.cap{text-align:center;font-size:10pt;color:#555;margin:.06cm 0 .1cm;font-style:italic}
+.pn{position:absolute;bottom:.45cm;left:50%;transform:translateX(-50%);font-size:11pt;color:#7B3F00;font-weight:700;border-top:1px solid #7B3F00;padding-top:.06cm;width:1.4cm;text-align:center}
+.sep{border:none;border-top:1px dashed #d4a870;margin:.2cm 0}
+.ib{background:#fdf5ec;border-right:4px solid #7B3F00;padding:.15cm .25cm;border-radius:2px;margin:.1cm 0}
+/* Phone */
+.sw{display:flex;gap:.45cm;align-items:flex-start;margin:.1cm 0}
+.ph{width:5.5cm;flex-shrink:0;background:#0d1117;border-radius:.32cm;border:2px solid #374151;overflow:hidden;direction:ltr;box-shadow:0 4px 18px rgba(0,0,0,.3)}
+.pab{background:#111827;padding:.08cm .14cm;display:flex;align-items:center;gap:.1cm;border-bottom:1px solid #1f2937}
+.pat{color:#f9fafb;font-size:7.5pt;font-weight:700;font-family:'Fira Mono',monospace;flex:1}
+.pal{width:.45cm;height:.45cm;border-radius:.05cm;background:linear-gradient(135deg,#312e81,#1e40af);display:flex;align-items:center;justify-content:center;font-size:7pt;color:#fff;font-weight:700;font-family:'Fira Mono',monospace}
+.pai{width:.28cm;height:.28cm;border-radius:.03cm;border:1px solid #374151;background:#1f2937;display:flex;align-items:center;justify-content:center;font-size:5.5pt;color:#9ca3af}
+.pc{padding:.1cm}
+.sc{background:#1f2937;border-radius:.18cm;padding:.09cm .11cm;margin:.06cm 0}
+.sct{font-size:6pt;color:#9ca3af;font-family:'Fira Mono',monospace}
+.scn{font-size:8.5pt;font-weight:700;color:#f9fafb;font-family:'Fira Mono',monospace}
+.sck{font-size:5pt;color:#6b7280;font-family:'Fira Mono',monospace}
+.ba{text-align:right}.bl{font-size:5pt;color:#9ca3af;font-family:'Fira Mono',monospace}
+.bv{font-size:8pt;font-weight:700;font-family:'Fira Mono',monospace}
+.bu{color:#4ade80}.bd{color:#f87171}.bn{color:#e5e7eb}
+.pnv{background:#111827;display:flex;border-top:1px solid #1f2937}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;padding:.07cm .04cm;gap:.02cm}
+.nio{font-size:8.5pt}.nil{font-size:4.5pt;font-family:'Fira Mono',monospace;color:#6b7280}
+.ni.ac .nil{color:#3b82f6}
+.ip{flex:1;direction:rtl}
+.ctb{display:flex;gap:.07cm;padding:.05cm 0;border-bottom:1px solid #1f2937;margin-bottom:.05cm}
+.ct{font-size:6pt;color:#6b7280;padding:.03cm .08cm;font-family:'Fira Mono',monospace}
+.ct.ac{color:#f9fafb;border-bottom:1.5px solid #3b82f6}
+.tf{display:flex;gap:.03cm;padding:.03cm 0;flex-wrap:nowrap;overflow:hidden}
+.tfb{font-size:5pt;color:#6b7280;padding:.025cm .04cm;border-radius:.03cm;font-family:'Fira Mono',monospace;white-space:nowrap}
+.tfb.ac{background:#3b82f6;color:#fff}
+.f{font-family:'Fira Mono',monospace}
+</style>
+</head>
+<body>
+
+<!-- ═══ واجهة 6: Signal Section ═══ -->
+<div class="pg">
+  <h1>6.2.1 — الواجهة 6: شاشة الإشارة الذكية (Auto / Manual Signal)</h1>
+  <div class="sw">
+    <div class="ph">
+      <div class="pab"><span style="color:#f9fafb;font-size:7pt">←</span><div class="pat" style="padding-right:.08cm">EUR / USD</div><div class="pai">☑</div></div>
+      <div class="pc">
+        <div class="tf" style="margin-bottom:.06cm">
+          <div class="tfb">1 Min</div><div class="tfb">5 Min</div><div class="tfb">15 Mi</div>
+          <div class="tfb">30 Mi</div><div class="tfb ac">1 Hour</div>
+          <div class="tfb">4 Hrs</div><div class="tfb">1 Day</div><div class="tfb">1 Wk</div>
+        </div>
+        <!-- Horizon -->
+        <div style="display:flex;align-items:center;gap:.06cm;border-bottom:1px solid #1f2937;padding:.06cm 0">
+          <div style="color:#4ade80;font-size:7pt">⊢</div>
+          <div style="color:#9ca3af;font-size:6pt;flex:1;font-family:'Fira Mono',monospace">Horizon <span style="color:#6b7280">(default: 3)</span></div>
+          <div style="background:#1e3a8a;color:#f9fafb;font-size:7pt;padding:.03cm .1cm;border-radius:.05cm;font-family:'Fira Mono',monospace">3</div>
+          <div style="background:#3b82f6;color:#fff;font-size:5.5pt;padding:.03cm .07cm;border-radius:.05cm;font-family:'Fira Mono',monospace">Apply</div>
+        </div>
+        <!-- Signal Card -->
+        <div style="background:#1e2a3a;border-radius:.1cm;padding:.08cm;margin:.05cm 0">
+          <div style="display:flex;gap:.05cm;margin-bottom:.05cm">
+            <div style="background:#3b82f6;color:#fff;font-size:6.5pt;padding:.04cm .1cm;border-radius:.07cm;flex:1;text-align:center;font-family:'Fira Mono',monospace">↻ Auto Signal</div>
+            <div style="background:#1f2937;color:#9ca3af;font-size:6.5pt;padding:.04cm .08cm;border-radius:.07cm;flex:1;text-align:center;font-family:'Fira Mono',monospace">👆 Manual Signal</div>
+          </div>
+          <div style="background:#111827;border-radius:.07cm;padding:.05cm .09cm;display:flex;align-items:center;gap:.05cm;margin:.03cm 0">
+            <div style="font-size:5.5pt;color:#9ca3af;flex:1;font-family:'Fira Mono',monospace">⏱ Next candle:</div>
+            <div style="background:#3b82f6;color:#fff;font-size:7pt;font-weight:700;padding:.02cm .07cm;border-radius:.05cm;font-family:'Fira Mono',monospace">11:25</div>
+            <div style="color:#9ca3af;font-size:5.5pt;font-family:'Fira Mono',monospace">(1h)</div>
+          </div>
+          <div style="background:#111827;border-radius:.07cm;padding:.07cm;text-align:center;margin:.03cm 0">
+            <div style="font-size:11pt;color:#4b5563">⏳</div>
+            <div style="color:#6b7280;font-size:5.5pt;font-family:'Fira Mono',monospace;line-height:1.5">Waiting for candle to close...<br>Signal will appear automatically</div>
+          </div>
+        </div>
+        <!-- News Sentiment -->
+        <div style="background:#1f2937;border-radius:.1cm;padding:.07cm .09cm;display:flex;align-items:center;gap:.06cm">
+          <div style="width:.32cm;height:.32cm;background:#7f1d1d;border-radius:.04cm;display:flex;align-items:center;justify-content:center;font-size:7pt;flex-shrink:0">📰</div>
+          <div style="flex:1">
+            <div style="font-size:5pt;color:#9ca3af;font-family:'Fira Mono',monospace">News Sentiment</div>
+            <div style="font-size:6.5pt;font-weight:700;color:#f87171;font-family:'Fira Mono',monospace">↘ Bearish <span style="color:#6b7280;font-weight:400">10 articles</span></div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:7pt;font-weight:700;color:#f87171;font-family:'Fira Mono',monospace">47%</div>
+            <div style="font-size:4.5pt;color:#6b7280;font-family:'Fira Mono',monospace">impact</div>
+          </div>
+          <div style="color:#6b7280;font-size:6pt">›</div>
+        </div>
+      </div>
+    </div>
+    <div class="ip">
+      <h2>وصف الواجهة</h2>
+      <div class="ib"><p>هذا القسم من شاشة تفاصيل الرمز يحتوي على محرك الإشارات الذكية — القلب النابض لتطبيق Market Insight الذي يجمع بين التحليل الفني والأخباري.</p></div>
+      <h3>عناصر الإشارة:</h3>
+      <ul>
+        <li><strong>Horizon:</strong> عدد الشموع المستقبلية لتقييم النموذج (الافتراضي: 3)، قابل للتعديل عبر Apply.</li>
+        <li><strong>Auto Signal:</strong> يُولّد الإشارة تلقائياً لحظة إغلاق كل شمعة دون تدخّل المستخدم.</li>
+        <li><strong>Manual Signal:</strong> يُولّد الإشارة عند ضغط زر Analyze فقط.</li>
+        <li><strong>عداد الشمعة التالية:</strong> يعرض الوقت المتبقي (11:25) حتى إغلاق الشمعة الحالية (1h).</li>
+        <li><strong>صندوق الانتظار:</strong> يُعرَض ريثما يُنتِج النموذج الإشارة بعد إغلاق الشمعة.</li>
+        <li><strong>ملخص مشاعر الأخبار:</strong> Bearish بتأثير 47% من 10 مقالات مرتبطة بـ EUR/USD.</li>
+      </ul>
+      <h3>الوظيفة التقنية:</h3>
+      <p>تدمج هذه الشاشة نتائج <code class="f" style="direction:ltr">GET /signal-hybrid</code> مع <code class="f" style="direction:ltr">GET /news</code> لتكوين توصية تجمع 15 مؤشراً فنياً و4 ميزات إخبارية في نموذج هجين.</p>
+    </div>
+  </div>
+  <p class="cap">شكل 6.6 — قسم الإشارة الذكية في شاشة تفاصيل EUR/USD (وضع Auto Signal مُفعَّل)</p>
+  <div class="pn">93</div>
+</div>
+
+<!-- ═══ واجهة 7: News Tab ═══ -->
+<div class="pg">
+  <h1>6.2.1 — الواجهة 7: تفاصيل الرمز — تبويب الأخبار (News Tab)</h1>
+  <div class="sw">
+    <div class="ph">
+      <div class="pab"><span style="color:#f9fafb;font-size:7pt">←</span><div class="pat" style="padding-right:.08cm">EUR / USD</div><div class="pai">☑</div></div>
+      <div class="pc">
+        <div class="ctb"><div class="ct">📊 Overview</div><div class="ct ac">📰 News</div></div>
+        <!-- Sentiment Header -->
+        <div style="background:#7f1d1d;border:1px solid #b91c1c;border-radius:.1cm;padding:.08cm;margin:.04cm 0">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <div style="font-size:5.5pt;color:#9ca3af;font-family:'Fira Mono',monospace">News Sentiment</div>
+              <div style="font-size:9pt;font-weight:700;color:#f87171;font-family:'Fira Mono',monospace">Bearish</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:10pt;font-weight:700;color:#f9fafb;font-family:'Fira Mono',monospace">10</div>
+              <div style="font-size:5pt;color:#6b7280;font-family:'Fira Mono',monospace">articles</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:.08cm;padding:.04cm 0;align-items:flex-end">
+            <div style="flex:1;text-align:center"><div style="font-size:7pt;font-weight:700;color:#4ade80;font-family:'Fira Mono',monospace">3</div><div style="height:.08cm;background:#4ade80;border-radius:1px;margin-bottom:.02cm"></div><div style="font-size:5pt;color:#6b7280;font-family:'Fira Mono',monospace">Bullish</div></div>
+            <div style="flex:1;text-align:center"><div style="font-size:7pt;font-weight:700;color:#9ca3af;font-family:'Fira Mono',monospace">3</div><div style="height:.08cm;background:#9ca3af;border-radius:1px;margin-bottom:.02cm"></div><div style="font-size:5pt;color:#6b7280;font-family:'Fira Mono',monospace">Neutral</div></div>
+            <div style="flex:1;text-align:center"><div style="font-size:7pt;font-weight:700;color:#f87171;font-family:'Fira Mono',monospace">4</div><div style="height:.08cm;background:#f87171;border-radius:1px;margin-bottom:.02cm"></div><div style="font-size:5pt;color:#6b7280;font-family:'Fira Mono',monospace">Bearish</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.05cm">
+            <div style="font-size:5.5pt;color:#6b7280;font-family:'Fira Mono',monospace;white-space:nowrap">Market Impact</div>
+            <div style="flex:1;height:.07cm;background:#f87171;border-radius:1px"></div>
+            <div style="font-size:5.5pt;font-weight:700;color:#f87171;font-family:'Fira Mono',monospace">47%</div>
+          </div>
+        </div>
+        <!-- Articles -->
+        <div style="border-right:2px solid #f87171;padding:.04cm .06cm;margin:.04cm 0;background:#111827;border-radius:0 .05cm .05cm 0">
+          <div style="font-size:6pt;color:#f9fafb;font-family:'Fira Mono',monospace;line-height:1.4">The WSJ Dollar Index Falls 0.52% This Week to 95.17</div>
+          <div style="display:flex;gap:.05cm;margin-top:.02cm"><div style="font-size:5pt;font-weight:700;color:#f87171;font-family:'Fira Mono',monospace">↘ Bearish</div><div style="font-size:5pt;color:#6b7280;font-family:'Fira Mono',monospace">Wall Street Journal · 2d ago</div></div>
+        </div>
+        <div style="border-right:2px solid #f87171;padding:.04cm .06cm;margin:.04cm 0;background:#111827;border-radius:0 .05cm .05cm 0">
+          <div style="font-size:6pt;color:#f9fafb;font-family:'Fira Mono',monospace;line-height:1.4">Losses by the Dollar as Focus on Diplomacy Continues</div>
+          <div style="display:flex;gap:.05cm;margin-top:.02cm"><div style="font-size:5pt;font-weight:700;color:#f87171;font-family:'Fira Mono',monospace">↘ Bearish</div><div style="font-size:5pt;color:#6b7280;font-family:'Fira Mono',monospace">FX Empire · 3d ago</div></div>
+        </div>
+        <div style="border-right:2px solid #f87171;padding:.04cm .06cm;margin:.04cm 0;background:#111827;border-radius:0 .05cm .05cm 0">
+          <div style="font-size:6pt;color:#f9fafb;font-family:'Fira Mono',monospace;line-height:1.4">An Energy Crisis Has Rocked Europe, but the Euro Could Still...</div>
+          <div style="display:flex;gap:.05cm;margin-top:.02cm"><div style="font-size:5pt;font-weight:700;color:#f87171;font-family:'Fira Mono',monospace">↘ Bearish</div><div style="font-size:5pt;color:#6b7280;font-family:'Fira Mono',monospace">Barchart · 6d ago</div></div>
+        </div>
+        <div style="border-right:2px solid #9ca3af;padding:.04cm .06cm;margin:.04cm 0;background:#111827;border-radius:0 .05cm .05cm 0">
+          <div style="font-size:6pt;color:#f9fafb;font-family:'Fira Mono',monospace;line-height:1.4">How global fiscal policy is reacting to the recent...</div>
+          <div style="display:flex;gap:.05cm;margin-top:.02cm"><div style="font-size:5pt;font-weight:700;color:#9ca3af;font-family:'Fira Mono',monospace">— Neutral</div><div style="font-size:5pt;color:#6b7280;font-family:'Fira Mono',monospace">Reuters · 1w ago</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="ip">
+      <h2>وصف الواجهة</h2>
+      <div class="ib"><p>تبويب الأخبار في صفحة تفاصيل الرمز يجمع الأخبار المالية المرتبطة بـ EUR/USD مع تحليل المشاعر الذكي لكل مقالة.</p></div>
+      <h3>العناصر الرئيسية:</h3>
+      <ul>
+        <li><strong>بطاقة ملخص المشاعر:</strong> الاتجاه العام (Bearish)، عدد المقالات (10)، توزيع المشاعر (3 Bullish / 3 Neutral / 4 Bearish)، ونسبة التأثير على السوق (47%).</li>
+        <li><strong>شريط التأثير:</strong> مرئي بالأحمر يُجسّد قوة تأثير الأخبار على السوق.</li>
+        <li><strong>قائمة المقالات:</strong> كل مقالة مصحوبة بعنوانها ومصدرها ووقتها وتصنيف مشاعرها — اللون الجانبي يعكس التصنيف (أحمر=Bearish، رمادي=Neutral، أخضر=Bullish).</li>
+      </ul>
+      <h3>الوظيفة التقنية:</h3>
+      <p>تُولَّد التحليلات من نموذج <code class="f" style="direction:ltr">NewsSentimentPredictor</code> (TF-IDF + XGBoost)، وتُدمَج مع إشارات التحليل الفني لإنتاج التوصية الهجينة النهائية.</p>
+    </div>
+  </div>
+  <p class="cap">شكل 6.7 — تبويب الأخبار في شاشة تفاصيل EUR/USD مع تحليل مشاعر 10 مقالات</p>
+  <div class="pn">94</div>
+</div>
+
+<!-- ═══ واجهة 8: News Page ═══ -->
+<div class="pg">
+  <h1>6.2.1 — الواجهة 8: شاشة الأخبار الرئيسية (News Page)</h1>
+  <div class="sw">
+    <div class="ph">
+      <div class="pab"><div class="pal">MI</div><div class="pat">Market Insight</div><div class="pai">☑</div><div class="pai" style="margin-right:.03cm">🌐</div></div>
+      <div class="pc">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:.04cm 0">
+          <div style="color:#f9fafb;font-size:9.5pt;font-weight:700;font-family:'Fira Mono',monospace">News</div>
+          <div style="color:#6b7280;font-size:7.5pt">⚙</div>
+        </div>
+        <!-- Category Bar -->
+        <div style="display:flex;gap:.04cm;overflow:hidden;padding:.03cm 0;margin:.03cm 0">
+          <div style="font-size:5pt;padding:.03cm .07cm;border-radius:2cm;background:#3b82f6;color:#fff;font-family:'Fira Mono',monospace;white-space:nowrap">🌐 All</div>
+          <div style="font-size:5pt;padding:.03cm .06cm;border-radius:2cm;border:1px solid #374151;color:#9ca3af;font-family:'Fira Mono',monospace;white-space:nowrap">₿ Crypt</div>
+          <div style="font-size:5pt;padding:.03cm .06cm;border-radius:2cm;border:1px solid #374151;color:#9ca3af;font-family:'Fira Mono',monospace;white-space:nowrap">📊 Stock</div>
+          <div style="font-size:5pt;padding:.03cm .06cm;border-radius:2cm;border:1px solid #374151;color:#9ca3af;font-family:'Fira Mono',monospace;white-space:nowrap">⇄ FX</div>
+          <div style="font-size:5pt;padding:.03cm .06cm;border-radius:2cm;border:1px solid #374151;color:#9ca3af;font-family:'Fira Mono',monospace;white-space:nowrap">🪙 Meta</div>
+        </div>
+        <!-- News Card 1 -->
+        <div style="background:#1f2937;border-radius:.1cm;padding:.07cm .09cm;margin:.04cm 0;direction:ltr">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.04cm">
+            <div style="background:#1e3a8a;color:#93c5fd;font-size:5pt;padding:.01cm .05cm;border-radius:.03cm;font-family:'Fira Mono',monospace">₿ BTCUSD</div>
+            <div style="color:#6b7280;font-size:5pt;font-family:'Fira Mono',monospace">Motley Fool</div>
+            <div style="color:#6b7280;font-size:5pt;font-family:'Fira Mono',monospace">Just now</div>
+          </div>
+          <div style="display:flex;gap:.06cm;align-items:flex-start">
+            <div style="flex:1">
+              <div style="color:#f9fafb;font-size:6pt;font-weight:700;font-family:'Fira Mono',monospace;line-height:1.4;margin-bottom:.02cm">Bitcoin Gained More Than 5% in the Past Month. Is Crypto Recovering?</div>
+              <div style="color:#9ca3af;font-size:5pt;font-family:'Fira Mono',monospace;line-height:1.4">The lead crypto is starting to turn a corner, but it is too soon to call it a recovery.</div>
+            </div>
+            <div style="width:.85cm;height:.65cm;background:#1e3a8a;border-radius:.04cm;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8pt">📈</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.05cm;margin-top:.03cm">
+            <div style="background:#1f2937;color:#9ca3af;font-size:5pt;padding:.01cm .05cm;border-radius:.03cm;border:1px solid #374151;font-family:'Fira Mono',monospace">— Neutral</div>
+            <div style="color:#6b7280;font-size:5pt;font-family:'Fira Mono',monospace">79%</div>
+            <div style="color:#6b7280;font-size:5pt;font-family:'Fira Mono',monospace;margin-right:auto">Impact ▬▬▬</div>
+          </div>
+        </div>
+        <!-- News Card 2 -->
+        <div style="background:#1f2937;border-radius:.1cm;padding:.07cm .09cm;margin:.04cm 0;direction:ltr">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.04cm">
+            <div style="background:#1a2e1a;color:#86efac;font-size:5pt;padding:.01cm .05cm;border-radius:.03cm;font-family:'Fira Mono',monospace">📊 TSLA</div>
+            <div style="color:#6b7280;font-size:5pt;font-family:'Fira Mono',monospace">Reuters Videos</div>
+            <div style="color:#6b7280;font-size:5pt;font-family:'Fira Mono',monospace">Just now</div>
+          </div>
+          <div style="display:flex;gap:.06cm;align-items:flex-start">
+            <div style="flex:1">
+              <div style="color:#f9fafb;font-size:6pt;font-weight:700;font-family:'Fira Mono',monospace;line-height:1.4;margin-bottom:.02cm">Inside one of Amsterdam's first supervised self-driving Teslas</div>
+              <div style="color:#9ca3af;font-size:5pt;font-family:'Fira Mono',monospace;line-height:1.4">Kees Roelandschap navigates the narrow streets of Amsterdam without his hands...</div>
+            </div>
+            <div style="width:.85cm;height:.65cm;background:#374151;border-radius:.04cm;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8pt">🚗</div>
+          </div>
+        </div>
+      </div>
+      <div class="pnv">
+        <div class="ni"><div class="nio">🪙</div><div class="nil">Metals</div></div>
+        <div class="ni"><div class="nio">⇄</div><div class="nil">FX</div></div>
+        <div class="ni ac"><div class="nio" style="color:#3b82f6">📰</div><div class="nil">News</div></div>
+        <div class="ni"><div class="nio">₿</div><div class="nil">Crypto</div></div>
+        <div class="ni"><div class="nio">📊</div><div class="nil">Stocks</div></div>
+      </div>
+    </div>
+    <div class="ip">
+      <h2>وصف الواجهة</h2>
+      <div class="ib"><p>شاشة الأخبار الرئيسية تجمع جميع الأخبار المالية من مصادر متعددة مع تصنيف تلقائي بالمشاعر لكل مقالة.</p></div>
+      <h3>العناصر الرئيسية:</h3>
+      <ul>
+        <li><strong>شريط التصفية:</strong> 5 تبويبات للتنقل بين: All | Crypto | Stocks | FX | Metals. التبويب النشط (All) يعرض جميع الأخبار.</li>
+        <li><strong>بطاقة الخبر:</strong> تتضمن شارة الرمز المرتبط، المصدر، وقت النشر، عنوان المقالة، ملخصاً قصيراً، صورة مصغَّرة، وتصنيف المشاعر مع نسبة الثقة.</li>
+        <li><strong>الخبر الأول (BTCUSD):</strong> Neutral بثقة 79% من Motley Fool — مقالة عن تعافي البيتكوين.</li>
+        <li><strong>الخبر الثاني (TSLA):</strong> من Reuters Videos عن سيارات تسلا ذاتية القيادة في أمستردام.</li>
+      </ul>
+      <h3>الوظيفة التقنية:</h3>
+      <p>تُجلَب الأخبار كل 5 دقائق عبر <code class="f" style="direction:ltr">NewsService</code> من Yahoo Finance، وتُحلَّل فورياً بنموذج <code class="f" style="direction:ltr">NewsSentimentPredictor</code>.</p>
+    </div>
+  </div>
+  <p class="cap">شكل 6.8 — شاشة الأخبار الرئيسية (فئة All) مع تصنيف المشاعر التلقائي</p>
+  <div class="pn">95</div>
+</div>
+
+<!-- ═══ واجهة 9: Signal Review ═══ -->
+<div class="pg">
+  <h1>6.2.1 — الواجهة 9: شاشة سجل مراجعة الإشارات (Signal Review)</h1>
+  <div class="sw">
+    <div class="ph">
+      <div class="pab"><span style="color:#f9fafb;font-size:7pt">←</span><div class="pat" style="padding-right:.06cm">Signal Review L...</div><div class="pai">↺</div><div class="pai" style="margin-right:.02cm">🗑</div></div>
+      <div class="pc">
+        <!-- Stats -->
+        <div style="background:#1e2a3a;border-radius:.1cm;padding:.08cm;margin:.04cm 0">
+          <div style="display:flex;justify-content:space-around">
+            <div style="text-align:center"><div style="font-size:10pt;font-weight:700;color:#f9fafb;font-family:'Fira Mono',monospace">6</div><div style="font-size:5pt;color:#9ca3af;font-family:'Fira Mono',monospace">Total</div></div>
+            <div style="text-align:center"><div style="font-size:10pt;font-weight:700;color:#3b82f6;font-family:'Fira Mono',monospace">5</div><div style="font-size:5pt;color:#9ca3af;font-family:'Fira Mono',monospace">Resolved</div></div>
+            <div style="text-align:center"><div style="font-size:10pt;font-weight:700;color:#4ade80;font-family:'Fira Mono',monospace">0</div><div style="font-size:5pt;color:#9ca3af;font-family:'Fira Mono',monospace">Correct</div></div>
+            <div style="text-align:center"><div style="font-size:10pt;font-weight:700;color:#f87171;font-family:'Fira Mono',monospace">0.0%</div><div style="font-size:5pt;color:#9ca3af;font-family:'Fira Mono',monospace">Accuracy</div></div>
+          </div>
+        </div>
+        <!-- Entry 1: Pending -->
+        <div style="background:#1f2937;border:1px solid #78350f;border-radius:.1cm;padding:.07cm .09cm;margin:.04cm 0;direction:ltr">
+          <div style="display:flex;align-items:center;gap:.05cm;margin-bottom:.04cm">
+            <div style="background:#1e3a8a;color:#fff;font-size:6.5pt;font-weight:700;padding:.02cm .06cm;border-radius:.03cm;font-family:'Fira Mono',monospace">BTCUSD</div>
+            <div style="background:#374151;color:#9ca3af;font-size:6pt;padding:.02cm .06cm;border-radius:.03cm;font-family:'Fira Mono',monospace">HOLD</div>
+            <div style="margin-left:auto;background:#78350f;color:#fde68a;font-size:5.5pt;padding:.02cm .06cm;border-radius:.03cm;font-family:'Fira Mono',monospace">Pending</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.03cm">
+            <div style="background:#111827;border-radius:.03cm;padding:.03cm .04cm"><div style="font-size:4pt;color:#6b7280;font-family:'Fira Mono',monospace">Time</div><div style="font-size:5.5pt;color:#f9fafb;font-weight:700;font-family:'Fira Mono',monospace">20/04 05:10</div></div>
+            <div style="background:#111827;border-radius:.03cm;padding:.03cm .04cm"><div style="font-size:4pt;color:#6b7280;font-family:'Fira Mono',monospace">Entry Price</div><div style="font-size:5.5pt;color:#f9fafb;font-weight:700;font-family:'Fira Mono',monospace">$74451.53</div></div>
+            <div style="background:#111827;border-radius:.03cm;padding:.03cm .04cm"><div style="font-size:4pt;color:#6b7280;font-family:'Fira Mono',monospace">Timeframe</div><div style="font-size:5.5pt;color:#f9fafb;font-weight:700;font-family:'Fira Mono',monospace">4H</div></div>
+            <div style="background:#111827;border-radius:.03cm;padding:.03cm .04cm"><div style="font-size:4pt;color:#6b7280;font-family:'Fira Mono',monospace">Horizon</div><div style="font-size:5.5pt;color:#f9fafb;font-weight:700;font-family:'Fira Mono',monospace">3 candles</div></div>
+          </div>
+          <div style="background:#111827;border-radius:.03cm;padding:.03cm .05cm;margin-top:.03cm;font-size:5pt;color:#6b7280;font-family:'Fira Mono',monospace">Resolve at: 20/04 17:10</div>
+          <div style="color:#f59e0b;font-size:5.5pt;font-family:'Fira Mono',monospace;margin-top:.02cm">⏱ Resolves in: 5h 21m</div>
+        </div>
+        <!-- Entry 2: Incorrect -->
+        <div style="background:#1f2937;border:1px solid #7f1d1d;border-radius:.1cm;padding:.07cm .09cm;margin:.04cm 0;direction:ltr">
+          <div style="display:flex;align-items:center;gap:.05cm;margin-bottom:.04cm">
+            <div style="background:#1e3a8a;color:#fff;font-size:6.5pt;font-weight:700;padding:.02cm .06cm;border-radius:.03cm;font-family:'Fira Mono',monospace">ETHUSD</div>
+            <div style="background:#374151;color:#9ca3af;font-size:6pt;padding:.02cm .06cm;border-radius:.03cm;font-family:'Fira Mono',monospace">HOLD</div>
+            <div style="margin-left:auto;background:#7f1d1d;color:#f87171;font-size:5.5pt;padding:.02cm .06cm;border-radius:.03cm;font-family:'Fira Mono',monospace;display:flex;align-items:center;gap:.02cm">✗ Incorrect</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.03cm">
+            <div style="background:#111827;border-radius:.03cm;padding:.03cm .04cm"><div style="font-size:4pt;color:#6b7280;font-family:'Fira Mono',monospace">Time</div><div style="font-size:5.5pt;color:#f9fafb;font-weight:700;font-family:'Fira Mono',monospace">20/04 05:08</div></div>
+            <div style="background:#111827;border-radius:.03cm;padding:.03cm .04cm"><div style="font-size:4pt;color:#6b7280;font-family:'Fira Mono',monospace">Entry Price</div><div style="font-size:5.5pt;color:#f9fafb;font-weight:700;font-family:'Fira Mono',monospace">$2278.18</div></div>
+            <div style="background:#111827;border-radius:.03cm;padding:.03cm .04cm"><div style="font-size:4pt;color:#6b7280;font-family:'Fira Mono',monospace">Timeframe</div><div style="font-size:5.5pt;color:#f9fafb;font-weight:700;font-family:'Fira Mono',monospace">1H</div></div>
+            <div style="background:#111827;border-radius:.03cm;padding:.03cm .04cm"><div style="font-size:4pt;color:#6b7280;font-family:'Fira Mono',monospace">Actual Price</div><div style="font-size:5.5pt;color:#f9fafb;font-weight:700;font-family:'Fira Mono',monospace">$2301.66</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.04cm;margin-top:.03cm">
+            <div style="font-size:5.5pt;color:#9ca3af;font-family:'Fira Mono',monospace">Market moved:</div>
+            <div style="background:#064e3b;color:#4ade80;font-size:5.5pt;font-weight:700;padding:.01cm .05cm;border-radius:.03cm;font-family:'Fira Mono',monospace">BUY</div>
+            <div style="font-size:5.5pt;color:#f87171;font-family:'Fira Mono',monospace">✗ Signal did not match</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ip">
+      <h2>وصف الواجهة</h2>
+      <div class="ib"><p>شاشة سجل مراجعة الإشارات تُتيح للمستخدم تتبّع دقة التوصيات السابقة بشكل موضوعي وتقييم أداء النموذج عملياً.</p></div>
+      <h3>لوحة الإحصاءات العليا:</h3>
+      <ul>
+        <li><strong>Total (6):</strong> إجمالي عدد الإشارات المُسجَّلة.</li>
+        <li><strong>Resolved (5):</strong> الإشارات التي انتهى أفقها الزمني وجرى مقارنتها بالسوق.</li>
+        <li><strong>Correct (0):</strong> عدد الإشارات الصحيحة التي تطابق اتجاه السوق الفعلي.</li>
+        <li><strong>Accuracy (0.0%):</strong> نسبة الدقة المحسوبة من (Correct / Resolved × 100).</li>
+      </ul>
+      <h3>بطاقة الإشارة المعلّقة (Pending):</h3>
+      <ul>
+        <li>BTCUSD — HOLD، سعر دخول $74,451.53، إطار 4H، horizon 3 شموع.</li>
+        <li>تُحلّ في 20/04 17:10 — تبقّى 5 ساعات و21 دقيقة.</li>
+      </ul>
+      <h3>بطاقة الإشارة الخاطئة (Incorrect):</h3>
+      <ul>
+        <li>ETHUSD — HOLD، لكن السوق تحرّك فعلياً BUY، فكانت الإشارة خاطئة.</li>
+        <li>السعر ارتفع من $2,278.18 إلى $2,301.66 مما يعني اتجاهاً صاعداً.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="cap">شكل 6.9 — شاشة سجل مراجعة الإشارات مع الإحصاءات وبطاقات الحالة</p>
+  <div class="pn">96</div>
+</div>
+
+<!-- ═══ واجهة 10: FX Scrolled ═══ -->
+<div class="pg">
+  <h1>6.2.1 — الواجهة 10: شاشة قائمة FX (عرض مقرَّب)</h1>
+  <div class="sw">
+    <div class="ph">
+      <div class="pc" style="padding-top:.12cm">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:.04cm 0">
+          <div style="color:#f9fafb;font-size:9.5pt;font-weight:700;font-family:'Fira Mono',monospace">FX</div>
+          <div style="color:#6b7280;font-size:7.5pt">⚙</div>
+        </div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">EUR / USD</div><div class="scn">EURUSD</div><div class="sck">20. 11:49:23</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bd">1.17837</div><div class="bl">Ask</div><div class="bv bn">1.17873</div></div></div></div></div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">GBP / USD</div><div class="scn">GBPUSD</div><div class="sck">20. 11:49:23</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bu">1.35349</div><div class="bl">Ask</div><div class="bv bn">1.35390</div></div></div></div></div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">EUR / GBP</div><div class="scn">EURGBP</div><div class="sck">20. 11:49:23</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bd">0.87029</div><div class="bl">Ask</div><div class="bv bn">0.87055</div></div></div></div></div>
+      </div>
+      <div class="pnv">
+        <div class="ni"><div class="nio">🪙</div><div class="nil">Metals</div></div>
+        <div class="ni ac"><div class="nio" style="color:#3b82f6">⇄</div><div class="nil">FX</div></div>
+        <div class="ni"><div class="nio">📰</div><div class="nil">News</div></div>
+        <div class="ni"><div class="nio">₿</div><div class="nil">Crypto</div></div>
+        <div class="ni"><div class="nio">📊</div><div class="nil">Stocks</div></div>
+      </div>
+    </div>
+    <div class="ip">
+      <h2>وصف الواجهة</h2>
+      <div class="ib"><p>هذا العرض يُوضّح شاشة قائمة FX بعد تمرير المستخدم للأسفل (Scroll) حيث يختفي شريط التطبيق العلوي ويظهر المحتوى بمساحة أوسع.</p></div>
+      <h3>الفروقات عن الواجهة 2:</h3>
+      <ul>
+        <li><strong>اختفاء شريط التطبيق:</strong> عند التمرير لأسفل يختفي شريط "Market Insight" للاستفادة من المساحة الكاملة للشاشة.</li>
+        <li><strong>تغيّر الأسعار:</strong> تُلاحَظ اختلافات في الأرقام بين الواجهتين تعكس التحديثات اللحظية — مثلاً EURUSD انتقل من 1.17973 إلى 1.17837 (انخفاض طفيف).</li>
+        <li><strong>ألوان Bid:</strong> EURUSD وEURGBP الآن بالأحمر (انخفاض)، بينما GBPUSD بالأخضر (ارتفاع).</li>
+      </ul>
+      <h3>ملاحظة تجربة المستخدم:</h3>
+      <p>هذا السلوك (اختفاء الـ AppBar عند التمرير) يُحسّن تجربة المستخدم بتوفير مساحة أكبر لعرض بيانات السوق خاصةً على الشاشات الصغيرة.</p>
+    </div>
+  </div>
+  <p class="cap">شكل 6.10 — شاشة FX مع تحديث لحظي جديد للأسعار واختفاء شريط التطبيق</p>
+  <div class="pn">97</div>
+</div>
+
+<!-- ═══ واجهة 11: Settings ═══ -->
+<div class="pg">
+  <h1>6.2.1 — الواجهة 11: شاشة الإعدادات (Settings)</h1>
+  <div class="sw">
+    <div class="ph">
+      <div class="pab">
+        <span style="color:#f9fafb;font-size:7pt">←</span>
+        <div class="pat" style="text-align:center;flex:1;padding-right:.1cm">Settings</div>
+      </div>
+      <div class="pc">
+        <!-- Account Card -->
+        <div style="background:#1f2937;border-radius:.12cm;padding:.1cm .12cm;margin:.06cm 0">
+          <div style="color:#f9fafb;font-size:8pt;font-weight:700;font-family:'Fira Mono',monospace;margin-bottom:.06cm">Account</div>
+          <div style="color:#9ca3af;font-size:6.5pt;font-family:'Fira Mono',monospace;margin-bottom:.03cm">Email: immalaroosi@gmail.com</div>
+          <div style="color:#9ca3af;font-size:6pt;font-family:'Fira Mono',monospace">UID: Uu7ZTbTziBNz09Vt2X4u2nf6Lf12</div>
+        </div>
+        <!-- Change Password -->
+        <div style="background:#1f2937;border-radius:.25cm;padding:.09cm .12cm;display:flex;align-items:center;gap:.08cm;margin:.06cm 0">
+          <span style="font-size:8.5pt">🔄</span>
+          <div style="color:#8b5cf6;font-size:7.5pt;font-family:'Fira Mono',monospace;font-weight:700">Change Password</div>
+        </div>
+        <!-- Logout -->
+        <div style="background:#1f2937;border-radius:.25cm;padding:.09cm .12cm;display:flex;align-items:center;gap:.08cm;margin:.06cm 0">
+          <span style="font-size:8.5pt">↪</span>
+          <div style="color:#8b5cf6;font-size:7.5pt;font-family:'Fira Mono',monospace;font-weight:700">Logout</div>
+        </div>
+      </div>
+    </div>
+    <div class="ip">
+      <h2>وصف الواجهة</h2>
+      <div class="ib"><p>شاشة الإعدادات تُتيح للمستخدم إدارة حسابه الشخصي وضبط تفضيلاته في تطبيق Market Insight.</p></div>
+      <h3>العناصر الرئيسية:</h3>
+      <ul>
+        <li><strong>بطاقة الحساب (Account):</strong> تعرض البريد الإلكتروني المُسجَّل والـ UID الفريد للمستخدم المُولَّد بواسطة Firebase Auth. يُساعد UID في تتبع بيانات المستخدم في Firestore.</li>
+        <li><strong>زر Change Password:</strong> يُرسِل رابط إعادة تعيين كلمة المرور إلى البريد الإلكتروني المُسجَّل عبر Firebase Auth. يُعرَض تأكيد للمستخدم عند الإرسال الناجح.</li>
+        <li><strong>زر Logout:</strong> يُنهي جلسة المستخدم الحالية بتسجيل الخروج من Firebase Auth ويُعيد التوجيه لشاشة تسجيل الدخول.</li>
+      </ul>
+      <h3>الوظائف التقنية:</h3>
+      <ul>
+        <li><code class="f" style="direction:ltr">FirebaseAuth.sendPasswordResetEmail()</code> لإرسال رابط استعادة كلمة المرور.</li>
+        <li><code class="f" style="direction:ltr">FirebaseAuth.signOut()</code> لتسجيل الخروج ومسح الجلسة المحلية.</li>
+        <li>بيانات الحساب مُجلَبة من <code class="f" style="direction:ltr">FirebaseAuth.currentUser</code> (email + uid).</li>
+      </ul>
+      <h3>ملاحظة الأمان:</h3>
+      <p>لا تُخزَّن كلمة المرور في التطبيق أو قاعدة البيانات المحلية — تُدار بالكامل عبر Firebase Authentication بمعايير الأمان الصناعية.</p>
+    </div>
+  </div>
+  <p class="cap">شكل 6.11 — شاشة الإعدادات مع معلومات الحساب وخيارات إدارته</p>
+  <div class="pn">98</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الفصل الرابع — ERD</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Fira+Mono&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4;direction:rtl}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.page{margin:0!important;width:21cm!important;min-height:29.7cm!important;page-break-after:always;border:4px double #7B3F00!important;box-shadow:none!important}}
+.page{width:21cm;min-height:29.7cm;background:#fff;margin:1cm auto;padding:1.6cm 1.8cm;border:4px double #7B3F00;box-shadow:0 4px 24px rgba(0,0,0,.18);position:relative}
+.page-center{display:flex;align-items:center;justify-content:center;min-height:25cm;flex-direction:column;gap:.4cm}
+h1{font-size:16pt;color:#fff;background:#7B3F00;padding:.2cm .4cm;margin-bottom:.35cm;text-align:center;border-radius:2px}
+h2{font-size:13.5pt;font-weight:700;color:#7B3F00;border-right:5px solid #7B3F00;padding-right:.3cm;margin:.3cm 0 .2cm}
+h3{font-size:12pt;font-weight:700;color:#5a2e00;margin:.2cm 0 .1cm}
+p{font-size:12.5pt;line-height:1.9;text-align:justify;color:#222;margin-bottom:.15cm}
+ul{font-size:12.5pt;line-height:1.9;color:#222;padding-right:.4cm;margin-bottom:.15cm}
+li{margin-bottom:.06cm}
+.pnum{position:absolute;bottom:.5cm;left:50%;transform:translateX(-50%);font-size:11pt;color:#7B3F00;font-weight:700;border-top:1px solid #7B3F00;padding-top:.07cm;width:1.4cm;text-align:center}
+.ch-line{width:6cm;height:3px;background:linear-gradient(90deg,transparent,#7B3F00,transparent)}
+.sep{border:none;border-top:1px dashed #d4a870;margin:.25cm 0}
+.info-box{background:#fdf5ec;border-right:4px solid #7B3F00;padding:.2cm .3cm;border-radius:2px;margin:.15cm 0}
+
+/* ─── جدول ERD ─── */
+.erd-wrap{direction:ltr;margin:.3cm auto}
+.erd-entity{border:2px solid #7B3F00;border-radius:4px;overflow:hidden;box-shadow:0 4px 16px rgba(123,63,0,.15)}
+.erd-head{background:#7B3F00;color:#fff;text-align:center;padding:.2cm;font-size:16pt;font-weight:700;font-family:'Fira Mono',monospace;letter-spacing:2px}
+.erd-row{display:grid;grid-template-columns:2.5cm 1fr 1.2cm;align-items:center;padding:.12cm .2cm;border-bottom:1px solid #e5e7eb;font-family:'Fira Mono',monospace}
+.erd-row:last-child{border-bottom:none}
+.erd-row:nth-child(even){background:#fdf5ec}
+.erd-type{color:#6b7280;font-size:10pt}
+.erd-field{color:#111827;font-size:11pt;font-weight:700;padding:0 .2cm}
+.erd-pk{background:#c0622a;color:#fff;font-size:8pt;padding:.02cm .1cm;border-radius:2px;text-align:center;font-weight:700}
+.erd-fk{background:#1d4ed8;color:#fff;font-size:8pt;padding:.02cm .1cm;border-radius:2px;text-align:center;font-weight:700}
+.erd-empty{display:block}
+
+/* جدول الشرح */
+.desc-table{width:100%;border-collapse:collapse;margin:.2cm 0;font-size:11pt}
+.desc-table th{background:#7B3F00;color:#fff;padding:.1cm .2cm;border:1px solid #7B3F00;text-align:center}
+.desc-table td{padding:.1cm .2cm;border:1px solid #ddd;vertical-align:top}
+.desc-table td:first-child{font-family:'Fira Mono',monospace;color:#1d4ed8;white-space:nowrap;font-size:10pt}
+.desc-table td:nth-child(2){color:#374151;font-size:10pt}
+.desc-table tr:nth-child(even){background:#fdf5ec}
+.badge-pk{background:#c0622a;color:#fff;font-size:7pt;padding:.01cm .07cm;border-radius:1px;font-family:'Fira Mono',monospace}
+.badge-fk{background:#1d4ed8;color:#fff;font-size:7pt;padding:.01cm .07cm;border-radius:1px;font-family:'Fira Mono',monospace}
+.badge-idx{background:#065f46;color:#fff;font-size:7pt;padding:.01cm .07cm;border-radius:1px}
+
+/* ERD كامل */
+.full-erd{display:flex;flex-direction:column;align-items:center;gap:.4cm;margin:.2cm 0}
+.erd-sm{border:2px solid #7B3F00;border-radius:3px;overflow:hidden;font-family:'Fira Mono',monospace;direction:ltr;min-width:5cm}
+.erd-sm-head{background:#7B3F00;color:#fff;text-align:center;padding:.1cm;font-size:11pt;font-weight:700}
+.erd-sm-row{display:flex;gap:.15cm;padding:.05cm .12cm;border-bottom:1px solid #e5e7eb;font-size:8.5pt;align-items:center}
+.erd-sm-row:last-child{border-bottom:none}
+.erd-sm-row:nth-child(even){background:#fdf5ec}
+.et{color:#6b7280;width:1.6cm;flex-shrink:0}
+.ef{color:#111827;font-weight:700;flex:1}
+.pk-sm{background:#c0622a;color:#fff;font-size:6.5pt;padding:.01cm .06cm;border-radius:1px;flex-shrink:0}
+.fk-sm{background:#1d4ed8;color:#fff;font-size:6.5pt;padding:.01cm .06cm;border-radius:1px;flex-shrink:0}
+.rel-line{display:flex;align-items:center;gap:.1cm;font-family:'Amiri',serif;font-size:10pt;color:#7B3F00;font-weight:700;margin:.05cm 0}
+.rel-arrow{flex:1;height:1px;background:#7B3F00;position:relative}
+.rel-arrow::after{content:"▼";position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);font-size:9pt;color:#7B3F00}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ غلاف ═══════════════ -->
+<div class="page">
+  <div class="page-center">
+    <div class="ch-line"></div>
+    <div style="font-size:11pt;color:#888">الفصل الرابع — القسم الثاني</div>
+    <div style="font-size:26pt;font-weight:700;color:#3d1f00;text-align:center;line-height:1.5">مخطط قاعدة البيانات<br><span style="font-size:16pt;color:#7B3F00">Entity Relationship Diagram (ERD)</span></div>
+    <div class="ch-line"></div>
+    <div style="margin-top:.4cm;text-align:center;font-size:11pt;color:#888;line-height:2.3">
+      <div>1 — جدول USERS (المستخدمون)</div>
+      <div>2 — جدول FAVORITES (المفضلة)</div>
+      <div>3 — جدول SIGNAL_LOGS (سجل الإشارات)</div>
+      <div>4 — المخطط الكامل ERD</div>
+    </div>
+  </div>
+  <div class="pnum">49</div>
+</div>
+
+<!-- ═══════════════ جدول USERS ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: ERD — 4.3.1 جدول USERS</h1>
+
+  <div class="erd-wrap" style="max-width:9cm">
+    <div class="erd-entity">
+      <div class="erd-head">USERS</div>
+      <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">uid</span><span class="erd-pk">PK</span></div>
+      <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">email</span><span class="erd-empty"></span></div>
+      <div class="erd-row"><span class="erd-type">timestamp</span><span class="erd-field">createdAt</span><span class="erd-empty"></span></div>
+    </div>
+  </div>
+  <p class="cap" style="text-align:center;font-size:11pt;color:#555;margin:.05cm 0 .2cm;font-style:italic">شكل 4.7 — هيكل جدول USERS في Firebase Firestore</p>
+
+  <div class="sep"></div>
+  <h2>توضيح حقول الجدول:</h2>
+  <table class="desc-table">
+    <tr><th>الحقل</th><th>النوع</th><th>القيد</th><th>الوصف والغرض</th></tr>
+    <tr>
+      <td>uid <span class="badge-pk">PK</span></td>
+      <td>string</td>
+      <td>فريد · إلزامي</td>
+      <td>المُعرّف الأساسي للمستخدم الذي تُنشئه Firebase Authentication تلقائياً عند تسجيل الحساب. يُستخدم كمفتاح أساسي لمسار الـ Firestore: <code style="direction:ltr;font-family:'Fira Mono',monospace">users/{uid}</code></td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td>string</td>
+      <td>فريد · إلزامي</td>
+      <td>عنوان البريد الإلكتروني للمستخدم المُسجَّل. يُستخدم للمصادقة عبر Firebase Auth ولعرضه في شاشة الإعدادات. تُتحقق Firebase من صحة تنسيقه وعدم تكراره تلقائياً.</td>
+    </tr>
+    <tr>
+      <td>createdAt</td>
+      <td>timestamp</td>
+      <td>إلزامي</td>
+      <td>الطابع الزمني لتاريخ ووقت إنشاء الحساب (UTC). يُسجَّل تلقائياً لحظة التسجيل الأول ويُستخدم لتتبع نشاط المستخدمين وإحصاءات الاستخدام.</td>
+    </tr>
+  </table>
+
+  <div class="sep"></div>
+  <h2>العلاقات مع الجداول الأخرى:</h2>
+  <div class="info-box">
+    <ul>
+      <li><b>USERS ← يحفظ → FAVORITES:</b> علاقة (1..∗) — مستخدم واحد يمكنه حفظ عدة رموز في المفضلة. تُخزَّن المفضلة كمجموعة فرعية: <code style="direction:ltr;font-family:'Fira Mono',monospace">users/{uid}/favorites/{symbolCode}</code></li>
+      <li><b>USERS ← يولّد → SIGNAL_LOGS:</b> علاقة (1..∗) — مستخدم واحد يمكنه توليد عدة إشارات تداول. تُخزَّن كمجموعة فرعية: <code style="direction:ltr;font-family:'Fira Mono',monospace">users/{uid}/signal_logs/{id}</code></li>
+    </ul>
+  </div>
+
+  <div class="sep"></div>
+  <h2>ملاحظة تقنية — Firebase NoSQL:</h2>
+  <p>خلافاً لقواعد البيانات العلائقية (SQL)، لا تُخزَّن البيانات في Firestore ضمن جداول مترابطة ومُدمَجة، بل في <b>مجموعات مستندات متداخلة (Nested Collections)</b>. هذا يعني أن بيانات كل مستخدم مُعزولة تلقائياً في مسار خاص به، ما يُسهّل تطبيق قواعد الأمان (Security Rules) ويُحسّن أداء الاستعلامات.</p>
+
+  <div class="info-box" style="margin-top:.2cm">
+    <p style="direction:ltr;font-family:'Fira Mono',monospace;font-size:11pt">
+      Firestore Collections Structure:<br>
+      users/ (collection)<br>
+      &nbsp;&nbsp;{uid}/ (document)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;email: "user@example.com"<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;createdAt: Timestamp<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;favorites/ (subcollection)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;signal_logs/ (subcollection)
+    </p>
+  </div>
+  <div class="pnum">50</div>
+</div>
+
+<!-- ═══════════════ جدول FAVORITES ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: ERD — 4.3.2 جدول FAVORITES</h1>
+
+  <div class="erd-wrap" style="max-width:9cm">
+    <div class="erd-entity">
+      <div class="erd-head">FAVORITES</div>
+      <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">symbolCode</span><span class="erd-pk">PK</span></div>
+      <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">uid</span><span class="erd-fk">FK</span></div>
+      <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">name</span><span class="erd-empty"></span></div>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:11pt;color:#555;margin:.05cm 0 .2cm;font-style:italic">شكل 4.8 — هيكل جدول FAVORITES في Firebase Firestore</p>
+
+  <div class="sep"></div>
+  <h2>توضيح حقول الجدول:</h2>
+  <table class="desc-table">
+    <tr><th>الحقل</th><th>النوع</th><th>القيد</th><th>الوصف والغرض</th></tr>
+    <tr>
+      <td>symbolCode <span class="badge-pk">PK</span></td>
+      <td>string</td>
+      <td>فريد ضمن المستخدم</td>
+      <td>رمز الأصل المالي المُضاف للمفضلة (مثلاً: "BTCUSDT"، "XAUUSD"، "EURUSD"). يُستخدم كمُعرّف للمستند في Firestore. لا يمكن تكرار نفس الرمز للمستخدم ذاته.</td>
+    </tr>
+    <tr>
+      <td>uid <span class="badge-fk">FK</span></td>
+      <td>string</td>
+      <td>يُشير لـ USERS.uid</td>
+      <td>مُعرّف المستخدم الذي أضاف هذا الرمز للمفضلة. مُضمَّن تلقائياً في مسار المستند: <code style="direction:ltr;font-family:'Fira Mono',monospace">users/{uid}/favorites/{symbolCode}</code></td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>اختياري</td>
+      <td>الاسم الكامل للأصل المالي (مثلاً: "Bitcoin"، "Gold"، "Euro/US Dollar"). يُعرَض في شاشة قائمة الأسواق مع أيقونة النجمة ⭐ للرموز المُفضَّلة.</td>
+    </tr>
+  </table>
+
+  <div class="sep"></div>
+  <h2>آلية إدارة المفضلة في التطبيق:</h2>
+  <ul>
+    <li><b>إضافة رمز للمفضلة:</b> عند ضغط المستخدم على أيقونة ⭐ تُنفَّذ <code>toggleFavoriteProvider</code> التي تُنشئ مستنداً جديداً في <code>users/{uid}/favorites/{symbolCode}</code>.</li>
+    <li><b>إزالة رمز من المفضلة:</b> ضغطة ثانية على ⭐ تحذف المستند المقابل من Firestore.</li>
+    <li><b>عرض المفضلة:</b> يُراقب <code>favoriteCodesProvider</code> تدفق البيانات لحظياً ويُحدّث واجهة قائمة الأسواق فوراً عند أي تغيير.</li>
+    <li><b>المزامنة متعددة الأجهزة:</b> بما أن البيانات في Firestore، فإن المفضلة تُزامَن تلقائياً عبر جميع أجهزة المستخدم.</li>
+  </ul>
+
+  <div class="sep"></div>
+  <h2>قواعد الأمان (Security Rules):</h2>
+  <div class="info-box">
+    <p style="direction:ltr;font-family:'Fira Mono',monospace;font-size:10.5pt">
+      match /users/{userId}/favorites/{symbolCode} {<br>
+      &nbsp;&nbsp;allow read, write: if request.auth.uid == userId;<br>
+      }
+    </p>
+    <p style="margin-top:.1cm;font-size:12pt">تضمن هذه القاعدة أن كل مستخدم لا يمكنه قراءة أو تعديل مفضلة مستخدم آخر. يتحقق Firebase من صحة <code>request.auth.uid</code> تلقائياً.</p>
+  </div>
+
+  <div class="sep"></div>
+  <h2>الكيانات المرتبطة بهذا الجدول:</h2>
+  <table class="desc-table">
+    <tr><th>الجدول الأب</th><th>نوع العلاقة</th><th>الحقل المرتبط</th><th>الوصف</th></tr>
+    <tr><td>USERS</td><td>Many-to-One (∗..1)</td><td>uid → USERS.uid</td><td>كل سجل مفضلة ينتمي لمستخدم واحد فقط</td></tr>
+  </table>
+  <div class="pnum">51</div>
+</div>
+
+<!-- ═══════════════ جدول SIGNAL_LOGS ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: ERD — 4.3.3 جدول SIGNAL_LOGS</h1>
+
+  <div style="display:flex;gap:.4cm;align-items:flex-start;margin:.2cm 0">
+    <div class="erd-wrap" style="flex-shrink:0">
+      <div class="erd-entity" style="min-width:7cm">
+        <div class="erd-head">SIGNAL_LOGS</div>
+        <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">id</span><span class="erd-pk">PK</span></div>
+        <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">uid</span><span class="erd-fk">FK</span></div>
+        <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">symbol</span><span class="erd-empty"></span></div>
+        <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">recommendation</span><span class="erd-empty"></span></div>
+        <div class="erd-row"><span class="erd-type">float</span><span class="erd-field">entryPrice</span><span class="erd-empty"></span></div>
+        <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">timeframe</span><span class="erd-empty"></span></div>
+        <div class="erd-row"><span class="erd-type">int</span><span class="erd-field">horizon</span><span class="erd-empty"></span></div>
+        <div class="erd-row"><span class="erd-type">timestamp</span><span class="erd-field">recommendationTime</span><span class="erd-empty"></span></div>
+        <div class="erd-row"><span class="erd-type">timestamp</span><span class="erd-field">resolutionTime</span><span class="erd-empty"></span></div>
+        <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">status</span><span class="erd-empty"></span></div>
+        <div class="erd-row"><span class="erd-type">float</span><span class="erd-field">actualPrice</span><span class="erd-empty"></span></div>
+        <div class="erd-row"><span class="erd-type">string</span><span class="erd-field">actualDirection</span><span class="erd-empty"></span></div>
+        <div class="erd-row"><span class="erd-type">bool</span><span class="erd-field">isCorrect</span><span class="erd-empty"></span></div>
+      </div>
+    </div>
+    <div style="flex:1">
+      <h3>الحقول ودلالاتها:</h3>
+      <table class="desc-table" style="font-size:10pt">
+        <tr><th>الحقل</th><th>الوصف</th></tr>
+        <tr><td>id <span class="badge-pk">PK</span></td><td>مُعرّف فريد يُنشئه Firestore تلقائياً لكل إشارة</td></tr>
+        <tr><td>uid <span class="badge-fk">FK</span></td><td>مُعرّف المستخدم مالك الإشارة (يُشير لـ USERS.uid)</td></tr>
+        <tr><td>symbol</td><td>رمز الأصل: "BTCUSDT"، "XAUUSD"...</td></tr>
+        <tr><td>recommendation</td><td>توصية النموذج: "BUY"، "SELL"، أو "HOLD"</td></tr>
+        <tr><td>entryPrice</td><td>سعر السوق لحظة توليد الإشارة</td></tr>
+        <tr><td>timeframe</td><td>الإطار الزمني: "1m"، "1h"، "1d"...</td></tr>
+        <tr><td>horizon</td><td>عدد الشموع المستقبلية لتقييم الإشارة</td></tr>
+        <tr><td>recommendationTime</td><td>توقيت توليد الإشارة (UTC Timestamp)</td></tr>
+        <tr><td>resolutionTime</td><td>توقيت حلّ الإشارة ومقارنتها بالسوق</td></tr>
+        <tr><td>status</td><td>"pending" قبل الحل — "resolved" بعده</td></tr>
+        <tr><td>actualPrice</td><td>السعر الفعلي بعد انتهاء horizon</td></tr>
+        <tr><td>actualDirection</td><td>الاتجاه الفعلي للسوق بعد الأفق: "up"/"down"</td></tr>
+        <tr><td>isCorrect</td><td>true إن تطابق الاتجاه الفعلي مع التوصية</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+  <h2>دورة حياة سجل الإشارة:</h2>
+  <div style="display:flex;align-items:center;gap:.15cm;margin:.1cm 0;flex-wrap:wrap">
+    <div style="background:#1d4ed8;color:#fff;padding:.1cm .2cm;border-radius:3px;font-size:10.5pt;font-family:'Amiri',serif">1. توليد إشارة</div>
+    <div style="color:#7B3F00;font-size:12pt">→</div>
+    <div style="background:#d97706;color:#fff;padding:.1cm .2cm;border-radius:3px;font-size:10.5pt;font-family:'Amiri',serif">2. حفظ (pending)</div>
+    <div style="color:#7B3F00;font-size:12pt">→</div>
+    <div style="background:#374151;color:#fff;padding:.1cm .2cm;border-radius:3px;font-size:10.5pt;font-family:'Amiri',serif">3. انتظار horizon</div>
+    <div style="color:#7B3F00;font-size:12pt">→</div>
+    <div style="background:#065f46;color:#fff;padding:.1cm .2cm;border-radius:3px;font-size:10.5pt;font-family:'Amiri',serif">4. حلّ تلقائي (resolved)</div>
+    <div style="color:#7B3F00;font-size:12pt">→</div>
+    <div style="background:#7B3F00;color:#fff;padding:.1cm .2cm;border-radius:3px;font-size:10.5pt;font-family:'Amiri',serif">5. isCorrect = true/false</div>
+  </div>
+  <div class="pnum">52</div>
+</div>
+
+<!-- ═══════════════ المخطط الكامل ERD ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: ERD — 4.3.4 المخطط الكامل</h1>
+
+  <div class="full-erd">
+    <!-- USERS -->
+    <div class="erd-sm" style="min-width:6.5cm">
+      <div class="erd-sm-head">USERS</div>
+      <div class="erd-sm-row"><span class="et">string</span><span class="ef">uid</span><span class="pk-sm">PK</span></div>
+      <div class="erd-sm-row"><span class="et">string</span><span class="ef">email</span></div>
+      <div class="erd-sm-row"><span class="et">timestamp</span><span class="ef">createdAt</span></div>
+    </div>
+
+    <!-- خط العلاقات -->
+    <div style="display:flex;gap:5cm;align-items:flex-start">
+      <!-- علاقة يحفظ -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.05cm">
+        <div style="width:1px;height:.4cm;background:#7B3F00"></div>
+        <div style="background:#fdf5ec;border:1px solid #7B3F00;border-radius:2px;padding:.04cm .12cm;font-size:9.5pt;color:#7B3F00;font-family:'Amiri',serif;font-weight:700;white-space:nowrap">يحفظ (1 .. ∗)</div>
+        <div style="width:1px;height:.4cm;background:#7B3F00"></div>
+        <div style="color:#7B3F00;font-size:11pt">▼</div>
+      </div>
+      <!-- علاقة يولّد -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.05cm">
+        <div style="width:1px;height:.4cm;background:#7B3F00"></div>
+        <div style="background:#fdf5ec;border:1px solid #7B3F00;border-radius:2px;padding:.04cm .12cm;font-size:9.5pt;color:#7B3F00;font-family:'Amiri',serif;font-weight:700;white-space:nowrap">يولّد (1 .. ∗)</div>
+        <div style="width:1px;height:.4cm;background:#7B3F00"></div>
+        <div style="color:#7B3F00;font-size:11pt">▼</div>
+      </div>
+    </div>
+
+    <!-- FAVORITES + SIGNAL_LOGS -->
+    <div style="display:flex;gap:1.2cm;align-items:flex-start">
+      <!-- FAVORITES -->
+      <div class="erd-sm" style="min-width:5cm">
+        <div class="erd-sm-head">FAVORITES</div>
+        <div class="erd-sm-row"><span class="et">string</span><span class="ef">symbolCode</span><span class="pk-sm">PK</span></div>
+        <div class="erd-sm-row"><span class="et">string</span><span class="ef">uid</span><span class="fk-sm">FK</span></div>
+        <div class="erd-sm-row"><span class="et">string</span><span class="ef">name</span></div>
+      </div>
+
+      <!-- SIGNAL_LOGS -->
+      <div class="erd-sm" style="min-width:6.5cm">
+        <div class="erd-sm-head">SIGNAL_LOGS</div>
+        <div class="erd-sm-row"><span class="et">string</span><span class="ef">id</span><span class="pk-sm">PK</span></div>
+        <div class="erd-sm-row"><span class="et">string</span><span class="ef">uid</span><span class="fk-sm">FK</span></div>
+        <div class="erd-sm-row"><span class="et">string</span><span class="ef">symbol</span></div>
+        <div class="erd-sm-row"><span class="et">string</span><span class="ef">recommendation</span></div>
+        <div class="erd-sm-row"><span class="et">float</span><span class="ef">entryPrice</span></div>
+        <div class="erd-sm-row"><span class="et">string</span><span class="ef">timeframe</span></div>
+        <div class="erd-sm-row"><span class="et">int</span><span class="ef">horizon</span></div>
+        <div class="erd-sm-row"><span class="et">timestamp</span><span class="ef">recommendationTime</span></div>
+        <div class="erd-sm-row"><span class="et">timestamp</span><span class="ef">resolutionTime</span></div>
+        <div class="erd-sm-row"><span class="et">string</span><span class="ef">status</span></div>
+        <div class="erd-sm-row"><span class="et">float</span><span class="ef">actualPrice</span></div>
+        <div class="erd-sm-row"><span class="et">string</span><span class="ef">actualDirection</span></div>
+        <div class="erd-sm-row"><span class="et">bool</span><span class="ef">isCorrect</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="text-align:center;font-size:11pt;color:#555;margin:.1cm 0;font-style:italic">شكل 4.9 — مخطط ERD الكامل لقاعدة بيانات Firebase Firestore في نظام Market Insight</p>
+
+  <div class="sep"></div>
+  <h2>ملخص العلاقات:</h2>
+  <table class="desc-table">
+    <tr><th>الجدول الأب</th><th>الجدول الابن</th><th>نوع العلاقة</th><th>وصف العلاقة</th></tr>
+    <tr><td>USERS</td><td>FAVORITES</td><td>One-to-Many (1..∗)</td><td>مستخدم واحد يمكنه حفظ عدة رموز مفضلة — كل مفضلة تنتمي لمستخدم واحد فقط</td></tr>
+    <tr><td>USERS</td><td>SIGNAL_LOGS</td><td>One-to-Many (1..∗)</td><td>مستخدم واحد يمكنه توليد عدة إشارات — كل إشارة تنتمي لمستخدم واحد فقط</td></tr>
+  </table>
+
+  <div class="info-box" style="margin-top:.2cm">
+    <p><b>📌 ملاحظة:</b> يُستخدم <code style="direction:ltr;font-family:'Fira Mono',monospace">uid</code> كمفتاح أجنبي ضمني في Firestore عبر بنية المسار المتداخل. لا توجد قيود مرجعية صريحة (Foreign Key Constraints) في NoSQL، لكن نُطبّق هذه القيود منطقياً عبر Security Rules وكود التطبيق.</p>
+  </div>
+  <div class="pnum">53</div>
+</div>
+
+</body>
+</html>

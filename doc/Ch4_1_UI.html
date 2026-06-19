@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الفصل الرابع — واجهات التطبيق</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4;direction:rtl}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.page{margin:0!important;width:21cm!important;min-height:29.7cm!important;page-break-after:always;border:4px double #7B3F00!important;box-shadow:none!important}}
+.page{width:21cm;min-height:29.7cm;background:#fff;margin:1cm auto;padding:1.5cm 1.8cm 1.5cm 1.8cm;border:4px double #7B3F00;box-shadow:0 4px 24px rgba(0,0,0,.18);position:relative}
+.page-center{display:flex;align-items:center;justify-content:center;min-height:25cm;flex-direction:column;gap:.4cm}
+h1{font-size:16pt;color:#fff;background:#7B3F00;padding:.2cm .4cm;margin-bottom:.3cm;text-align:center;border-radius:2px}
+h2{font-size:14pt;font-weight:700;color:#7B3F00;border-right:5px solid #7B3F00;padding-right:.3cm;margin-bottom:.2cm}
+h3{font-size:12pt;font-weight:700;color:#5a2e00;margin:.15cm 0}
+p{font-size:12.5pt;line-height:1.9;text-align:justify;color:#222;margin-bottom:.15cm}
+ul{font-size:12.5pt;line-height:1.9;color:#222;padding-right:.4cm;margin-bottom:.15cm}
+li{margin-bottom:.06cm}
+.pnum{position:absolute;bottom:.5cm;left:50%;transform:translateX(-50%);font-size:11pt;color:#7B3F00;font-weight:700;border-top:1px solid #7B3F00;padding-top:.07cm;width:1.4cm;text-align:center}
+.ch-line{width:6cm;height:3px;background:linear-gradient(90deg,transparent,#7B3F00,transparent)}
+.sep{border:none;border-top:1px dashed #d4a870;margin:.3cm 0}
+.screen-layout{display:flex;gap:.5cm;align-items:flex-start;margin:.1cm 0}
+.phone{width:5.8cm;height:11.5cm;background:#111827;border-radius:.55cm;border:3px solid #374151;display:flex;flex-direction:column;align-items:center;padding:.25cm .18cm .25cm .18cm;flex-shrink:0;position:relative;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.notch{width:1.4cm;height:.22cm;background:#1f2937;border-radius:.11cm;margin-bottom:.12cm;flex-shrink:0}
+.screen{flex:1;width:100%;background:#0f0f1f;border-radius:.22cm;overflow:hidden;display:flex;flex-direction:column}
+.phone-btn{position:absolute;left:-.14cm;top:2.5cm;width:.08cm;height:.6cm;background:#374151;border-radius:.04cm}
+.phone-btn2{position:absolute;left:-.14cm;top:3.3cm;width:.08cm;height:.6cm;background:#374151;border-radius:.04cm}
+.phone-btn3{position:absolute;right:-.14cm;top:2.8cm;width:.08cm;height:.8cm;background:#374151;border-radius:.04cm}
+.info-panel{flex:1}
+.feature-box{background:#fdf5ec;border-right:4px solid #7B3F00;padding:.2cm .3cm;border-radius:2px;margin:.15cm 0}
+.tag{display:inline-block;background:#7B3F00;color:#fff;font-size:9pt;padding:.03cm .12cm;border-radius:2px;margin-left:.06cm;font-family:'Amiri',serif}
+.tag-green{background:#065f46;color:#4ade80}
+.tag-red{background:#7f1d1d;color:#f87171}
+.tag-gray{background:#374151;color:#d1d5db}
+
+/* شاشة: تسجيل الدخول */
+.s-login{padding:.18cm;display:flex;flex-direction:column;gap:.12cm;flex:1}
+.s-logo{text-align:center;font-size:20pt;margin:.1cm 0}
+.s-title{color:#f0e6d3;font-size:8.5pt;text-align:center;font-family:'Amiri',serif;font-weight:700}
+.s-sub{color:#9ca3af;font-size:6pt;text-align:center;margin-bottom:.08cm;font-family:'Amiri',serif}
+.s-lbl{color:#d4a870;font-size:6pt;font-family:'Amiri',serif;margin-bottom:.02cm}
+.s-field{background:#1f2937;border:1px solid #374151;border-radius:.1cm;height:.38cm;padding:.04cm .1cm;display:flex;align-items:center}
+.s-field span{color:#6b7280;font-size:6pt}
+.s-field-active{border-color:#7B3F00}
+.s-field-active span{color:#e5e7eb}
+.s-btn{background:#7B3F00;color:#fff;text-align:center;border-radius:.1cm;padding:.09cm;font-size:7.5pt;font-family:'Amiri',serif;font-weight:700}
+.s-link{color:#d4a870;font-size:5.5pt;text-align:center;font-family:'Amiri',serif}
+.s-divider{display:flex;align-items:center;gap:.06cm;margin:.04cm 0}
+.s-divider-line{flex:1;height:1px;background:#374151}
+.s-divider span{color:#6b7280;font-size:5.5pt}
+/* شاشة: إنشاء حساب */
+/* شاشة: قائمة الأسواق */
+.s-topbar{background:#111827;padding:.08cm .1cm;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1f2937}
+.s-topbar-title{color:#f0e6d3;font-size:7pt;font-family:'Amiri',serif;font-weight:700}
+.s-tabs{display:flex;background:#111827;border-bottom:1px solid #1f2937}
+.s-tab{flex:1;text-align:center;padding:.06cm .02cm;font-size:5.5pt;color:#6b7280;font-family:'Amiri',serif}
+.s-tab.active{color:#7B3F00;border-bottom:2px solid #7B3F00}
+.s-item{display:flex;justify-content:space-between;align-items:center;padding:.07cm .1cm;border-bottom:1px solid #1f2937}
+.s-item-l{display:flex;flex-direction:column}
+.s-sym{color:#f0e6d3;font-size:7pt;font-weight:700}
+.s-name{color:#6b7280;font-size:5.5pt;font-family:'Amiri',serif}
+.s-item-r{display:flex;flex-direction:column;align-items:flex-end}
+.s-price-up{color:#4ade80;font-size:7.5pt;font-weight:700;direction:ltr}
+.s-price-dn{color:#f87171;font-size:7.5pt;font-weight:700;direction:ltr}
+.s-sig{font-size:5.5pt;padding:.01cm .05cm;border-radius:1px;font-weight:700}
+.sig-b{background:#14532d;color:#4ade80}
+.sig-s{background:#7f1d1d;color:#f87171}
+.sig-h{background:#374151;color:#d1d5db}
+/* شاشة: تفاصيل الرمز */
+.s-chart{background:#0d1117;padding:.06cm;margin:.04cm 0;border-radius:.08cm}
+.s-chart-title{color:#9ca3af;font-size:5.5pt;display:flex;justify-content:space-between}
+.candles{display:flex;align-items:flex-end;gap:.03cm;height:1.6cm;padding:.04cm 0;overflow:hidden}
+.c{display:flex;flex-direction:column;align-items:center;gap:.01cm;flex-shrink:0}
+.cw{width:.013cm;background:#4b5563}
+.cb{width:.1cm;border-radius:.5px}
+.s-signal{border-radius:.1cm;padding:.08cm;margin:.04cm 0;text-align:center}
+.s-signal.buy{background:#14532d;border:1px solid #4ade80}
+.s-signal.sell{background:#7f1d1d;border:1px solid #f87171}
+.s-signal.hold{background:#1f2937;border:1px solid #374151}
+.s-sig-title{font-size:8.5pt;font-weight:700;font-family:'Amiri',serif}
+.s-sig-detail{font-size:5.5pt;margin-top:.03cm;font-family:'Amiri',serif}
+.s-tf{display:flex;gap:.03cm;flex-wrap:wrap;margin:.04cm 0}
+.s-tf span{background:#1f2937;color:#6b7280;font-size:5.5pt;padding:.02cm .05cm;border-radius:.04cm}
+.s-tf span.act{background:#7B3F00;color:#fff}
+/* شاشة: الأخبار */
+.s-news-item{padding:.07cm .08cm;border-bottom:1px solid #1f2937;display:flex;flex-direction:column;gap:.03cm}
+.s-news-badge{font-size:5pt;padding:.01cm .05cm;border-radius:1px;font-weight:700;display:inline-block}
+.s-news-title{color:#e2e8f0;font-size:6pt;line-height:1.4}
+.s-news-meta{color:#6b7280;font-size:5pt;font-family:'Amiri',serif}
+/* شاشة: تداول وهمي */
+.s-portfolio{padding:.1cm;display:flex;flex-direction:column;gap:.06cm;flex:1}
+.s-balance{text-align:center;margin:.06cm 0}
+.s-balance-val{color:#4ade80;font-size:13pt;font-weight:700}
+.s-balance-sub{color:#86efac;font-size:5.5pt;font-family:'Amiri',serif}
+.s-stat-row{display:flex;gap:.06cm}
+.s-stat{flex:1;background:#1f2937;border-radius:.08cm;padding:.06cm;text-align:center}
+.s-stat-val{color:#f0e6d3;font-size:8pt;font-weight:700}
+.s-stat-lbl{color:#6b7280;font-size:5pt;font-family:'Amiri',serif}
+.s-trade{background:#1f2937;border-radius:.08cm;padding:.06cm .09cm;margin:.03cm 0;display:flex;justify-content:space-between;align-items:center;border-right:2px solid #4ade80}
+.s-trade.sell{border-right-color:#f87171}
+/* شاشة: مراجعة التوصيات */
+.s-acc{text-align:center;margin:.08cm 0}
+.s-acc-num{color:#4ade80;font-size:15pt;font-weight:700}
+.s-acc-sub{color:#9ca3af;font-size:5.5pt;font-family:'Amiri',serif}
+.s-log{background:#1f2937;border-radius:.08cm;padding:.06cm .09cm;margin:.03cm 0;display:flex;justify-content:space-between;align-items:center}
+.s-log.correct{border-right:2px solid #4ade80}
+.s-log.wrong{border-right:2px solid #f87171}
+.s-log.pending{border-right:2px solid #facc15}
+/* شاشة: إعدادات */
+.s-settings-item{padding:.09cm .1cm;border-bottom:1px solid #1f2937;display:flex;justify-content:space-between;align-items:center}
+.s-settings-label{color:#e2e8f0;font-size:7pt;font-family:'Amiri',serif}
+.s-settings-val{color:#9ca3af;font-size:6pt;font-family:'Amiri',serif}
+.s-settings-icon{color:#7B3F00;font-size:9pt}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ غلاف ═══════════════ -->
+<div class="page">
+  <div class="page-center">
+    <div class="ch-line"></div>
+    <div style="font-size:11pt;color:#888;font-family:'Amiri',serif">الفصل الرابع — القسم الأول</div>
+    <div style="font-size:26pt;font-weight:700;color:#3d1f00;text-align:center;line-height:1.5">واجهات التطبيق<br><span style="font-size:16pt;color:#7B3F00">Market Insight UI Design</span></div>
+    <div class="ch-line"></div>
+    <div style="margin-top:.4cm;text-align:center;font-size:11pt;color:#888;line-height:2.3;font-family:'Amiri',serif">
+      <div>1 — شاشة تسجيل الدخول</div>
+      <div>2 — شاشة إنشاء الحساب</div>
+      <div>3 — شاشة قائمة الأسواق</div>
+      <div>4 — شاشة تفاصيل الرمز (رسم بياني + إشارة)</div>
+      <div>5 — شاشة الأخبار المالية</div>
+      <div>6 — شاشة التداول الوهمي</div>
+      <div>7 — شاشة مراجعة التوصيات</div>
+      <div>8 — شاشة الإعدادات</div>
+    </div>
+  </div>
+  <div class="pnum">40</div>
+</div>
+
+<!-- ═══════════════ شاشة 1: تسجيل الدخول ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: واجهات التطبيق — 4.2.1</h1>
+  <h2>شاشة تسجيل الدخول (Login Screen)</h2>
+  <div class="screen-layout">
+    <!-- الهاتف -->
+    <div class="phone">
+      <div class="phone-btn"></div><div class="phone-btn2"></div><div class="phone-btn3"></div>
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="s-login">
+          <div class="s-logo">📈</div>
+          <div class="s-title">Market Insight</div>
+          <div class="s-sub">منصة التداول الذكي</div>
+          <div style="margin-top:.1cm">
+            <div class="s-lbl">البريد الإلكتروني</div>
+            <div class="s-field s-field-active"><span>trader@example.com</span></div>
+          </div>
+          <div>
+            <div class="s-lbl">كلمة المرور</div>
+            <div class="s-field s-field-active"><span>••••••••</span></div>
+          </div>
+          <div class="s-link">نسيت كلمة المرور؟</div>
+          <div class="s-btn">تسجيل الدخول</div>
+          <div class="s-divider">
+            <div class="s-divider-line"></div>
+            <span class="s-divider">أو</span>
+            <div class="s-divider-line"></div>
+          </div>
+          <div class="s-link">ليس لديك حساب؟ <span style="color:#7B3F00;font-weight:700">إنشاء حساب جديد</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- الشرح -->
+    <div class="info-panel">
+      <p>تُعدّ شاشة تسجيل الدخول نقطة الدخول الرئيسية لنظام Market Insight. صمّمناها بأسلوب بسيط ونظيف يُركّز على تجربة المستخدم ويُقلّل خطوات الوصول إلى الحد الأدنى.</p>
+      <div class="feature-box">
+        <h3>عناصر الشاشة الرئيسية:</h3>
+        <ul>
+          <li><b>شعار التطبيق:</b> أيقونة 📈 مع اسم Market Insight وشعار "منصة التداول الذكي" باللغة العربية.</li>
+          <li><b>حقل البريد الإلكتروني:</b> مع التحقق من صحة تنسيق البريد قبل الإرسال.</li>
+          <li><b>حقل كلمة المرور:</b> مع زر إظهار/إخفاء النص <span class="tag">👁</span></li>
+          <li><b>رابط نسيت كلمة المرور:</b> يُرسل بريداً لإعادة تعيين كلمة المرور عبر Firebase.</li>
+          <li><b>زر تسجيل الدخول:</b> يُوجّه للشاشة الرئيسية أو لشاشة التحقق من البريد إن لم يكن موثّقاً.</li>
+          <li><b>رابط إنشاء حساب جديد:</b> يُوجّه لشاشة التسجيل.</li>
+        </ul>
+      </div>
+      <div class="sep"></div>
+      <h3>آلية العمل:</h3>
+      <p>يستخدم النظام <b>Firebase Authentication</b> للتحقق من بيانات المستخدم. عند النجاح، تتحقق دالة <code>redirect()</code> في GoRouter من حالة توثيق البريد الإلكتروني؛ إن كان موثّقاً يُوجَّه للشاشة الرئيسية، وإلا يُوجَّه لشاشة التحقق.</p>
+      <div class="sep"></div>
+      <h3>رسائل الخطأ المُعالَجة:</h3>
+      <ul>
+        <li>بريد إلكتروني غير صحيح: "صيغة البريد الإلكتروني غير صحيحة"</li>
+        <li>كلمة مرور خاطئة: "كلمة المرور غير صحيحة"</li>
+        <li>حساب غير موجود: "لا يوجد حساب بهذا البريد"</li>
+        <li>انقطاع الإنترنت: "تحقق من اتصالك بالإنترنت"</li>
+      </ul>
+      <div class="feature-box" style="margin-top:.15cm">
+        <div style="display:flex;gap:.08cm;flex-wrap:wrap">
+          <span class="tag">Firebase Auth</span>
+          <span class="tag">GoRouter Redirect</span>
+          <span class="tag">Form Validation</span>
+          <span class="tag">RTL Support</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">41</div>
+</div>
+
+<!-- ═══════════════ شاشة 2: إنشاء حساب ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: واجهات التطبيق — 4.2.2</h1>
+  <h2>شاشة إنشاء الحساب (Register Screen)</h2>
+  <div class="screen-layout">
+    <div class="phone">
+      <div class="phone-btn"></div><div class="phone-btn2"></div><div class="phone-btn3"></div>
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="s-login">
+          <div class="s-logo" style="font-size:14pt;margin-top:.05cm">📈</div>
+          <div class="s-title" style="font-size:7.5pt">إنشاء حساب جديد</div>
+          <div>
+            <div class="s-lbl">البريد الإلكتروني</div>
+            <div class="s-field"><span>أدخل بريدك الإلكتروني</span></div>
+          </div>
+          <div>
+            <div class="s-lbl">كلمة المرور</div>
+            <div class="s-field"><span>6 أحرف على الأقل</span></div>
+          </div>
+          <div>
+            <div class="s-lbl">تأكيد كلمة المرور</div>
+            <div class="s-field"><span>أعد إدخال كلمة المرور</span></div>
+          </div>
+          <div class="s-btn" style="margin-top:.08cm">إنشاء الحساب</div>
+          <div style="background:#1f2937;border-radius:.08cm;padding:.06cm;margin-top:.06cm">
+            <div style="color:#d4a870;font-size:5.5pt;font-family:'Amiri',serif;text-align:center">📧 سيُرسل إليك رابط تأكيد على بريدك</div>
+          </div>
+          <div class="s-link">لديك حساب بالفعل؟ <span style="color:#7B3F00;font-weight:700">تسجيل الدخول</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="info-panel">
+      <p>تُتيح شاشة إنشاء الحساب للمستخدم الجديد تسجيل حساب باستخدام بريده الإلكتروني وكلمة مرور. بعد الإنشاء يُرسَل بريد تأكيد تلقائياً.</p>
+      <div class="feature-box">
+        <h3>عناصر الشاشة:</h3>
+        <ul>
+          <li><b>حقل البريد الإلكتروني:</b> مع التحقق من تنسيق البريد في الوقت الفعلي.</li>
+          <li><b>حقل كلمة المرور:</b> مع اشتراط 6 أحرف كحد أدنى (متطلب Firebase).</li>
+          <li><b>حقل تأكيد كلمة المرور:</b> يتحقق من تطابق القيمتين قبل الإرسال.</li>
+          <li><b>رسالة التوضيح:</b> إشعار أن رابط التأكيد سيُرسَل للبريد.</li>
+          <li><b>رابط تسجيل الدخول:</b> للعودة لمن يمتلك حساباً مسبقاً.</li>
+        </ul>
+      </div>
+      <div class="sep"></div>
+      <h3>تدفق العملية بعد الإنشاء:</h3>
+      <ul>
+        <li>يُنشئ Firebase حساباً جديداً بالبريد وكلمة المرور.</li>
+        <li>يُرسل Firebase تلقائياً بريد تأكيد إلى عنوان المستخدم.</li>
+        <li>يُوجَّه المستخدم لشاشة "التحقق من البريد الإلكتروني".</li>
+        <li>لا يُمكّن المستخدم من الوصول للتطبيق حتى يُثبّت بريده عبر الرابط.</li>
+      </ul>
+      <div class="sep"></div>
+      <h3>التحقق من صحة المدخلات (Validation):</h3>
+      <ul>
+        <li>البريد الإلكتروني: تنسيق صحيح ✅</li>
+        <li>كلمة المرور: 6+ أحرف ✅</li>
+        <li>تأكيد كلمة المرور: يطابق الحقل الأول ✅</li>
+      </ul>
+      <div class="feature-box" style="margin-top:.15cm">
+        <div style="display:flex;gap:.08cm;flex-wrap:wrap">
+          <span class="tag">createUserWithEmailAndPassword</span>
+          <span class="tag">sendEmailVerification</span>
+          <span class="tag">Form Validation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">42</div>
+</div>
+
+<!-- ═══════════════ شاشة 3: قائمة الأسواق ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: واجهات التطبيق — 4.2.3</h1>
+  <h2>شاشة قائمة الأسواق (Markets List Screen)</h2>
+  <div class="screen-layout">
+    <div class="phone">
+      <div class="phone-btn"></div><div class="phone-btn2"></div><div class="phone-btn3"></div>
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="s-topbar">
+          <span class="s-topbar-title">Market Insight</span>
+          <span style="color:#d4a870;font-size:8pt">⭐</span>
+        </div>
+        <div class="s-tabs">
+          <div class="s-tab active">رقمي</div>
+          <div class="s-tab">معادن</div>
+          <div class="s-tab">فوركس</div>
+          <div class="s-tab">أسهم</div>
+        </div>
+        <!-- بنود -->
+        <div class="s-item">
+          <div class="s-item-l">
+            <span class="s-sym">BTC/USDT</span>
+            <span class="s-name">Bitcoin ⭐</span>
+          </div>
+          <div class="s-item-r">
+            <span class="s-price-up">95,415</span>
+            <span class="s-sig sig-b">BUY 🟢</span>
+          </div>
+        </div>
+        <div class="s-item">
+          <div class="s-item-l">
+            <span class="s-sym">ETH/USDT</span>
+            <span class="s-name">Ethereum</span>
+          </div>
+          <div class="s-item-r">
+            <span class="s-price-dn">3,210</span>
+            <span class="s-sig sig-s">SELL 🔴</span>
+          </div>
+        </div>
+        <div class="s-item">
+          <div class="s-item-l">
+            <span class="s-sym">BNB/USDT</span>
+            <span class="s-name">BNB</span>
+          </div>
+          <div class="s-item-r">
+            <span class="s-price-up">620</span>
+            <span class="s-sig sig-h">HOLD ⬛</span>
+          </div>
+        </div>
+        <!-- شريط التنقل -->
+        <div style="background:#111827;border-top:1px solid #1f2937;display:flex;justify-content:space-around;padding:.08cm;margin-top:auto">
+          <span style="color:#7B3F00;font-size:9pt">🏠</span>
+          <span style="color:#6b7280;font-size:9pt">📰</span>
+          <span style="color:#6b7280;font-size:9pt">📊</span>
+          <span style="color:#6b7280;font-size:9pt">⚙️</span>
+        </div>
+      </div>
+    </div>
+    <div class="info-panel">
+      <p>تُمثّل شاشة قائمة الأسواق الصفحة الرئيسية للتطبيق بعد تسجيل الدخول. تعرض الأسعار اللحظية لجميع الرموز المالية مُصنَّفةً في 4 فئات بنظام التبويب (Tab).</p>
+      <div class="feature-box">
+        <h3>مكوّنات الشاشة:</h3>
+        <ul>
+          <li><b>شريط التبويب العلوي:</b> 4 فئات — <span class="tag">رقمي</span> <span class="tag">معادن</span> <span class="tag">فوركس</span> <span class="tag">أسهم</span></li>
+          <li><b>بطاقة كل رمز تحتوي:</b> رمز السوق، الاسم، السعر اللحظي (Bid)، الإشارة الحالية.</li>
+          <li><b>أيقونة المفضلة ⭐:</b> يضغطها المستخدم لإضافة/إزالة الرمز من قائمة المفضلة المحفوظة في Firestore.</li>
+          <li><b>إشارة التداول:</b> تُعرَض كشارة ملوّنة — <span class="tag tag-green">BUY</span> <span class="tag tag-red">SELL</span> <span class="tag tag-gray">HOLD</span></li>
+          <li><b>تحديث السعر:</b> يتجدد تلقائياً كل 3 ثوانٍ عبر <code>symbolsProvider</code> بـ Riverpod.</li>
+          <li><b>شريط التنقل السفلي:</b> الرئيسية، الأخبار، المراجعة، الإعدادات.</li>
+        </ul>
+      </div>
+      <div class="sep"></div>
+      <h3>الرموز المالية المدعومة:</h3>
+      <ul>
+        <li><b>رقمي:</b> BTC/USDT — ETH/USDT — BNB/USDT (مصدر: Binance)</li>
+        <li><b>معادن:</b> XAUUSD (ذهب) — XAGUSD (فضة) — XPTUSD (بلاتين)</li>
+        <li><b>فوركس:</b> EURUSD — GBPUSD — EURGBP</li>
+        <li><b>أسهم:</b> AAPL — AMZN — TSLA (مصدر: Yahoo Finance)</li>
+      </ul>
+      <div class="feature-box" style="margin-top:.15cm">
+        <div style="display:flex;gap:.08cm;flex-wrap:wrap">
+          <span class="tag">symbolsProvider (3s)</span>
+          <span class="tag">GoRouter ShellRoute</span>
+          <span class="tag">favoriteCodesProvider</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">43</div>
+</div>
+
+<!-- ═══════════════ شاشة 4: تفاصيل الرمز ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: واجهات التطبيق — 4.2.4</h1>
+  <h2>شاشة تفاصيل الرمز — الرسم البياني والإشارة</h2>
+  <div class="screen-layout">
+    <div class="phone">
+      <div class="phone-btn"></div><div class="phone-btn2"></div><div class="phone-btn3"></div>
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="s-topbar">
+          <span style="color:#7B3F00;font-size:8pt">←</span>
+          <span class="s-topbar-title">BTC/USDT</span>
+          <span style="color:#4ade80;font-size:7pt">95,415 ▲</span>
+        </div>
+        <!-- أُطر زمنية -->
+        <div class="s-tf" style="padding:.05cm .08cm;background:#111827">
+          <span>1m</span><span>5m</span><span>15m</span><span>30m</span>
+          <span class="act">1h</span><span>4h</span><span>1d</span>
+        </div>
+        <!-- الرسم البياني -->
+        <div class="s-chart">
+          <div class="s-chart-title"><span>BTCUSDT · 1h</span><span style="color:#4ade80">95,415</span></div>
+          <div class="candles">
+            <div class="c"><div class="cw" style="height:.3cm"></div><div class="cb" style="height:.5cm;background:#4ade80"></div><div class="cw" style="height:.15cm"></div></div>
+            <div class="c"><div class="cw" style="height:.4cm"></div><div class="cb" style="height:.45cm;background:#f87171"></div><div class="cw" style="height:.2cm"></div></div>
+            <div class="c"><div class="cw" style="height:.25cm"></div><div class="cb" style="height:.6cm;background:#4ade80"></div><div class="cw" style="height:.12cm"></div></div>
+            <div class="c"><div class="cw" style="height:.35cm"></div><div class="cb" style="height:.5cm;background:#4ade80"></div><div class="cw" style="height:.18cm"></div></div>
+            <div class="c"><div class="cw" style="height:.2cm"></div><div class="cb" style="height:.7cm;background:#f87171"></div><div class="cw" style="height:.1cm"></div></div>
+            <div class="c"><div class="cw" style="height:.3cm"></div><div class="cb" style="height:.55cm;background:#4ade80"></div><div class="cw" style="height:.15cm"></div></div>
+            <div class="c"><div class="cw" style="height:.15cm"></div><div class="cb" style="height:.8cm;background:#4ade80"></div><div class="cw" style="height:.1cm"></div></div>
+            <div class="c"><div class="cw" style="height:.25cm"></div><div class="cb" style="height:.65cm;background:#f87171"></div><div class="cw" style="height:.2cm"></div></div>
+            <div class="c"><div class="cw" style="height:.35cm"></div><div class="cb" style="height:.6cm;background:#4ade80"></div><div class="cw" style="height:.15cm"></div></div>
+          </div>
+        </div>
+        <!-- إشارة BUY -->
+        <div class="s-signal buy">
+          <div class="s-sig-title" style="color:#4ade80">🟢 BUY — ثقة 78%</div>
+          <div class="s-sig-detail" style="color:#86efac">TP1: 96,200 · TP2: 97,100 · TP3: 98,500</div>
+          <div class="s-sig-detail" style="color:#fca5a5">SL: 93,800 (ATR×2)</div>
+        </div>
+        <!-- أزرار -->
+        <div style="display:flex;gap:.06cm;padding:.06cm .08cm">
+          <div style="flex:1;background:#065f46;color:#4ade80;text-align:center;border-radius:.08cm;padding:.07cm;font-size:7pt;font-family:'Amiri',serif">Auto 🔄 ON</div>
+          <div style="flex:1;background:#1f2937;color:#9ca3af;text-align:center;border-radius:.08cm;padding:.07cm;font-size:7pt;font-family:'Amiri',serif">توليد إشارة</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-panel">
+      <p>تُعدّ هذه الشاشة أكثر شاشات التطبيق تعقيداً وغنىً؛ إذ تجمع بين الرسم البياني التفاعلي بالشموع اليابانية، وأدوات تحديد الإطار الزمني، وعرض إشارة التداول الهجينة بالتفصيل.</p>
+      <div class="feature-box">
+        <h3>مكوّنات الشاشة:</h3>
+        <ul>
+          <li><b>شريط الأُطر الزمنية:</b> 9 أُطر: 1m / 5m / 15m / 30m / 1h / 4h / 1d / 1w / 1M.</li>
+          <li><b>الرسم البياني:</b> آخر 200 شمعة يابانية تفاعلية عبر مكتبة <code>interactive_chart</code>.</li>
+          <li><b>بطاقة الإشارة الهجينة:</b> تعرض BUY/SELL/HOLD مع نسبة الثقة.</li>
+          <li><b>مستويات TP1/TP2/TP3:</b> محسوبة عبر ATR لجني الأرباح التدريجي.</li>
+          <li><b>مستوى وقف الخسارة SL:</b> = سعر الدخول ± ATR × 2.0.</li>
+          <li><b>زر Auto:</b> يُفعّل التوليد التلقائي للإشارة عند إغلاق كل شمعة.</li>
+          <li><b>عداد تنازلي:</b> يعرض الوقت المتبقي لإغلاق الشمعة الحالية.</li>
+        </ul>
+      </div>
+      <div class="sep"></div>
+      <h3>قوّة إشارة التداول (Signal Strength):</h3>
+      <ul>
+        <li><span class="tag tag-green">Strong</span> — ثقة ≥ 70%</li>
+        <li><span class="tag">Moderate</span> — ثقة 55–70%</li>
+        <li><span class="tag tag-gray">Weak</span> — ثقة 42–55%</li>
+        <li><span class="tag tag-red">Uncertain</span> — ثقة &lt; 42% → HOLD تلقائياً</li>
+      </ul>
+      <div class="feature-box" style="margin-top:.15cm">
+        <div style="display:flex;gap:.08cm;flex-wrap:wrap">
+          <span class="tag">candlesProvider (5s)</span>
+          <span class="tag">liveMarketProvider (1s)</span>
+          <span class="tag">interactive_chart</span>
+          <span class="tag">HybridSignalCard</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">44</div>
+</div>
+
+<!-- ═══════════════ شاشة 5: الأخبار ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: واجهات التطبيق — 4.2.5</h1>
+  <h2>شاشة الأخبار المالية (News Screen)</h2>
+  <div class="screen-layout">
+    <div class="phone">
+      <div class="phone-btn"></div><div class="phone-btn2"></div><div class="phone-btn3"></div>
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="s-topbar"><span class="s-topbar-title">الأخبار المالية</span></div>
+        <!-- فلتر الفئات -->
+        <div style="display:flex;background:#111827;border-bottom:1px solid #1f2937;overflow-x:auto">
+          <div class="s-tab active" style="white-space:nowrap">الكل</div>
+          <div class="s-tab" style="white-space:nowrap">رقمي</div>
+          <div class="s-tab" style="white-space:nowrap">أسهم</div>
+          <div class="s-tab" style="white-space:nowrap">فوركس</div>
+          <div class="s-tab" style="white-space:nowrap">معادن</div>
+        </div>
+        <!-- أخبار -->
+        <div class="s-news-item">
+          <div class="s-news-meta">Bloomberg · منذ 12 دقيقة · BTC</div>
+          <div class="s-news-title">Bitcoin surges above $95K as ETF inflows hit record weekly high...</div>
+          <div style="display:flex;gap:.05cm;align-items:center">
+            <span class="s-news-badge" style="background:#14532d;color:#4ade80">🟢 صعودي</span>
+            <span style="color:#9ca3af;font-size:5pt">82% ثقة · تأثير: عالٍ</span>
+          </div>
+        </div>
+        <div class="s-news-item">
+          <div class="s-news-meta">Reuters · منذ 28 دقيقة · GOLD</div>
+          <div class="s-news-title">Gold hits all-time record amid geopolitical tensions in Middle East...</div>
+          <div style="display:flex;gap:.05cm;align-items:center">
+            <span class="s-news-badge" style="background:#14532d;color:#4ade80">🟢 صعودي</span>
+            <span style="color:#9ca3af;font-size:5pt">75% ثقة · تأثير: متوسط</span>
+          </div>
+        </div>
+        <div class="s-news-item">
+          <div class="s-news-meta">FX Empire · منذ 1 ساعة · EUR</div>
+          <div class="s-news-title">EUR/USD falls sharply as dollar strengthens on Fed signals...</div>
+          <div style="display:flex;gap:.05cm;align-items:center">
+            <span class="s-news-badge" style="background:#7f1d1d;color:#f87171">🔴 هبوطي</span>
+            <span style="color:#9ca3af;font-size:5pt">68% ثقة · تأثير: متوسط</span>
+          </div>
+        </div>
+        <div class="s-news-item">
+          <div class="s-news-meta">CNBC · منذ 2 ساعة · AAPL</div>
+          <div class="s-news-title">Apple Q4 earnings beat expectations...</div>
+          <div style="display:flex;gap:.05cm;align-items:center">
+            <span class="s-news-badge" style="background:#374151;color:#d1d5db">⬛ محايد</span>
+            <span style="color:#9ca3af;font-size:5pt">55% ثقة</span>
+          </div>
+        </div>
+        <div style="background:#111827;border-top:1px solid #1f2937;display:flex;justify-content:space-around;padding:.08cm;margin-top:auto">
+          <span style="color:#6b7280;font-size:9pt">🏠</span>
+          <span style="color:#7B3F00;font-size:9pt">📰</span>
+          <span style="color:#6b7280;font-size:9pt">📊</span>
+          <span style="color:#6b7280;font-size:9pt">⚙️</span>
+        </div>
+      </div>
+    </div>
+    <div class="info-panel">
+      <p>تعرض شاشة الأخبار أحدث الأخبار المالية المُصنَّفة تلقائياً بالمشاعر (Bullish / Bearish / Neutral) بواسطة نموذج TF-IDF + XGBoost المُدرَّب على 100,000+ خبر.</p>
+      <div class="feature-box">
+        <h3>عناصر كل بطاقة خبر:</h3>
+        <ul>
+          <li><b>المصدر والتوقيت:</b> مصدر الخبر (Bloomberg، Reuters...) والوقت النسبي.</li>
+          <li><b>الرمز المالي المرتبط:</b> BTC، GOLD، EUR، AAPL...</li>
+          <li><b>عنوان الخبر:</b> يُفتح في المتصفح الخارجي عند الضغط.</li>
+          <li><b>شارة المشاعر:</b> <span class="tag tag-green">صعودي</span> <span class="tag tag-red">هبوطي</span> <span class="tag tag-gray">محايد</span></li>
+          <li><b>درجة الثقة:</b> نسبة مئوية لثقة النموذج في التصنيف.</li>
+          <li><b>مستوى التأثير:</b> عالٍ / متوسط / منخفض (impact_score).</li>
+        </ul>
+      </div>
+      <div class="sep"></div>
+      <h3>فلتر الفئات:</h3>
+      <p>يُمكّن المستخدم من تصفية الأخبار حسب الفئة المالية عبر <code>selectedNewsCategoryProvider</code>. الفئات: الكل — رقمي — أسهم — فوركس — معادن.</p>
+      <div class="sep"></div>
+      <h3>آلية تحديث الأخبار:</h3>
+      <p>يُجدَّد مصدر الأخبار كل <b>5 دقائق</b> عبر <code>newsProvider</code> الذي يستدعي <code>NewsCache</code> في الخادم الخلفي، الذي بدوره يجلب الأخبار من Yahoo Finance API.</p>
+      <div class="feature-box" style="margin-top:.15cm">
+        <div style="display:flex;gap:.08cm;flex-wrap:wrap">
+          <span class="tag">newsProvider</span>
+          <span class="tag">TF-IDF + XGBoost</span>
+          <span class="tag">url_launcher</span>
+          <span class="tag">NewsCache (5min)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">45</div>
+</div>
+
+<!-- ═══════════════ شاشة 6: التداول الوهمي ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: واجهات التطبيق — 4.2.6</h1>
+  <h2>شاشة التداول الوهمي (Paper Trading Screen)</h2>
+  <div class="screen-layout">
+    <div class="phone">
+      <div class="phone-btn"></div><div class="phone-btn2"></div><div class="phone-btn3"></div>
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="s-topbar"><span class="s-topbar-title">محفظة التداول الوهمي</span></div>
+        <div class="s-portfolio">
+          <!-- الرصيد -->
+          <div class="s-balance">
+            <div class="s-balance-val">$10,842.50</div>
+            <div class="s-balance-sub">+$842.50 (+8.42%) من الرصيد الابتدائي</div>
+          </div>
+          <!-- إحصائيات -->
+          <div class="s-stat-row">
+            <div class="s-stat"><div class="s-stat-val">3</div><div class="s-stat-lbl">صفقات مفتوحة</div></div>
+            <div class="s-stat"><div class="s-stat-val" style="color:#4ade80">+$420</div><div class="s-stat-lbl">ربح غير محقق</div></div>
+            <div class="s-stat"><div class="s-stat-val" style="color:#f87171">$12.4</div><div class="s-stat-lbl">إجمالي الرسوم</div></div>
+          </div>
+          <!-- الصفقات -->
+          <div style="color:#9ca3af;font-size:6pt;margin:.04cm 0;font-family:'Amiri',serif">الصفقات المفتوحة</div>
+          <div class="s-trade">
+            <div><div class="s-sym" style="font-size:7pt">BTC/USDT</div><div class="s-name">BUY · $500</div></div>
+            <div style="text-align:left"><div class="s-price-up">+$280</div><div style="color:#9ca3af;font-size:5pt">دخول: 93,200</div></div>
+          </div>
+          <div class="s-trade">
+            <div><div class="s-sym" style="font-size:7pt">GOLD</div><div class="s-name">BUY · $300</div></div>
+            <div style="text-align:left"><div class="s-price-up">+$140</div><div style="color:#9ca3af;font-size:5pt">دخول: 2,180</div></div>
+          </div>
+          <div class="s-trade sell">
+            <div><div class="s-sym" style="font-size:7pt">EUR/USD</div><div class="s-name">SELL · $200</div></div>
+            <div style="text-align:left"><div class="s-price-up">+$0</div><div style="color:#9ca3af;font-size:5pt">دخول: 1.0850</div></div>
+          </div>
+          <div style="background:#7B3F00;color:#fff;text-align:center;border-radius:.08cm;padding:.08cm;font-size:7pt;font-family:'Amiri',serif;margin-top:.06cm">+ فتح صفقة جديدة</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-panel">
+      <p>تُتيح شاشة التداول الوهمي للمستخدم تجربة استراتيجيات التداول برصيد افتراضي قدره <b>$10,000</b> دون أي مخاطرة مالية حقيقية.</p>
+      <div class="feature-box">
+        <h3>مكوّنات الشاشة:</h3>
+        <ul>
+          <li><b>إجمالي المحفظة:</b> الرصيد الحالي + نسبة الربح/الخسارة من الرصيد الابتدائي.</li>
+          <li><b>بطاقات الإحصاء:</b> عدد الصفقات المفتوحة، الربح غير المحقق، إجمالي الرسوم.</li>
+          <li><b>قائمة الصفقات المفتوحة:</b> تعرض الرمز، الاتجاه (BUY/SELL)، الحجم، سعر الدخول، الربح الحالي.</li>
+          <li><b>زر فتح صفقة جديدة:</b> يُفتح Dialog يُدخل فيه المستخدم الرمز والاتجاه والحجم.</li>
+        </ul>
+      </div>
+      <div class="sep"></div>
+      <h3>هيكل نظام التداول الوهمي:</h3>
+      <ul>
+        <li><b>الرصيد الابتدائي:</b> $10,000 لكل مستخدم.</li>
+        <li><b>رسوم التداول:</b> 0.1% من قيمة الصفقة عند الفتح والإغلاق.</li>
+        <li><b>الانزلاق السعري:</b> 0.02% – 0.05% (محاكاة واقعية).</li>
+        <li><b>التخزين:</b> ملفات JSON في <code>paper_trading_data/portfolio_{uid}.json</code>.</li>
+        <li><b>نقاط نهاية API:</b> /open — /close — /portfolio/{uid} — /stats/{uid} — /reset.</li>
+      </ul>
+      <div class="feature-box" style="margin-top:.15cm">
+        <div style="display:flex;gap:.08cm;flex-wrap:wrap">
+          <span class="tag">POST /paper-trading/open</span>
+          <span class="tag">POST /paper-trading/close</span>
+          <span class="tag">GET /stats/{uid}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">46</div>
+</div>
+
+<!-- ═══════════════ شاشة 7: مراجعة التوصيات ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: واجهات التطبيق — 4.2.7</h1>
+  <h2>شاشة مراجعة التوصيات (Signal Review Screen)</h2>
+  <div class="screen-layout">
+    <div class="phone">
+      <div class="phone-btn"></div><div class="phone-btn2"></div><div class="phone-btn3"></div>
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="s-topbar"><span class="s-topbar-title">مراجعة التوصيات</span></div>
+        <div class="s-portfolio">
+          <div class="s-acc">
+            <div class="s-acc-num">72%</div>
+            <div class="s-acc-sub">دقة التوصيات الإجمالية</div>
+            <div style="display:flex;justify-content:center;gap:.15cm;margin-top:.05cm">
+              <span style="color:#4ade80;font-size:6pt">✅ 18 صحيح</span>
+              <span style="color:#f87171;font-size:6pt">❌ 7 خطأ</span>
+              <span style="color:#facc15;font-size:6pt">⏳ 3 معلق</span>
+            </div>
+          </div>
+          <!-- شريط التقدم -->
+          <div style="background:#1f2937;border-radius:.08cm;height:.15cm;margin:.04cm 0;overflow:hidden">
+            <div style="width:72%;height:100%;background:linear-gradient(90deg,#4ade80,#22c55e)"></div>
+          </div>
+          <!-- سجل الإشارات -->
+          <div class="s-log correct">
+            <div><div style="color:#f0e6d3;font-size:7pt;font-weight:700">BTC/USDT · 1h</div><div style="color:#9ca3af;font-size:5.5pt">BUY · دخول: 93,200</div></div>
+            <div style="color:#4ade80;font-size:8pt">✅</div>
+          </div>
+          <div class="s-log wrong">
+            <div><div style="color:#f0e6d3;font-size:7pt;font-weight:700">GOLD · 4h</div><div style="color:#9ca3af;font-size:5.5pt">SELL · دخول: 2,200</div></div>
+            <div style="color:#f87171;font-size:8pt">❌</div>
+          </div>
+          <div class="s-log pending">
+            <div><div style="color:#f0e6d3;font-size:7pt;font-weight:700">EUR/USD · 1d</div><div style="color:#9ca3af;font-size:5.5pt">HOLD · قيد الانتظار</div></div>
+            <div style="color:#facc15;font-size:8pt">⏳</div>
+          </div>
+          <div class="s-log correct">
+            <div><div style="color:#f0e6d3;font-size:7pt;font-weight:700">BNB/USDT · 15m</div><div style="color:#9ca3af;font-size:5.5pt">BUY · دخول: 615</div></div>
+            <div style="color:#4ade80;font-size:8pt">✅</div>
+          </div>
+        </div>
+        <div style="background:#111827;border-top:1px solid #1f2937;display:flex;justify-content:space-around;padding:.08cm;margin-top:auto">
+          <span style="color:#6b7280;font-size:9pt">🏠</span>
+          <span style="color:#6b7280;font-size:9pt">📰</span>
+          <span style="color:#7B3F00;font-size:9pt">📊</span>
+          <span style="color:#6b7280;font-size:9pt">⚙️</span>
+        </div>
+      </div>
+    </div>
+    <div class="info-panel">
+      <p>تُتيح شاشة مراجعة التوصيات للمستخدم تتبع أداء نظام الإشارات بموضوعية. تحفظ كل إشارة في Firestore وتُحلّ تلقائياً بعد مرور الأفق الزمني المحدد.</p>
+      <div class="feature-box">
+        <h3>مكوّنات الشاشة:</h3>
+        <ul>
+          <li><b>نسبة الدقة الإجمالية:</b> (عدد الصحيحة / إجمالي المحلولة) × 100%.</li>
+          <li><b>شريط التقدم البصري:</b> يُوضّح نسبة الدقة بلون أخضر متدرج.</li>
+          <li><b>إحصاءات التفصيل:</b> عدد الإشارات الصحيحة، الخاطئة، والمعلّقة.</li>
+          <li><b>سجل الإشارات:</b> كل إشارة تعرض الرمز، الإطار الزمني، الاتجاه، سعر الدخول، والحالة.</li>
+        </ul>
+      </div>
+      <div class="sep"></div>
+      <h3>آلية الحلّ التلقائي:</h3>
+      <ul>
+        <li>كل 30 ثانية تتحقق <code>SignalLogService</code> من الإشارات المعلّقة.</li>
+        <li>لكل إشارة معلّقة: تحسب الوقت المنقضي منذ التوصية.</li>
+        <li>إن مرّ horizon × ثواني الشمعة: تُجلَب السعر الحالي وتُقارَن بسعر الدخول.</li>
+        <li>تُحدَّث حالة الإشارة: <span class="tag tag-green">isCorrect=true</span> أو <span class="tag tag-red">isCorrect=false</span>.</li>
+      </ul>
+      <div class="feature-box" style="margin-top:.15cm">
+        <div style="display:flex;gap:.08cm;flex-wrap:wrap">
+          <span class="tag">SignalLogService</span>
+          <span class="tag">Firestore stream</span>
+          <span class="tag">Auto-resolve (30s)</span>
+          <span class="tag">computeActualDirection()</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">47</div>
+</div>
+
+<!-- ═══════════════ شاشة 8: الإعدادات ═══════════════ -->
+<div class="page">
+  <h1>الفصل الرابع: واجهات التطبيق — 4.2.8</h1>
+  <h2>شاشة الإعدادات (Settings Screen)</h2>
+  <div class="screen-layout">
+    <div class="phone">
+      <div class="phone-btn"></div><div class="phone-btn2"></div><div class="phone-btn3"></div>
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="s-topbar"><span class="s-topbar-title">الإعدادات</span></div>
+        <div style="padding:.1cm">
+          <!-- بطاقة الحساب -->
+          <div style="background:#1f2937;border-radius:.1cm;padding:.12cm;margin-bottom:.1cm;text-align:center">
+            <div style="font-size:16pt">👤</div>
+            <div style="color:#f0e6d3;font-size:7.5pt;font-family:'Amiri',serif;margin:.04cm 0">trader@example.com</div>
+            <div style="color:#6b7280;font-size:5.5pt;direction:ltr">UID: abc123xyz</div>
+          </div>
+          <!-- إعداد اللغة -->
+          <div class="s-settings-item">
+            <div class="s-settings-label">🌐 اللغة</div>
+            <div style="display:flex;align-items:center;gap:.06cm">
+              <span class="s-settings-val">العربية</span>
+              <div style="background:#7B3F00;border-radius:.15cm;width:.6cm;height:.28cm;position:relative">
+                <div style="width:.22cm;height:.22cm;background:#fff;border-radius:50%;position:absolute;left:.04cm;top:.03cm"></div>
+              </div>
+            </div>
+          </div>
+          <!-- تغيير كلمة المرور -->
+          <div class="s-settings-item">
+            <div class="s-settings-label">🔒 تغيير كلمة المرور</div>
+            <span class="s-settings-icon">›</span>
+          </div>
+          <!-- إعادة تعيين المحفظة -->
+          <div class="s-settings-item">
+            <div class="s-settings-label">🔄 إعادة تعيين المحفظة</div>
+            <span class="s-settings-icon">›</span>
+          </div>
+          <!-- حول التطبيق -->
+          <div class="s-settings-item">
+            <div class="s-settings-label">ℹ️ حول التطبيق</div>
+            <span class="s-settings-val">v1.0.0</span>
+          </div>
+          <!-- تسجيل الخروج -->
+          <div style="background:#7f1d1d;border-radius:.08cm;padding:.09cm;text-align:center;margin-top:.12cm">
+            <span style="color:#f87171;font-size:7.5pt;font-family:'Amiri',serif;font-weight:700">🚪 تسجيل الخروج</span>
+          </div>
+        </div>
+        <div style="background:#111827;border-top:1px solid #1f2937;display:flex;justify-content:space-around;padding:.08cm;margin-top:auto">
+          <span style="color:#6b7280;font-size:9pt">🏠</span>
+          <span style="color:#6b7280;font-size:9pt">📰</span>
+          <span style="color:#6b7280;font-size:9pt">📊</span>
+          <span style="color:#7B3F00;font-size:9pt">⚙️</span>
+        </div>
+      </div>
+    </div>
+    <div class="info-panel">
+      <p>تُتيح شاشة الإعدادات للمستخدم إدارة حسابه وتفضيلاته. صمّمناها لتكون واضحة وسهلة الاستخدام مع عرض معلومات الحساب الأساسية.</p>
+      <div class="feature-box">
+        <h3>مكوّنات الشاشة:</h3>
+        <ul>
+          <li><b>بطاقة الحساب:</b> تعرض أيقونة المستخدم، البريد الإلكتروني، ومُعرّف Firebase UID.</li>
+          <li><b>تبديل اللغة:</b> مفتاح Toggle بين العربية والإنجليزية — يُحفَظ الاختيار في SharedPreferences.</li>
+          <li><b>تغيير كلمة المرور:</b> يُفتح نموذجاً يطلب كلمة المرور الحالية للتحقق من الهوية أولاً (Re-authentication).</li>
+          <li><b>إعادة تعيين المحفظة:</b> يُعيد الرصيد الوهمي إلى $10,000 ويحذف جميع الصفقات المسجّلة.</li>
+          <li><b>تسجيل الخروج:</b> يُنهي الجلسة ويُوجّه للشاشة الرئيسية عبر GoRouter.</li>
+        </ul>
+      </div>
+      <div class="sep"></div>
+      <h3>ميزة تغيير اللغة:</h3>
+      <p>تدير <code>LocaleNotifier</code> (StateNotifier) حالة اللغة المحدَّدة. عند التبديل تُحفَظ اللغة عبر SharedPreferences وتُطبَّق فوراً على جميع شاشات التطبيق دون إعادة تشغيل. تدعم التطبيق لغتين: <b>العربية (RTL)</b> و<b>الإنجليزية (LTR)</b>.</p>
+      <div class="feature-box" style="margin-top:.15cm">
+        <div style="display:flex;gap:.08cm;flex-wrap:wrap">
+          <span class="tag">localeProvider</span>
+          <span class="tag">SharedPreferences</span>
+          <span class="tag">signOut()</span>
+          <span class="tag">reauthenticateWithCredential()</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pnum">48</div>
+</div>
+
+</body>
+</html>

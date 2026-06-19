@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الإهداء</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.pg{margin:0!important;width:21cm!important;min-height:29.7cm!important;box-shadow:none!important;border:none!important}}
+.pg{
+  width:21cm;min-height:29.7cm;background:#fff;
+  margin:1cm auto;
+  box-shadow:0 4px 20px rgba(0,0,0,.15);
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ─── Brown border frame ─── */
+.frame{
+  position:absolute;
+  top:.7cm;left:.7cm;right:.7cm;bottom:.7cm;
+  border:3px solid #7B3F00;
+  pointer-events:none;
+}
+
+/* ─── Content ─── */
+.content{
+  text-align:center;
+  direction:rtl;
+  padding:2cm;
+  line-height:2.8;
+  font-size:14pt;
+  color:#111;
+}
+.title{
+  font-size:18pt;
+  font-weight:700;
+  color:#7B3F00;
+  margin-bottom:.6cm;
+  display:block;
+}
+
+/* ─── Page number ─── */
+.pn{
+  position:absolute;bottom:.9cm;left:50%;transform:translateX(-50%);
+  font-size:11pt;color:#7B3F00;font-weight:700;
+  font-family:'Amiri',serif;
+}
+</style>
+</head>
+<body>
+<div class="pg">
+  <div class="frame"></div>
+
+  <div class="content">
+    <span class="title">الإهداء</span>
+
+    إلى رمز التفاني والإخلاص<br>
+    أمي الحبيبة<br>
+    <br>
+    إلى منبت الخير والتضحية والإيثار<br>
+    والدي الكريم<br>
+    <br>
+    إلى مثال العطاء والكبرياء والتضحية<br>
+    إخواني وأخواتي<br>
+    <br>
+    إلى كل من يحبني بصدق وإخلاص<br>
+    إلى جميع من تلقّينا منهم النصح والدعم<br>
+    أهديكم خلاصة جهدي العلمي
+  </div>
+
+  <div class="pn">i</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>شكر وعرفان</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.pg{margin:0!important;width:21cm!important;min-height:29.7cm!important;box-shadow:none!important;border:none!important}}
+.pg{
+  width:21cm;min-height:29.7cm;background:#fff;
+  margin:1cm auto;
+  box-shadow:0 4px 20px rgba(0,0,0,.15);
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ─── Brown border frame ─── */
+.frame{
+  position:absolute;
+  top:.7cm;left:.7cm;right:.7cm;bottom:.7cm;
+  border:3px solid #7B3F00;
+  pointer-events:none;
+}
+
+/* ─── Content ─── */
+.content{
+  text-align:center;
+  direction:rtl;
+  padding:2cm 2.5cm;
+  line-height:2.6;
+  font-size:13.5pt;
+  color:#111;
+}
+.title{
+  font-size:18pt;
+  font-weight:700;
+  color:#7B3F00;
+  margin-bottom:.5cm;
+  display:block;
+}
+
+/* ─── Page number ─── */
+.pn{
+  position:absolute;bottom:.9cm;left:50%;transform:translateX(-50%);
+  font-size:11pt;color:#7B3F00;font-weight:700;
+  font-family:'Amiri',serif;
+}
+</style>
+</head>
+<body>
+<div class="pg">
+  <div class="frame"></div>
+
+  <div class="content">
+    <span class="title">شكر وعرفان</span>
+
+    ونحن نخطو آخر خطواتنا في هذه المرحلة الجامعية،<br>
+    نبدأ بالشكر للذي لا يُحمد سواه،<br>
+    الذي مهد لنا الطريق لإنجاز هذا العمل،<br>
+    الله سبحانه وتعالى الذي مَنّ علينا بالصحة والعافية<br>
+    <br>
+    نتوجه بالشكر الجزيل إلى عمادة كلية الهندسة وعلوم الحاسوب،<br>
+    كما نشكر قسم الحوسبة وتقنية المعلومات،<br>
+    ممثّلاً بالدكتور قيس النزيلي والمهندسة ياسمين<br>
+    <br>
+    ونخص الشكر إلى أ.م.د إبراهيم البلطة مشرف المشروع،<br>
+    ونشكر كل من ساهم وساعد في مشروع Market Insight،<br>
+    حتى وإن كان بفكرة أو بكلمة للرفع من معنوياتنا<br>
+    وإعطائنا دفعة للمضي قدماً<br>
+    <br>
+    ,,, والله ولي التوفيق ,,,
+  </div>
+
+  <div class="pn">ii</div>
+</div>
+</body>
+</html>

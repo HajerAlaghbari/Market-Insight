@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الفصل الأول — Market Insight</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4;direction:rtl}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .page{margin:0!important;width:21cm!important;min-height:29.7cm!important;page-break-after:always;border:4px double #7B3F00!important;box-shadow:none!important}
+}
+.page{
+  width:21cm;min-height:29.7cm;
+  background:#fff;
+  margin:1cm auto;
+  padding:2cm 2.2cm 2cm 2cm;
+  border:4px double #7B3F00;
+  box-shadow:0 4px 24px rgba(0,0,0,.18);
+  position:relative;
+}
+/* العناوين */
+h1{
+  font-size:18pt;font-weight:700;color:#fff;
+  background:#7B3F00;
+  padding:.25cm .5cm;
+  margin-bottom:.5cm;
+  text-align:center;
+  border-radius:2px;
+  letter-spacing:.5px;
+}
+h2{
+  font-size:14pt;font-weight:700;color:#7B3F00;
+  border-right:5px solid #7B3F00;
+  padding-right:.3cm;
+  margin:0.5cm 0 .3cm;
+}
+h3{
+  font-size:12.5pt;font-weight:700;color:#5a2e00;
+  padding-right:.6cm;
+  margin:.35cm 0 .2cm;
+  position:relative;
+}
+h3::before{content:"◆";position:absolute;right:.1cm;color:#7B3F00;font-size:8pt;top:.1cm}
+/* النص */
+p{
+  font-size:13.5pt;
+  line-height:2;
+  text-align:justify;
+  margin-bottom:.25cm;
+  color:#222;
+}
+ul,ol{
+  margin:.1cm .5cm .3cm 0;
+  padding-right:.6cm;
+  font-size:13.5pt;
+  line-height:2;
+  color:#222;
+}
+li{margin-bottom:.1cm;text-align:justify}
+/* الجداول */
+table{width:100%;border-collapse:collapse;margin:.35cm 0;font-size:12pt}
+th{background:#7B3F00;color:#fff;padding:.2cm .3cm;border:1px solid #7B3F00;text-align:center;font-size:12.5pt}
+td{padding:.18cm .3cm;border:1px solid #ccc;text-align:center}
+tr:nth-child(even){background:#fdf5ec}
+.cap{text-align:center;font-size:11pt;color:#555;margin:.08cm 0 .4cm;font-style:italic}
+/* رقم الصفحة */
+.pnum{
+  position:absolute;bottom:.6cm;
+  left:50%;transform:translateX(-50%);
+  font-size:11pt;color:#7B3F00;font-weight:700;
+  border-top:1px solid #7B3F00;
+  padding-top:.1cm;width:1.5cm;text-align:center;
+}
+/* صندوق ملاحظة */
+.note-box{
+  background:#fdf5ec;
+  border-right:4px solid #7B3F00;
+  padding:.25cm .4cm;
+  margin:.3cm 0;
+  border-radius:2px;
+}
+.note-box p{margin:0;font-size:12.5pt}
+/* غلاف الفصل */
+.ch-page{
+  display:flex;align-items:center;justify-content:center;
+  min-height:25cm;
+  flex-direction:column;gap:.5cm;
+}
+.ch-number{font-size:22pt;color:#7B3F00;font-weight:700;letter-spacing:2px}
+.ch-title-ar{font-size:28pt;font-weight:700;color:#3d1f00;text-align:center;line-height:1.6}
+.ch-line{width:6cm;height:3px;background:linear-gradient(90deg,transparent,#7B3F00,transparent);margin:.2cm 0}
+/* بطاقة هدف */
+.goal-card{
+  background:#fdf5ec;
+  border:1px solid #d4a870;
+  border-radius:4px;
+  padding:.2cm .35cm;
+  margin-bottom:.15cm;
+  display:flex;
+  align-items:flex-start;
+  gap:.2cm;
+}
+.goal-num{
+  background:#7B3F00;color:#fff;
+  min-width:.7cm;height:.7cm;
+  border-radius:50%;display:flex;
+  align-items:center;justify-content:center;
+  font-size:10pt;font-weight:700;
+  margin-top:.08cm;flex-shrink:0;
+}
+.goal-text{font-size:13pt;line-height:1.8;color:#222}
+/* جدول المستخدمين */
+.user-card{
+  background:#fdf5ec;border:1px solid #d4a870;
+  border-radius:4px;padding:.3cm .4cm;
+  margin-bottom:.2cm;
+}
+.user-type{font-size:13pt;font-weight:700;color:#7B3F00;margin-bottom:.1cm}
+.user-desc{font-size:12.5pt;color:#333;line-height:1.8}
+/* Gantt */
+.gantt-row{display:flex;align-items:center;margin-bottom:.12cm;gap:.1cm}
+.gantt-label{width:4cm;font-size:10pt;color:#333;text-align:right;flex-shrink:0}
+.gantt-bar-wrap{flex:1;background:#f0e8e0;border-radius:3px;height:.45cm;position:relative;border:1px solid #ddd}
+.gantt-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,#7B3F00,#c0622a);position:absolute;display:flex;align-items:center;padding-right:.1cm}
+.gantt-bar span{font-size:7.5pt;color:#fff;font-weight:700;white-space:nowrap;padding:0 .08cm}
+.gantt-months{display:flex;margin-bottom:.08cm;padding-right:4.1cm}
+.gantt-m{flex:1;text-align:center;font-size:8pt;color:#888;border-left:1px dashed #ddd}
+/* فاصل داخلي */
+.sep{border:none;border-top:1px dashed #d4a870;margin:.4cm 0}
+</style>
+</head>
+<body>
+
+<!-- ══════════ غلاف الفصل الأول ══════════ -->
+<div class="page">
+  <div class="ch-page">
+    <div class="ch-line"></div>
+    <div class="ch-number">الفصل الأول</div>
+    <div class="ch-title-ar">المقدمة</div>
+    <div class="ch-line"></div>
+    <div style="margin-top:.5cm;text-align:center;font-size:12pt;color:#888;line-height:2.2">
+      <div>1.1 &nbsp; مقدمة عن المشروع</div>
+      <div>1.2 &nbsp; مشكلة البحث</div>
+      <div>1.3 &nbsp; أهداف البحث</div>
+      <div>1.4 &nbsp; أهمية البحث</div>
+      <div>1.5 &nbsp; حدود البحث</div>
+      <div>1.6 &nbsp; مستخدمو النظام</div>
+      <div>1.7 &nbsp; خطة عمل المشروع</div>
+    </div>
+  </div>
+  <div class="pnum">2</div>
+</div>
+
+<!-- ══════════ صفحة 1.1 + 1.2 ══════════ -->
+<div class="page">
+  <h1>الفصل الأول: المقدمة</h1>
+
+  <!-- 1.1 -->
+  <h2>1.1 مقدمة عن المشروع:</h2>
+  <p>
+    تشهد أسواق المال عالمياً تطوراً متسارعاً في التقنيات المستخدمة لتحليل البيانات واتخاذ القرارات الاستثمارية؛ إذ باتت أدوات الذكاء الاصطناعي والتعلم الآلي تلعب دوراً محورياً في استشراف اتجاهات الأسعار واستخلاص أنماط مخفية من ملايين نقاط البيانات. وبالتوازي مع الانتشار الواسع للهواتف الذكية، أصبح توفير منصات تداول ذكية يمكن الوصول إليها في أي وقت ومن أي مكان ضرورةً لا ترفاً.
+  </p>
+  <p>
+    في هذا السياق، طوّرنا نظام <b>Market Insight</b> للتداول الذكي، وهو منصة متنقلة متكاملة تجمع بين قدرتين تحليليتين متكاملتين: <b>التحليل الفني للأسعار</b> عبر مؤشرات مثل RSI وMACD وEMA وATR وStochastic، و<b>تحليل مشاعر الأخبار المالية</b> بأساليب معالجة اللغة الطبيعية (NLP). يعمل النظام على دمج هاتين القدرتين في نموذج هجين مبني على خوارزمية XGBoost لإنتاج إشارات تداول ذكية (شراء / بيع / انتظار) مع درجة ثقة ومستويات جني الأرباح ووقف الخسارة.
+  </p>
+  <p>
+    يغطي نظامنا أربع فئات من الأصول المالية: <b>العملات الرقمية</b> (Bitcoin، Ethereum، BNB) عبر منصة Binance، و<b>المعادن الثمينة</b> (الذهب، الفضة، البلاتين)، و<b>العملات الأجنبية</b> (EUR/USD، GBP/USD، EUR/GBP)، و<b>الأسهم</b> (AAPL، AMZN، TSLA) عبر Yahoo Finance. ويدعم النظام تسعة أُطر زمنية تتراوح بين دقيقة واحدة وشهر كامل، مع واجهة مستخدم احترافية تدعم اللغتين العربية والإنجليزية.
+  </p>
+  <p>
+    يتألف النظام من مكوّنين رئيسيين: واجهة خلفية بنيناها بـ <b>FastAPI/Python</b> توفر 12+ نقطة نهاية (Endpoint)، وتطبيق متنقل طوّرناه بـ <b>Flutter/Dart</b> يعمل على Android وiOS، مع استخدام <b>Firebase</b> للمصادقة وFirestore لتخزين البيانات.
+  </p>
+
+  <hr class="sep">
+
+  <!-- 1.2 -->
+  <h2>1.2 مشكلة البحث:</h2>
+  <p>
+    لاحظنا أن المتداول الفردي، سواء كان مبتدئاً أو ذا خبرة محدودة، يواجه جملةً من التحديات الجوهرية التي تُعيق قدرته على اتخاذ قرارات استثمارية مبنية على بيانات دقيقة وموضوعية، يمكن إجمالها فيما يلي:
+  </p>
+  <ul>
+    <li><b>تشتت مصادر المعلومات:</b> يضطر المتداول إلى الانتقال بين منصات متعددة لمتابعة الأسعار والأخبار والمؤشرات الفنية، مما يُضيّع الوقت ويُشتّت الانتباه.</li>
+    <li><b>غياب التحليل المتكامل:</b> لا تجمع معظم التطبيقات المتاحة حالياً بين التحليل الفني وتحليل مشاعر الأخبار في إشارة واحدة مدموجة.</li>
+    <li><b>محدودية التطبيقات الذكية العربية:</b> تفتقر السوق إلى منصات تداول ذكية تدعم اللغة العربية بشكل كامل وتستهدف المتداول العربي.</li>
+    <li><b>انعدام التجربة الآمنة:</b> لا تتيح معظم المنصات للمستخدم تجربة استراتيجيات التداول دون المخاطرة بأموال حقيقية.</li>
+    <li><b>غياب تتبع دقة التوصيات:</b> لا توفر التطبيقات الحالية آلية موضوعية لتقييم مدى صحة الإشارات التي تولّدها مقارنةً بالحركة الفعلية للسوق.</li>
+    <li><b>التأخر في استقبال المعلومات:</b> يعاني المتداولون من تأخر في وصول بيانات الأسعار والأخبار، مما يؤثر سلباً على توقيت قراراتهم.</li>
+  </ul>
+  <p>
+    تتمثّل المشكلة الجوهرية إذن في <b>غياب منصة ذكية متكاملة ومتنقلة</b> تدمج التحليل الفني للأسعار مع تحليل مشاعر الأخبار المالية في إشارة واحدة قابلة للثقة، مع توفير نظام تداول وهمي لاكتساب الخبرة وآلية شفافة لتتبع دقة التوصيات.
+  </p>
+
+  <div class="pnum">3</div>
+</div>
+
+<!-- ══════════ صفحة 1.3 + 1.4 ══════════ -->
+<div class="page">
+
+  <!-- 1.3 -->
+  <h2>1.3 أهداف البحث:</h2>
+  <p>نسعى من خلال هذا المشروع إلى تحقيق الأهداف التالية:</p>
+
+  <div class="goal-card">
+    <div class="goal-num">1</div>
+    <div class="goal-text"><b>تصميم وتطوير تطبيق متنقل متكامل</b> لتحليل الأسواق المالية يعمل على نظامي Android وiOS ويدعم اللغتين العربية والإنجليزية.</div>
+  </div>
+  <div class="goal-card">
+    <div class="goal-num">2</div>
+    <div class="goal-text"><b>بناء نموذج هجين للذكاء الاصطناعي</b> يدمج XGBoost للتحليل الفني (15+ مؤشر) مع TF-IDF + XGBoost لتحليل مشاعر الأخبار، لإنتاج إشارات تداول BUY/SELL/HOLD بدرجة ثقة محددة.</div>
+  </div>
+  <div class="goal-card">
+    <div class="goal-num">3</div>
+    <div class="goal-text"><b>توفير بث أسعار لحظي</b> لـ 15 رمزاً مالياً في أربع فئات من الأصول (رقمية، معادن، فوركس، أسهم) بتحديث كل ثانية واحدة.</div>
+  </div>
+  <div class="goal-card">
+    <div class="goal-num">4</div>
+    <div class="goal-text"><b>تطوير نظام تداول وهمي (Paper Trading)</b> يحاكي الواقع بمحفظة افتراضية قدرها $10,000 مع احتساب رسوم 0.1% وانزلاق سعري واقعي.</div>
+  </div>
+  <div class="goal-card">
+    <div class="goal-num">5</div>
+    <div class="goal-text"><b>إنشاء آلية مراجعة تلقائية لدقة التوصيات</b> تُتيح تتبع صحة كل إشارة مقارنةً بالحركة الفعلية للسوق وحفظها في Firestore.</div>
+  </div>
+  <div class="goal-card">
+    <div class="goal-num">6</div>
+    <div class="goal-text"><b>عرض أخبار مالية مصنّفة بالمشاعر</b> مع فلترة حسب الفئة (رقمي / أسهم / فوركس / معادن) وعرض درجة الثقة ومستوى التأثير.</div>
+  </div>
+  <div class="goal-card">
+    <div class="goal-num">7</div>
+    <div class="goal-text"><b>توفير رسم بياني تفاعلي</b> بالشموع اليابانية لآخر 200 شمعة عبر 9 أُطر زمنية، مع وضع Auto لتوليد الإشارات تلقائياً.</div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- 1.4 -->
+  <h2>1.4 أهمية البحث:</h2>
+  <p>
+    تنبثق أهمية هذا البحث من كونه يُعالج فجوةً حقيقية في سوق التطبيقات المالية، ويقدّم إسهاماً علمياً وتطبيقياً متعدد الأبعاد:
+  </p>
+  <ul>
+    <li><b>الأهمية العلمية:</b> نُقدّم نموذجاً هجيناً يدمج تحليل الأسعار الفني مع تحليل مشاعر الأخبار النصية في منظومة واحدة، وهو نهج لم تتناوله التطبيقات العربية من قبل.</li>
+    <li><b>الأهمية العملية:</b> نوفر للمتداول العربي أداةً شاملة تجمع في تطبيق واحد كل ما يحتاجه: أسعار لحظية، تحليل ذكي، أخبار مصنّفة، ورسوم بيانية تفاعلية.</li>
+    <li><b>أهمية التعليم المالي:</b> يُتيح نظام التداول الوهمي للمتداولين الجدد اكتساب الخبرة وتجربة استراتيجيات التداول المختلفة دون أي مخاطر مالية.</li>
+    <li><b>أهمية الشفافية:</b> تُعدّ آلية مراجعة دقة التوصيات ميزةً نادرة؛ إذ تمنح المستخدم القدرة على تقييم موضوعي لأداء النظام مع مرور الوقت.</li>
+    <li><b>الأهمية التقنية:</b> نُبرهن على إمكانية بناء نظام ذكاء اصطناعي متكامل للتداول باستخدام تقنيات مفتوحة المصدر (XGBoost، FastAPI، Flutter) بتكلفة تشغيلية شبه صفرية.</li>
+  </ul>
+
+  <div class="pnum">4</div>
+</div>
+
+<!-- ══════════ صفحة 1.5 ══════════ -->
+<div class="page">
+
+  <!-- 1.5 -->
+  <h2>1.5 حدود البحث:</h2>
+  <p>
+    حرصنا على تحديد نطاق المشروع بوضوح لضمان الوصول إلى نتائج قابلة للقياس والتحقق، وذلك عبر الحدود التالية:
+  </p>
+
+  <!-- 1.5.1 -->
+  <h3>1.5.1 الحدود الموضوعية:</h3>
+  <p>
+    يقتصر نظامنا على تحليل <b>15 رمزاً مالياً</b> موزعة على أربع فئات كما يوضح الجدول التالي:
+  </p>
+  <table>
+    <tr><th>الفئة</th><th>الرموز المدعومة</th><th>مصدر البيانات</th></tr>
+    <tr><td>العملات الرقمية</td><td>BTC/USDT — ETH/USDT — BNB/USDT</td><td>Binance (ccxt)</td></tr>
+    <tr><td>المعادن الثمينة</td><td>الذهب (XAU) — الفضة (XAG) — البلاتين (XPT)</td><td>Yahoo Finance</td></tr>
+    <tr><td>العملات الأجنبية</td><td>EUR/USD — GBP/USD — EUR/GBP</td><td>Yahoo Finance</td></tr>
+    <tr><td>الأسهم</td><td>Apple (AAPL) — Amazon (AMZN) — Tesla (TSLA)</td><td>Yahoo Finance</td></tr>
+    <tr><td>الأطر الزمنية</td><td>1m / 5m / 15m / 30m / 1h / 4h / 1d / 1w / 1M</td><td>—</td></tr>
+  </table>
+  <p>
+    يعتمد التحليل الفني على <b>15+ مؤشراً</b>: EMA-20/50/200، RSI-14، MACD + Signal + Histogram، Stochastic K/D، ATR-14، Log Return، وترميز الوقت الدوري. أما تحليل الأخبار فيشمل 11,000 ميزة نصية (8,000 للعناوين + 3,000 للملخصات). لا يشمل المشروع التداول الفعلي المتصل ببروكرز حقيقيين.
+  </p>
+
+  <!-- 1.5.2 -->
+  <h3>1.5.2 الحدود المكانية:</h3>
+  <p>
+    صمّمنا النظام ليعمل عبر ثلاث طبقات مكانية متكاملة: <b>الخادم الخلفي</b> المنشور على منصة Render.com السحابية، و<b>التطبيق المتنقل</b> القابل للتشغيل على أي جهاز Android أو iOS، وقاعدة البيانات السحابية عبر <b>Firebase Firestore</b>. يمكن للمستخدمين الوصول إلى النظام من أي موقع جغرافي يتوفر فيه اتصال بالإنترنت.
+  </p>
+
+  <!-- 1.5.3 -->
+  <h3>1.5.3 الحدود المنهجية:</h3>
+  <p>
+    اعتمدنا في تطوير نظامنا على <b>منهجية Waterfall</b> كإطار تنظيمي، وهي منهجية تسير وفق مراحل متسلسلة ومتعاقبة (التحليل ← التصميم ← التنفيذ ← الاختبار ← النشر). وجدنا أنها الأنسب لمشروعنا نظراً لوضوح المتطلبات منذ البداية وثبات نطاق العمل. اعتمدنا كذلك منهج <b>التجريب والاختبار</b> في تقييم أداء النماذج، إذ أجرينا 83 حالة اختبار شملت اختبارات الوحدة والتكامل والأداء.
+  </p>
+
+  <!-- 1.5.4 -->
+  <h3>1.5.4 الحدود الزمنية:</h3>
+  <p>
+    نفّذنا المشروع خلال العام الدراسي <b>[السنة الدراسية]</b> على مدار <b>[عدد الأشهر]</b> شهراً، بدأ بمرحلة التحليل وانتهى بمرحلة الاختبار والتوثيق. أما على صعيد البيانات، فيعمل نموذج التحليل الفني على آخر <b>5000 شمعة تاريخية</b> لكل رمز، ويُدرَّب نموذج الأخبار على أكثر من <b>100,000 خبر مالي</b> مجمّعة في قاعدة البيانات النصية.
+  </p>
+
+  <!-- 1.5.5 -->
+  <h3>1.5.5 الحدود التقنية:</h3>
+  <p>يُوضّح الجدول التالي المنظومة التقنية الكاملة التي اعتمدنا عليها في بناء النظام:</p>
+  <table>
+    <tr><th>الطبقة</th><th>التقنية</th><th>الإصدار</th><th>الغرض</th></tr>
+    <tr><td>لغة البرمجة (Backend)</td><td>Python</td><td>3.10+</td><td>لغة الخادم والنماذج</td></tr>
+    <tr><td>إطار الـ API</td><td>FastAPI + Uvicorn</td><td>0.100+</td><td>تقديم نقاط النهاية</td></tr>
+    <tr><td>نموذج التعلم الآلي</td><td>XGBoost</td><td>2.x</td><td>التحليل الفني والأخبار</td></tr>
+    <tr><td>تحليل النصوص</td><td>TF-IDF (scikit-learn)</td><td>1.3+</td><td>استخلاص الميزات النصية</td></tr>
+    <tr><td>بيانات السوق</td><td>ccxt + yfinance</td><td>أحدث</td><td>Binance + Yahoo Finance</td></tr>
+    <tr><td>لغة البرمجة (Frontend)</td><td>Dart</td><td>3.3+</td><td>لغة التطبيق</td></tr>
+    <tr><td>إطار التطبيق</td><td>Flutter</td><td>3.x</td><td>واجهة المستخدم</td></tr>
+    <tr><td>إدارة الحالة</td><td>Flutter Riverpod</td><td>2.x</td><td>State Management</td></tr>
+    <tr><td>التنقل</td><td>GoRouter</td><td>12.x</td><td>Navigation</td></tr>
+    <tr><td>المصادقة</td><td>Firebase Auth</td><td>—</td><td>تسجيل الدخول</td></tr>
+    <tr><td>قاعدة البيانات</td><td>Firebase Firestore</td><td>—</td><td>تخزين سحابي NoSQL</td></tr>
+    <tr><td>النشر</td><td>Render.com</td><td>—</td><td>استضافة الخادم</td></tr>
+  </table>
+
+  <div class="pnum">5</div>
+</div>
+
+<!-- ══════════ صفحة 1.6 ══════════ -->
+<div class="page">
+
+  <!-- 1.6 -->
+  <h2>1.6 مستخدمو النظام:</h2>
+  <p>
+    حدّدنا في مرحلة التحليل ثلاث فئات رئيسية من المستخدمين المستهدفين، يختلفون في مستوى خبرتهم واحتياجاتهم:
+  </p>
+
+  <div class="user-card">
+    <div class="user-type">👤 المتداول المبتدئ (Beginner Trader)</div>
+    <div class="user-desc">
+      هو المستخدم الذي يرغب في دخول عالم أسواق المال لكنه يفتقر إلى الخبرة الكافية في قراءة المؤشرات الفنية أو تفسير الأخبار المالية. يستفيد من إشارات النظام الجاهزة (BUY/SELL/HOLD) ومن نظام التداول الوهمي لاكتساب الخبرة دون مخاطرة مالية، كما يستفيد من عرض المشاعر الإخبارية بطريقة مبسّطة. <b>احتياجاته الأساسية:</b> واجهة بسيطة، إشارات واضحة، تداول تجريبي آمن.
+    </div>
+  </div>
+
+  <div class="user-card">
+    <div class="user-type">📊 المتداول المتوسط (Intermediate Trader)</div>
+    <div class="user-desc">
+      هو المستخدم الذي يمتلك فهماً جيداً للتحليل الفني ويتابع الأخبار المالية بانتظام، ويبحث عن أداة تُوحّد مصادر بياناته في منصة واحدة وتُعزّز تحليله الشخصي بذكاء اصطناعي. يستخدم الرسوم البيانية التفاعلية بأطر زمنية متعددة ويُقيّم جودة الإشارات عبر صفحة المراجعة. <b>احتياجاته الأساسية:</b> رسم بياني متقدم، أطر زمنية متعددة، تتبع دقة التوصيات.
+    </div>
+  </div>
+
+  <div class="user-card">
+    <div class="user-type">🏆 المتداول المتقدم (Advanced Trader)</div>
+    <div class="user-desc">
+      هو المستخدم ذو الخبرة العالية الذي يتطلع إلى نظام تداول يعتمد على بيانات آنية ونماذج ذكاء اصطناعي موثوقة. يستخدم وضع Auto لتوليد الإشارات تلقائياً عند إغلاق كل شمعة، ويراقب نسبة الانزلاق السعري وتفاصيل النموذج الهجين. <b>احتياجاته الأساسية:</b> وضع Auto، TP/SL محسوب بـ ATR، بيانات فورية بدقة عالية.
+    </div>
+  </div>
+
+  <p>
+    جدول المقارنة بين احتياجات المستخدمين والميزات التي وفّرناها:
+  </p>
+  <table>
+    <tr><th>الميزة</th><th>مبتدئ</th><th>متوسط</th><th>متقدم</th></tr>
+    <tr><td>إشارات BUY/SELL/HOLD</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td>نظام التداول الوهمي</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td>الرسم البياني التفاعلي</td><td>✅ (بسيط)</td><td>✅ (9 أطر)</td><td>✅ (9 أطر)</td></tr>
+    <tr><td>أخبار مصنّفة بالمشاعر</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td>مراجعة دقة التوصيات</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td>وضع Auto للإشارات</td><td>—</td><td>✅</td><td>✅</td></tr>
+    <tr><td>TP1/TP2/TP3 + SL (ATR)</td><td>—</td><td>✅</td><td>✅</td></tr>
+    <tr><td>بث الأسعار كل ثانية</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td>دعم اللغة العربية</td><td>✅</td><td>✅</td><td>✅</td></tr>
+  </table>
+
+  <div class="pnum">6</div>
+</div>
+
+<!-- ══════════ صفحة 1.7 ══════════ -->
+<div class="page">
+
+  <!-- 1.7 -->
+  <h2>1.7 خطة عمل المشروع:</h2>
+  <p>
+    سرنا في تطوير نظام Market Insight وفق منهجية Waterfall المتسلسلة، إذ تُنجز كل مرحلة بشكل كامل قبل الانتقال إلى المرحلة التالية. يوضح الجدول والمخطط التاليان مراحل العمل وتوزيعها الزمني:
+  </p>
+
+  <table>
+    <tr>
+      <th>#</th><th>المرحلة</th><th>المدة</th><th>أبرز المخرجات</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>التخطيط والدراسة</td>
+      <td>الأسابيع 1–3</td>
+      <td>تحديد نطاق المشروع، دراسة الجدوى، اختيار التقنيات</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>تحليل المتطلبات</td>
+      <td>الأسابيع 4–6</td>
+      <td>المتطلبات الوظيفية وغير الوظيفية، نماذج Use Case، تعريف المستخدمين</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>التصميم المعماري</td>
+      <td>الأسابيع 7–9</td>
+      <td>مخططات UML (Sequence / Class / ERD)، تصميم قاعدة البيانات، تصميم الواجهات</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>تنفيذ الـ Backend</td>
+      <td>الأسابيع 10–14</td>
+      <td>FastAPI، نموذج XGBoost الفني، نموذج TF-IDF للأخبار، النموذج الهجين، التداول الوهمي</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>تنفيذ الـ Frontend</td>
+      <td>الأسابيع 13–18</td>
+      <td>Flutter App — جميع الشاشات والمزايا، Firebase، GoRouter، Riverpod</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>الاختبار والتحقق</td>
+      <td>الأسابيع 19–21</td>
+      <td>83 حالة اختبار (وحدة + تكامل + أداء)، تصحيح الأخطاء</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>النشر والتوثيق</td>
+      <td>الأسابيع 22–24</td>
+      <td>نشر الخادم على Render.com، توثيق الكود، إعداد تقرير المشروع</td>
+    </tr>
+  </table>
+  <p class="cap">جدول 1.1 خطة عمل المشروع وفق منهجية Waterfall</p>
+
+  <p style="margin-top:.2cm">فيما يلي مخطط Gantt التقريبي الذي يوضح تداخل المراحل وتسلسلها الزمني:</p>
+
+  <!-- مخطط Gantt مبسّط بـ CSS -->
+  <div style="margin:.2cm 0;overflow:hidden">
+    <div class="gantt-months">
+      <div class="gantt-m">الشهر 1</div>
+      <div class="gantt-m">الشهر 2</div>
+      <div class="gantt-m">الشهر 3</div>
+      <div class="gantt-m">الشهر 4</div>
+      <div class="gantt-m">الشهر 5</div>
+      <div class="gantt-m">الشهر 6</div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">1. التخطيط</div>
+      <div class="gantt-bar-wrap">
+        <div class="gantt-bar" style="right:0;width:16%"><span>✓</span></div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">2. التحليل</div>
+      <div class="gantt-bar-wrap">
+        <div class="gantt-bar" style="right:14%;width:20%"><span>✓</span></div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">3. التصميم</div>
+      <div class="gantt-bar-wrap">
+        <div class="gantt-bar" style="right:30%;width:18%"><span>✓</span></div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">4. Backend</div>
+      <div class="gantt-bar-wrap">
+        <div class="gantt-bar" style="right:40%;width:28%;background:linear-gradient(90deg,#5a2e00,#7B3F00)"><span>✓</span></div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">5. Frontend</div>
+      <div class="gantt-bar-wrap">
+        <div class="gantt-bar" style="right:50%;width:32%;background:linear-gradient(90deg,#8b4513,#c0622a)"><span>✓</span></div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">6. الاختبار</div>
+      <div class="gantt-bar-wrap">
+        <div class="gantt-bar" style="right:76%;width:14%"><span>✓</span></div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">7. النشر والتوثيق</div>
+      <div class="gantt-bar-wrap">
+        <div class="gantt-bar" style="right:86%;width:14%"><span>✓</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="cap">شكل 1.1 مخطط Gantt لخطة عمل المشروع</p>
+
+  <div class="note-box" style="margin-top:.3cm">
+    <p>
+      <b>ملاحظة:</b> تداخلت مرحلتا تنفيذ الـ Backend والـ Frontend جزئياً وفق المنهجية التكيّفية التي اتبعناها، إذ بدأنا تطوير الـ Frontend بعد اكتمال الـ Endpoints الأساسية في الـ Backend للتحقق من التكامل بشكل مبكر.
+    </p>
+  </div>
+
+  <div class="pnum">7</div>
+</div>
+
+</body>
+</html>

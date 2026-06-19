@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الفصل السابع — الخلاصة والتوصيات</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4;direction:rtl}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.pg{margin:0!important;width:21cm!important;min-height:29.7cm!important;page-break-after:always;border:4px double #7B3F00!important;box-shadow:none!important}}
+.pg{width:21cm;min-height:29.7cm;background:#fff;margin:1cm auto;padding:1.4cm 1.7cm;border:4px double #7B3F00;box-shadow:0 4px 20px rgba(0,0,0,.17);position:relative}
+.ctr{display:flex;align-items:center;justify-content:center;min-height:25cm;flex-direction:column;gap:.4cm}
+h1{font-size:15pt;color:#fff;background:#7B3F00;padding:.18cm .4cm;margin-bottom:.28cm;text-align:center;border-radius:2px}
+h2{font-size:13pt;font-weight:700;color:#7B3F00;border-right:5px solid #7B3F00;padding-right:.28cm;margin:.28cm 0 .18cm}
+h3{font-size:11.5pt;font-weight:700;color:#5a2e00;margin:.18cm 0 .1cm}
+p{font-size:11.5pt;line-height:1.9;text-align:justify;color:#222;margin-bottom:.12cm}
+ul{font-size:11.5pt;line-height:1.9;color:#222;padding-right:.45cm;margin-bottom:.1cm}
+li{margin-bottom:.06cm}
+.pn{position:absolute;bottom:.45cm;left:50%;transform:translateX(-50%);font-size:11pt;color:#7B3F00;font-weight:700;border-top:1px solid #7B3F00;padding-top:.06cm;width:1.4cm;text-align:center}
+.ln{width:6cm;height:3px;background:linear-gradient(90deg,transparent,#7B3F00,transparent)}
+.sep{border:none;border-top:1px dashed #d4a870;margin:.2cm 0}
+.ib{background:#fdf5ec;border-right:4px solid #7B3F00;padding:.15cm .28cm;border-radius:2px;margin:.12cm 0}
+</style>
+</head>
+<body>
+
+<!-- غلاف -->
+<div class="pg">
+  <div class="ctr">
+    <div class="ln"></div>
+    <div style="font-size:10.5pt;color:#888">الفصل السابع</div>
+    <div style="font-size:24pt;font-weight:700;color:#3d1f00;text-align:center;line-height:1.5">الخلاصة والتوصيات</div>
+    <div class="ln"></div>
+    <div style="margin-top:.4cm;text-align:center;font-size:11pt;color:#888;line-height:2.4">
+      <div>7.1 — الخلاصة</div>
+      <div>7.2 — التوصيات</div>
+    </div>
+  </div>
+  <div class="pn">101</div>
+</div>
+
+<!-- 7.1 الخلاصة -->
+<div class="pg">
+  <h1>7.1 — الخلاصة</h1>
+  <p>تناول هذا المشروع تصميم وبناء نظام Market Insight، وهو تطبيق ذكي لتحليل الأسواق المالية وتوليد توصيات التداول، يجمع بين تقنيات الذكاء الاصطناعي والتحليل الفني والأخبار المالية في منظومة متكاملة. وقد اشتمل المشروع على أربعة فصول تقنية رئيسية أفضت إلى نظام عامل حقيقي يمكن نشره واستخدامه فعلياً.</p>
+
+  <h2>أبرز ما تحقق في المشروع:</h2>
+
+  <h3>أولاً: البنية التقنية المتكاملة</h3>
+  <p>جرى بناء النظام على معمارية طبقية من ثلاثة مستويات: طبقة العرض بـ Flutter، وطبقة المنطق والمعالجة بـ FastAPI/Python، وطبقة البيانات بـ Firebase Firestore. هذا التصميم أتاح فصلاً واضحاً للمسؤوليات وسهولةً في الصيانة والتطوير المستقبلي.</p>
+
+  <h3>ثانياً: النموذج الهجين لتوليد الإشارات</h3>
+  <p>يُعدّ النموذج الهجين الإنجاز التقني الأبرز؛ إذ يدمج <strong>15 مؤشراً فنياً</strong> (EMA, RSI, MACD, ATR, Stochastic وغيرها) مع <strong>4 ميزات إخبارية</strong> (المشاعر، الثقة، التأثير، عدد المقالات) في نموذج XGBoost ثلاثي التصنيف (BUY / SELL / HOLD)، مع احتساب مستويات الربح (TP1/TP2/TP3) ووقف الخسارة (SL) عبر مؤشر ATR.</p>
+
+  <h3>ثالثاً: تغطية الأسواق المالية المتعددة</h3>
+  <p>يدعم النظام أربعة أسواق: <strong>العملات الرقمية</strong> (BTC, ETH, BNB) من Binance، و<strong>المعادن</strong> (XAUUSD, XAGUSD, XPTUSD)، و<strong>العملات الأجنبية</strong> (EURUSD, GBPUSD, EURGBP)، و<strong>الأسهم الأمريكية</strong> (AAPL, AMZN, TSLA)، مع دعم 8 إطارات زمنية.</p>
+
+  <h3>رابعاً: تحليل مشاعر الأخبار</h3>
+  <p>جرى بناء نموذج مستقل لتحليل مشاعر الأخبار المالية باستخدام TF-IDF وXGBoost، يُصنّف الأخبار إلى Bullish أو Bearish أو Neutral، ويُحسب مستوى الثقة ودرجة التأثير على السوق، مع جلب تلقائي للأخبار كل 5 دقائق.</p>
+
+  <h3>خامساً: الوظائف التكميلية</h3>
+  <div class="ib">
+    <ul>
+      <li><strong>التداول الوهمي:</strong> نظام تداول افتراضي بميزانية $10,000 مع رسوم ومنزلق حقيقيَين.</li>
+      <li><strong>سجل مراجعة الإشارات:</strong> يحفظ كل توصية ويُحلّها تلقائياً بعد انتهاء الأفق الزمني لقياس دقة النموذج.</li>
+      <li><strong>المصادقة وإدارة الحساب:</strong> تسجيل دخول/خروج وتغيير كلمة المرور عبر Firebase Auth.</li>
+      <li><strong>واجهة متعددة اللغات:</strong> دعم كامل للعربية والإنجليزية مع التوطين الكامل للعناصر.</li>
+    </ul>
+  </div>
+  <p>في المحصلة، نجح المشروع في تقديم نموذج عملي متكامل يُثبت جدوى دمج الذكاء الاصطناعي مع التحليل المالي التقليدي في تطبيق محمول حقيقي قابل للنشر والاستخدام الفوري.</p>
+  <div class="pn">102</div>
+</div>
+
+<!-- 7.2 التوصيات -->
+<div class="pg">
+  <h1>7.2 — التوصيات</h1>
+  <p>بناءً على ما أُنجز في هذا المشروع وما رُصد من إمكانات تحسين خلال مراحل التطوير والاختبار، يُوصى بما يلي:</p>
+
+  <h2>أولاً: تحسين النماذج الذكية</h2>
+  <ul>
+    <li><strong>استخدام نماذج LSTM أو Transformer:</strong> دمج الشبكات العصبية المتكررة مع XGBoost للاستفادة من الطابع الزمني التسلسلي لبيانات الأسعار.</li>
+    <li><strong>الانتقال إلى FinBERT:</strong> استبدال TF-IDF بنموذج لغوي مُدرَّب مسبقاً على النصوص المالية لرفع دقة تحليل المشاعر بشكل ملحوظ.</li>
+    <li><strong>إضافة مؤشرات حجم التداول:</strong> دمج OBV وVWAP وVolume Profile لتقليل الإشارات الزائفة.</li>
+    <li><strong>إعادة تدريب دورية تلقائية:</strong> جدولة إعادة تدريب النماذج أسبوعياً بأحدث البيانات للحفاظ على دقتها.</li>
+    <li><strong>عتبة ثقة تكيّفية:</strong> استبدال عتبة 0.42 الثابتة بعتبة تتعدّل ديناميكياً حسب تقلبات السوق الحالية.</li>
+  </ul>
+
+  <h2>ثانياً: توسعة الأسواق والوظائف</h2>
+  <ul>
+    <li><strong>إضافة سوق الأسهم السعودية (تداول):</strong> دمج بيانات السوق المحلي لخدمة المستخدم العربي بشكل أكثر مباشرة.</li>
+    <li><strong>تطوير نظام التداول الوهمي:</strong> إضافة تحليل الأداء التفصيلي كمنحنى الأرباح ونسبة Sharpe والحد الأقصى للسحب (Max Drawdown).</li>
+    <li><strong>نظام تنبيهات ذكية:</strong> إشعارات Push فورية عند توليد إشارات قوية أو تجاوز السعر مستويات محددة يحددها المستخدم.</li>
+    <li><strong>مقارنة الأسواق:</strong> إضافة شاشة لمقارنة أداء رمزين أو أكثر جنباً إلى جنب.</li>
+  </ul>
+
+  <h2>ثالثاً: النشر والبنية التحتية</h2>
+  <ul>
+    <li><strong>نشر الخادم في السحابة:</strong> ترحيل FastAPI إلى Render أو Railway أو AWS لضمان التوفر الدائم والأداء المستقر بدلاً من الاعتماد على البيئة المحلية.</li>
+    <li><strong>إصدار iOS رسمي:</strong> نشر التطبيق على Apple App Store بعد الحصول على شهادة Apple Developer.</li>
+    <li><strong>إصدار ويب:</strong> الاستفادة من Flutter for Web لبناء نسخة ويب للوصول لشريحة أوسع من المستخدمين.</li>
+    <li><strong>لوحة تحكم المسؤول:</strong> بناء واجهة إدارة لمراقبة أداء النماذج وإحصاءات المستخدمين وصحة الخادم.</li>
+  </ul>
+
+  <h2>رابعاً: تجربة المستخدم</h2>
+  <ul>
+    <li><strong>وضع داكن/فاتح:</strong> دعم الوضع الفاتح إلى جانب الوضع الداكن الحالي لتوسيع قاعدة المستخدمين.</li>
+    <li><strong>تخصيص الواجهة:</strong> السماح للمستخدم باختيار المؤشرات الفنية التي يرغب في عرضها على الرسم البياني.</li>
+    <li><strong>وضع عدم الاتصال:</strong> تخزين آخر بيانات محلياً لعرضها عند انقطاع الإنترنت.</li>
+  </ul>
+  <div class="pn">103</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>قائمة المصطلحات — Market Insight</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Fira+Mono&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4;direction:rtl}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.pg{margin:0!important;width:21cm!important;min-height:29.7cm!important;page-break-after:always;border:4px double #7B3F00!important;box-shadow:none!important}}
+.pg{width:21cm;min-height:29.7cm;background:#fff;margin:1cm auto;padding:1.4cm 1.7cm;border:4px double #7B3F00;box-shadow:0 4px 20px rgba(0,0,0,.17);position:relative}
+.ctr{display:flex;align-items:center;justify-content:center;min-height:25cm;flex-direction:column;gap:.4cm}
+h1{font-size:15pt;color:#fff;background:#7B3F00;padding:.18cm .4cm;margin-bottom:.3cm;text-align:center;border-radius:2px}
+.sec{font-size:12.5pt;font-weight:700;color:#fff;background:#7B3F00;padding:.1cm .3cm;margin:.25cm 0 .12cm;border-radius:2px;display:flex;align-items:center;gap:.1cm}
+.ln{width:6cm;height:3px;background:linear-gradient(90deg,transparent,#7B3F00,transparent)}
+.pn{position:absolute;bottom:.45cm;left:50%;transform:translateX(-50%);font-size:11pt;color:#7B3F00;font-weight:700;border-top:1px solid #7B3F00;padding-top:.06cm;width:1.4cm;text-align:center}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:11pt;margin-bottom:.15cm}
+thead tr{background:#7B3F00}
+thead th{color:#fff;padding:.1cm .18cm;border:1px solid #7B3F00;text-align:center;font-size:11.5pt}
+tbody tr:nth-child(odd){background:#fff}
+tbody tr:nth-child(even){background:#fdf5ec}
+tbody tr:hover{background:#f5e6d3}
+td{padding:.09cm .16cm;border:1px solid #d4a870;vertical-align:middle;line-height:1.7}
+.term{font-weight:700;color:#3d1f00;direction:ltr;font-family:'Fira Mono',monospace;font-size:10pt}
+.term-ar{font-weight:700;color:#3d1f00}
+.def{color:#222;font-size:11pt}
+.abbr-tag{display:inline-block;background:#7B3F00;color:#fff;font-size:8.5pt;padding:.01cm .1cm;border-radius:2px;font-family:'Fira Mono',monospace;font-weight:700;letter-spacing:.05cm}
+.cat-ai{color:#1e3a8a;font-weight:700}
+.cat-coffee{color:#064e3b;font-weight:700}
+.cat-sw{color:#5b21b6;font-weight:700}
+.cat-method{color:#7f1d1d;font-weight:700}
+.note{background:#fdf5ec;border-right:4px solid #7B3F00;padding:.12cm .22cm;border-radius:2px;font-size:10.5pt;color:#444;margin:.1cm 0}
+</style>
+</head>
+<body>
+
+<!-- ═══ غلاف ═══ -->
+<div class="pg">
+  <div class="ctr">
+    <div class="ln"></div>
+    <div style="font-size:10.5pt;color:#888;text-align:center">قائمة</div>
+    <div style="font-size:22pt;font-weight:700;color:#3d1f00;text-align:center;line-height:1.6">المصطلحات والمفاهيم والاختصارات</div>
+    <div style="font-size:13pt;color:#7B3F00;text-align:center;font-style:italic">Market Insight — Glossary of Terms, Concepts and Abbreviations</div>
+    <div class="ln"></div>
+    <div style="margin-top:.4cm;text-align:center;font-size:10.5pt;color:#888;line-height:2.3">
+      <div>أولاً — الاختصارات التقنية</div>
+      <div>ثانياً — مصطلحات التداول والأسواق المالية</div>
+      <div>ثالثاً — المؤشرات الفنية</div>
+      <div>رابعاً — مصطلحات الذكاء الاصطناعي والنماذج</div>
+      <div>خامساً — مصطلحات التقنية والبرمجيات</div>
+    </div>
+  </div>
+  <div class="pn">iii</div>
+</div>
+
+<!-- ═══ صفحة 1: الاختصارات ═══ -->
+<div class="pg">
+  <h1>أولاً — الاختصارات التقنية</h1>
+  <div class="note">جميع الاختصارات الواردة أدناه خاصة بمشروع Market Insight، مرتَّبة أبجدياً حسب الحرف الأول من الاختصار اللاتيني.</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:18%">الاختصار</th>
+        <th style="width:30%">المصطلح كاملاً (إنجليزي)</th>
+        <th style="width:52%">المعنى بالعربية</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="abbr-tag">AI</span></td><td class="term">Artificial Intelligence</td><td class="def">الذكاء الاصطناعي — مجال الحوسبة الذي يُمكِّن الآلات من محاكاة الذكاء البشري في اتخاذ القرارات</td></tr>
+      <tr><td><span class="abbr-tag">API</span></td><td class="term">Application Programming Interface</td><td class="def">واجهة برمجة التطبيقات — تُستخدَم في المشروع للتواصل بين تطبيق Flutter وخادم FastAPI</td></tr>
+      <tr><td><span class="abbr-tag">ATR</span></td><td class="term">Average True Range</td><td class="def">متوسط المدى الحقيقي — مؤشر لقياس تقلبات السوق، يُستخدَم لحساب مستويات TP وSL في النموذج الهجين</td></tr>
+      <tr><td><span class="abbr-tag">BUY</span></td><td class="term">Buy Signal</td><td class="def">إشارة شراء — توصية النظام بشراء الأصل المالي بناءً على توقع ارتفاع سعره</td></tr>
+      <tr><td><span class="abbr-tag">EMA</span></td><td class="term">Exponential Moving Average</td><td class="def">المتوسط المتحرك الأسي — مؤشر فني يُعطي وزناً أكبر للأسعار الحديثة لرصد الاتجاهات</td></tr>
+      <tr><td><span class="abbr-tag">ERD</span></td><td class="term">Entity Relationship Diagram</td><td class="def">مخطط العلاقات بين الكيانات — يُمثّل بنية جداول Firestore في المشروع بصرياً</td></tr>
+      <tr><td><span class="abbr-tag">FX</span></td><td class="term">Foreign Exchange</td><td class="def">سوق العملات الأجنبية — أحد الأسواق الأربعة المدعومة في المشروع (EURUSD, GBPUSD, EURGBP)</td></tr>
+      <tr><td><span class="abbr-tag">HOLD</span></td><td class="term">Hold Signal</td><td class="def">إشارة احتفاظ — توصية النظام بعدم اتخاذ أي قرار تداول لعدم وضوح الاتجاه أو انخفاض الثقة</td></tr>
+      <tr><td><span class="abbr-tag">HTTP</span></td><td class="term">HyperText Transfer Protocol</td><td class="def">بروتوكول نقل النص التشعبي — يُستخدَم للتواصل بين تطبيق Flutter والخادم على المنفذ 8000</td></tr>
+      <tr><td><span class="abbr-tag">MACD</span></td><td class="term">Moving Average Convergence Divergence</td><td class="def">مؤشر التقارب والتباعد للمتوسطات المتحركة — يقيس زخم الاتجاه ويكشف نقاط التحول</td></tr>
+      <tr><td><span class="abbr-tag">ML</span></td><td class="term">Machine Learning</td><td class="def">التعلم الآلي — الأسلوب المستخدَم في بناء نماذج XGBoost للإشارات وتحليل الأخبار</td></tr>
+      <tr><td><span class="abbr-tag">RSI</span></td><td class="term">Relative Strength Index</td><td class="def">مؤشر القوة النسبية — يقيس سرعة وحجم تغيرات السعر للكشف عن مناطق التشبع البيعي أو الشرائي</td></tr>
+      <tr><td><span class="abbr-tag">SELL</span></td><td class="term">Sell Signal</td><td class="def">إشارة بيع — توصية النظام ببيع الأصل بناءً على توقع انخفاض سعره</td></tr>
+      <tr><td><span class="abbr-tag">SL</span></td><td class="term">Stop Loss</td><td class="def">وقف الخسارة — مستوى السعر الذي يُوصى بإغلاق الصفقة عنده للحدّ من الخسائر، يُحسَب بـ ATR</td></tr>
+      <tr><td><span class="abbr-tag">TF-IDF</span></td><td class="term">Term Frequency–Inverse Document Frequency</td><td class="def">تقنية لتحويل النصوص إلى أرقام، تُستخدَم في نموذج تحليل مشاعر الأخبار بالمشروع</td></tr>
+      <tr><td><span class="abbr-tag">TP</span></td><td class="term">Take Profit</td><td class="def">هدف الربح — مستويات السعر المستهدفة لجني الأرباح (TP1, TP2, TP3) مع كل إشارة تداول</td></tr>
+      <tr><td><span class="abbr-tag">UI</span></td><td class="term">User Interface</td><td class="def">واجهة المستخدم — الشاشات والعناصر البصرية لتطبيق Market Insight المبني بـ Flutter</td></tr>
+      <tr><td><span class="abbr-tag">UML</span></td><td class="term">Unified Modeling Language</td><td class="def">لغة النمذجة الموحَّدة — تُستخدَم لرسم مخططات Use Case وClass وActivity وSequence في المشروع</td></tr>
+      <tr><td><span class="abbr-tag">UX</span></td><td class="term">User Experience</td><td class="def">تجربة المستخدم — مجمل تفاعل المستخدم مع التطبيق ومدى سهولة استخدامه وراحته</td></tr>
+      <tr><td><span class="abbr-tag">XGB</span></td><td class="term">XGBoost</td><td class="def">eXtreme Gradient Boosting — خوارزمية التعلم الآلي الأساسية المستخدَمة في نموذجَي الإشارات والأخبار</td></tr>
+    </tbody>
+  </table>
+  <div class="pn">iv</div>
+</div>
+
+<!-- ═══ صفحة 2: التداول والأسواق ═══ -->
+<div class="pg">
+  <h1>ثانياً — مصطلحات التداول والأسواق المالية</h1>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28%">المصطلح (إنجليزي)</th>
+        <th style="width:25%">المقابل العربي</th>
+        <th style="width:47%">التعريف في سياق المشروع</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="term">Candlestick Chart</td><td class="term-ar">الرسم البياني بالشموع اليابانية</td><td class="def">طريقة عرض بيانات الأسعار تُظهر لكل فترة زمنية: سعر الفتح والإغلاق والأعلى والأدنى. تُعرَض في شاشة تفاصيل الرمز باستخدام مكتبة interactive_chart.</td></tr>
+      <tr><td class="term">Timeframe</td><td class="term-ar">الإطار الزمني</td><td class="def">المدة التي تمثلها كل شمعة يابانية. يدعم النظام 8 إطارات: 1 دقيقة، 5، 15، 30، ساعة، 4 ساعات، يوم، وأسبوع.</td></tr>
+      <tr><td class="term">Bid / Ask Price</td><td class="term-ar">سعر الشراء / البيع</td><td class="def">Bid هو أعلى سعر يرغب المشتري بدفعه، وAsk هو أدنى سعر يقبله البائع. كلاهما يُعرَض في بطاقات قوائم الأسواق مع تحديث لحظي.</td></tr>
+      <tr><td class="term">Bullish</td><td class="term-ar">صاعد / إيجابي</td><td class="def">مصطلح يصف اتجاهاً سعرياً أو خبرياً إيجابياً نحو الارتفاع. تُعرَض الأخبار الإيجابية بأيقونة خضراء في واجهة الأخبار.</td></tr>
+      <tr><td class="term">Bearish</td><td class="term-ar">هابط / سلبي</td><td class="def">مصطلح يصف اتجاهاً سعرياً أو خبرياً سلبياً نحو الانخفاض. تُعرَض الأخبار السلبية بأيقونة حمراء في واجهة الأخبار.</td></tr>
+      <tr><td class="term">Horizon</td><td class="term-ar">الأفق الزمني</td><td class="def">عدد الشموع المستقبلية الذي يُحدّده المستخدم لتقييم الإشارة. بعد انتهائه يُجلَب السعر الفعلي ويُقارَن بتوصية النموذج لقياس دقته.</td></tr>
+      <tr><td class="term">Paper Trading</td><td class="term-ar">التداول الوهمي</td><td class="def">نظام تداول افتراضي بميزانية $10,000 يُمكّن المستخدم من فتح وإغلاق صفقات وهمية دون مخاطرة مالية حقيقية، مع محاكاة رسوم (0.1%) ومنزلق (0.02-0.05%).</td></tr>
+      <tr><td class="term">Portfolio</td><td class="term-ar">المحفظة الاستثمارية</td><td class="def">مجموعة الصفقات الوهمية المفتوحة للمستخدم في نظام Paper Trading، مع تتبع الربح/الخسارة لكل صفقة.</td></tr>
+      <tr><td class="term">Signal Review</td><td class="term-ar">مراجعة الإشارات</td><td class="def">صفحة في التطبيق تُعرَض فيها جميع التوصيات السابقة مع حالتها (Pending/Resolved) ودقتها (Correct/Incorrect) لتقييم أداء النموذج فعلياً.</td></tr>
+      <tr><td class="term">Accuracy</td><td class="term-ar">دقة النموذج</td><td class="def">نسبة الإشارات الصحيحة من إجمالي الإشارات المُحلَّلة بعد انتهاء أفقها الزمني. تُحسَب في صفحة Signal Review.</td></tr>
+      <tr><td class="term">News Sentiment</td><td class="term-ar">مشاعر الأخبار</td><td class="def">تحليل الاتجاه العاطفي للأخبار المالية (Bullish/Bearish/Neutral) وقياس تأثيرها على السوق، لدمجه كميزات في النموذج الهجين.</td></tr>
+      <tr><td class="term">Signal Strength</td><td class="term-ar">قوة الإشارة</td><td class="def">مستوى موثوقية الإشارة المُولَّدة ويُصنَّف إلى: Strong / Moderate / Weak / Uncertain بحسب مستوى ثقة النموذج.</td></tr>
+      <tr><td class="term">Crypto</td><td class="term-ar">العملات الرقمية</td><td class="def">أحد أسواق المشروع الأربعة، يشمل BTC/USDT وETH/USDT وBNB/USDT، وتُجلَب بياناتها من Binance عبر مكتبة ccxt.</td></tr>
+      <tr><td class="term">Metals</td><td class="term-ar">المعادن النفيسة</td><td class="def">أحد الأسواق الأربعة ويشمل الذهب (XAUUSD) والفضة (XAGUSD) والبلاتين (XPTUSD)، وتُجلَب بياناتها من Yahoo Finance.</td></tr>
+    </tbody>
+  </table>
+  <div class="pn">v</div>
+</div>
+
+<!-- ═══ صفحة 3: المؤشرات الفنية ═══ -->
+<div class="pg">
+  <h1>ثالثاً — المؤشرات الفنية المستخدَمة في النموذج</h1>
+  <div class="note">يعتمد النموذج الهجين في Market Insight على 15 مؤشراً فنياً تُحسَب من بيانات الشموع التاريخية لكل رمز مالي.</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:25%">المؤشر</th>
+        <th style="width:20%">الاختصار</th>
+        <th style="width:55%">الشرح والغرض في المشروع</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="term-ar">المتوسط المتحرك الأسي</td><td class="term">EMA (9, 20, 50)</td><td class="def">يُرصِد الاتجاه قصير ومتوسط وطويل الأمد. كسر EMA_9 فوق EMA_20 إشارة صعود محتملة.</td></tr>
+      <tr><td class="term-ar">مؤشر القوة النسبية</td><td class="term">RSI (14)</td><td class="def">يقيس سرعة وقوة حركة السعر. القيم فوق 70 تشير لتشبع شرائي، ودون 30 لتشبع بيعي.</td></tr>
+      <tr><td class="term-ar">مؤشر التقارب والتباعد</td><td class="term">MACD + Signal</td><td class="def">يكشف تحولات الزخم. يُحسَب من الفرق بين EMA_12 وEMA_26 مع خط إشارة EMA_9.</td></tr>
+      <tr><td class="term-ar">متوسط المدى الحقيقي</td><td class="term">ATR (14)</td><td class="def">يقيس تقلبات السوق. يُستخدَم مباشرةً لحساب مستويات وقف الخسارة وأهداف الربح لكل إشارة.</td></tr>
+      <tr><td class="term-ar">مؤشر الاستوكاستيك</td><td class="term">Stochastic (K, D)</td><td class="def">يقارن سعر الإغلاق بالنطاق السعري خلال فترة محددة للكشف عن مناطق الذروة.</td></tr>
+      <tr><td class="term-ar">العائد اللوغاريتمي</td><td class="term">Log Return</td><td class="def">يقيس النسبة المئوية لتغير السعر بطريقة لوغاريتمية تُعطي توزيعاً إحصائياً أكثر اعتدالاً.</td></tr>
+      <tr><td class="term-ar">الفروق بين المؤشرات</td><td class="term">EMA Diff, MACD Diff</td><td class="def">فروق المؤشرات بعضها مع بعض، تُضيف معلومات عن العلاقة النسبية بين الإطارات الزمنية.</td></tr>
+      <tr><td class="term-ar">ترميز الوقت</td><td class="term">Hour_sin/cos, Day_sin/cos</td><td class="def">ترميز دوري لليوم والساعة لمساعدة النموذج على التعرف على الأنماط الزمنية الدورية في السوق.</td></tr>
+      <tr><td class="term-ar">ميزات الأخبار</td><td class="term">Sentiment, Confidence, Impact, Count</td><td class="def">أربع ميزات مُستخرَجة من نموذج الأخبار تُدمَج مع المؤشرات الفنية الـ15 لتشكيل النموذج الهجين (19 ميزة إجمالاً).</td></tr>
+    </tbody>
+  </table>
+
+  <h1 style="margin-top:.25cm">رابعاً — مصطلحات الذكاء الاصطناعي والنماذج</h1>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28%">المصطلح (إنجليزي)</th>
+        <th style="width:22%">المقابل العربي</th>
+        <th style="width:50%">التعريف في سياق المشروع</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="term">XGBoost</td><td class="term-ar">إكس جي بوست</td><td class="def">خوارزمية Gradient Boosting المُستخدَمة لبناء نموذجَي التصنيف: نموذج الإشارات الهجين ونموذج مشاعر الأخبار.</td></tr>
+      <tr><td class="term">Hybrid Signal Generator</td><td class="term-ar">النموذج الهجين</td><td class="def">نموذج XGBoost ثلاثي التصنيف (BUY/SELL/HOLD) يجمع 15 مؤشراً فنياً و4 ميزات إخبارية لتوليد توصيات تداول شاملة.</td></tr>
+      <tr><td class="term">NewsSentimentPredictor</td><td class="term-ar">محلل مشاعر الأخبار</td><td class="def">نموذج TF-IDF + XGBoost ثنائي (Bullish/Bearish) مع فئة ثالثة (Neutral)، يُصنّف الأخبار ويُخرج درجة ثقة ومستوى تأثير.</td></tr>
+      <tr><td class="term">Confidence Threshold</td><td class="term-ar">عتبة الثقة</td><td class="def">القيمة 0.42 التي إذا انخفضت دونها ثقة النموذج يُعطي توصية HOLD بدلاً من BUY أو SELL.</td></tr>
+      <tr><td class="term">Feature Engineering</td><td class="term-ar">هندسة الميزات</td><td class="def">عملية تحويل بيانات الشموع الخام إلى مؤشرات فنية مفيدة وقابلة للاستخدام في تدريب النموذج.</td></tr>
+      <tr><td class="term">Standard Scaler</td><td class="term-ar">معيار التحجيم</td><td class="def">أداة من scikit-learn لتوحيد مقياس الميزات قبل إدخالها للنموذج، تُعدّ ضرورية لأداء XGBoost الأمثل.</td></tr>
+    </tbody>
+  </table>
+  <div class="pn">vi</div>
+</div>
+
+<!-- ═══ صفحة 4: مصطلحات التقنية والبرمجيات ═══ -->
+<div class="pg">
+  <h1>خامساً — مصطلحات التقنية والبرمجيات</h1>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28%">المصطلح (إنجليزي)</th>
+        <th style="width:22%">المقابل العربي</th>
+        <th style="width:50%">التعريف في سياق المشروع</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="term">Flutter</td><td class="term-ar">فلاتر</td><td class="def">إطار عمل Google لبناء تطبيقات متعددة المنصات بلغة Dart. يُستخدَم لبناء واجهات Market Insight على Android وiOS.</td></tr>
+      <tr><td class="term">Dart</td><td class="term-ar">دارت</td><td class="def">لغة البرمجة المُستخدَمة مع Flutter، مُصمَّمة للتطوير السريع وتدعم البرمجة غير المتزامنة (async/await).</td></tr>
+      <tr><td class="term">FastAPI</td><td class="term-ar">فاست أيه بي آي</td><td class="def">إطار ويب Python عالي الأداء يُستخدَم لبناء الخادم الخلفي للمشروع، يُشغَّل على المنفذ 8000 عبر uvicorn.</td></tr>
+      <tr><td class="term">Firebase Auth</td><td class="term-ar">مصادقة فايربيس</td><td class="def">خدمة Google لإدارة المصادقة، تُستخدَم لتسجيل دخول المستخدمين وتسجيل خروجهم واستعادة كلمات مرورهم.</td></tr>
+      <tr><td class="term">Cloud Firestore</td><td class="term-ar">قاعدة بيانات فايربيس</td><td class="def">قاعدة بيانات NoSQL سحابية تُستخدَم لحفظ بيانات المستخدمين والمفضلات وسجلات الإشارات (SignalLogEntry).</td></tr>
+      <tr><td class="term">Riverpod</td><td class="term-ar">ريفيربود</td><td class="def">مكتبة إدارة الحالة في Flutter المُستخدَمة في المشروع لإدارة providers البيانات الحية (Symbols, Candles, LivePrice).</td></tr>
+      <tr><td class="term">go_router</td><td class="term-ar">جو راوتر</td><td class="def">مكتبة التنقل بين الصفحات في Flutter. تُدير مسارات المشروع مثل /crypto و/fx و/news و/symbol/:code.</td></tr>
+      <tr><td class="term">Binance</td><td class="term-ar">بينانس</td><td class="def">منصة تداول العملات الرقمية التي تُجلَب منها بيانات الكريبتو (BTC, ETH, BNB) عبر مكتبة ccxt.</td></tr>
+      <tr><td class="term">Yahoo Finance</td><td class="term-ar">ياهو فاينانس</td><td class="def">مصدر بيانات الأسهم والمعادن والعملات الأجنبية والأخبار المالية عبر مكتبة yfinance.</td></tr>
+      <tr><td class="term">ccxt</td><td class="term-ar">سي سي إكس تي</td><td class="def">مكتبة Python توحّد الواجهة مع أكثر من 100 بورصة رقمية، تُستخدَم للتواصل مع Binance وجلب بيانات الكريبتو.</td></tr>
+      <tr><td class="term">WebSocket</td><td class="term-ar">ويب سوكيت</td><td class="def">بروتوكول اتصال ثنائي الاتجاه يُستخدَم للبث الحي للبيانات والإشارات من الخادم للتطبيق في الوقت الفعلي.</td></tr>
+      <tr><td class="term">REST API</td><td class="term-ar">واجهة برمجية REST</td><td class="def">نمط معماري للتواصل بين التطبيق والخادم عبر HTTP. تشمل نقاط النهاية: /price و/candles و/signal-hybrid و/news.</td></tr>
+      <tr><td class="term">Use Case Diagram</td><td class="term-ar">مخطط حالات الاستخدام</td><td class="def">مخطط UML يُوضّح وظائف النظام الـ15 وتفاعل المستخدم الواحد معها بعلاقات Include وExtend.</td></tr>
+      <tr><td class="term">Waterfall Methodology</td><td class="term-ar">منهجية الشلال</td><td class="def">المنهجية المعتمدة في تطوير المشروع وفق مراحل متسلسلة: تحليل المتطلبات → التصميم → التنفيذ → الاختبار.</td></tr>
+      <tr><td class="term">SignalLogEntry</td><td class="term-ar">سجل الإشارة</td><td class="def">كيان Firestore يُسجَّل فيه كل إشارة تداول بحالة Pending ثم يُحدَّث تلقائياً إلى Resolved مع قيمة isCorrect.</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:.2cm;background:#fdf5ec;border-right:4px solid #7B3F00;padding:.12cm .22cm;border-radius:2px;font-size:10.5pt;color:#444">
+    <strong>ملاحظة:</strong> جميع المصطلحات الواردة مستخرَجة من مكونات مشروع Market Insight الفعلية، وقد رُوعي في تعريفها ربطها المباشر بالسياق التقني للمشروع.
+  </div>
+  <div class="pn">vii</div>
+</div>
+
+</body>
+</html>

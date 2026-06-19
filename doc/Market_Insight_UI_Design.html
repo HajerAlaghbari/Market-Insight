@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Market Insight — تصميم الواجهات</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo','Amiri',sans-serif;background:#1a1a2e;color:#eee;direction:rtl}
+
+/* ── صفحة الطباعة ── */
+@page{size:A4 landscape;margin:1cm}
+@media print{
+  body{background:#fff}
+  .section-title{color:#7B3F00!important}
+  .phone{box-shadow:none!important}
+  .page-break{page-break-before:always}
+}
+
+/* ── عنوان الوثيقة ── */
+.doc-header{
+  background:linear-gradient(135deg,#7B3F00,#c0622a);
+  text-align:center;padding:1.2cm;color:#fff
+}
+.doc-header h1{font-size:26pt;margin-bottom:.2cm}
+.doc-header p{font-size:13pt;opacity:.9}
+
+/* ── عنوان القسم ── */
+.section{padding:.6cm 1cm}
+.section-title{
+  font-size:17pt;font-weight:700;color:#f0a060;
+  border-right:5px solid #7B3F00;padding-right:.3cm;
+  margin-bottom:.5cm
+}
+
+/* ── شبكة الشاشات ── */
+.screens-grid{
+  display:flex;flex-wrap:wrap;gap:.6cm;
+  justify-content:flex-start
+}
+
+/* ── موبايل ── */
+.phone-wrap{display:flex;flex-direction:column;align-items:center;gap:.2cm}
+.phone-label{font-size:11pt;color:#f0a060;font-weight:700;text-align:center}
+.phone-sub{font-size:9pt;color:#aaa;text-align:center;max-width:6cm}
+
+.phone{
+  width:6.2cm;min-height:12cm;
+  background:#12121f;border-radius:.5cm;
+  border:3px solid #444;
+  overflow:hidden;position:relative;
+  box-shadow:0 8px 30px rgba(0,0,0,.6)
+}
+.notch{
+  width:2cm;height:.3cm;background:#222;
+  border-radius:0 0 .3cm .3cm;
+  margin:0 auto;position:relative;z-index:2
+}
+.screen{padding:.3cm .25cm;min-height:11.5cm}
+.screen.dark{background:#12121f}
+.screen.dark2{background:#0d0d1a}
+
+/* ── عناصر مشتركة ── */
+.status-bar{
+  display:flex;justify-content:space-between;
+  font-size:7pt;color:#888;margin-bottom:.2cm;padding:0 .05cm
+}
+.top-bar{
+  background:#1e1e35;border-radius:.2cm;padding:.2cm .3cm;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:.25cm
+}
+.top-bar-title{font-size:10pt;font-weight:700;color:#f0a060}
+.top-bar-icon{font-size:9pt;color:#888}
+.tab-bar{
+  display:flex;gap:.08cm;margin-bottom:.25cm;
+  background:#1a1a30;border-radius:.2cm;padding:.08cm
+}
+.tab{
+  flex:1;text-align:center;padding:.1cm .05cm;
+  font-size:6.5pt;border-radius:.15cm;color:#888;cursor:pointer
+}
+.tab.active{background:#7B3F00;color:#fff;font-weight:700}
+
+/* بطاقة رمز */
+.symbol-card{
+  background:#1e1e35;border-radius:.2cm;padding:.2cm .25cm;
+  margin-bottom:.12cm;display:flex;align-items:center;
+  justify-content:space-between;border-right:3px solid #7B3F00
+}
+.sym-name{font-size:8.5pt;font-weight:700;color:#fff}
+.sym-code{font-size:7pt;color:#888}
+.sym-price-up{font-size:8pt;color:#00e676;font-weight:700}
+.sym-price-dn{font-size:8pt;color:#ff5252;font-weight:700}
+.sig-buy{background:#00e676;color:#000;font-size:6pt;
+  padding:.02cm .1cm;border-radius:.1cm;font-weight:700}
+.sig-sell{background:#ff5252;color:#fff;font-size:6pt;
+  padding:.02cm .1cm;border-radius:.1cm;font-weight:700}
+.sig-hold{background:#888;color:#fff;font-size:6pt;
+  padding:.02cm .1cm;border-radius:.1cm;font-weight:700}
+
+/* حقل إدخال */
+.input-field{
+  background:#1e1e35;border:1px solid #444;border-radius:.2cm;
+  padding:.2cm .3cm;margin-bottom:.15cm;font-size:8.5pt;
+  color:#aaa;width:100%;display:flex;align-items:center;gap:.1cm
+}
+.input-icon{font-size:10pt;color:#7B3F00}
+
+/* زر */
+.btn{
+  width:100%;padding:.22cm;border-radius:.2cm;
+  font-size:9pt;font-weight:700;text-align:center;
+  margin-bottom:.12cm;cursor:pointer
+}
+.btn-primary{background:linear-gradient(135deg,#7B3F00,#c0622a);color:#fff}
+.btn-outline{border:1px solid #7B3F00;color:#f0a060;background:transparent}
+.btn-danger{background:#ff5252;color:#fff}
+
+/* الرسم البياني */
+.chart-area{
+  background:#0d0d1a;border-radius:.2cm;height:2.8cm;
+  margin-bottom:.2cm;position:relative;overflow:hidden;
+  display:flex;align-items:flex-end;padding:.1cm
+}
+.candle{
+  width:.18cm;margin:0 .02cm;border-radius:.02cm;position:relative
+}
+.candle.up{background:#00e676}
+.candle.dn{background:#ff5252}
+.wick{width:.02cm;background:#888;position:absolute;left:50%;transform:translateX(-50%)}
+
+/* بطاقة إشارة */
+.signal-card{
+  border-radius:.2cm;padding:.25cm;margin-bottom:.15cm;
+}
+.signal-card.buy{
+  background:linear-gradient(135deg,rgba(0,230,118,.15),rgba(0,230,118,.05));
+  border:1px solid #00e676
+}
+.signal-card.sell{
+  background:linear-gradient(135deg,rgba(255,82,82,.15),rgba(255,82,82,.05));
+  border:1px solid #ff5252
+}
+.signal-card.hold{
+  background:rgba(136,136,136,.1);border:1px solid #666
+}
+.signal-title{font-size:11pt;font-weight:700}
+.signal-title.buy{color:#00e676}
+.signal-title.sell{color:#ff5252}
+.signal-title.hold{color:#888}
+.signal-row{display:flex;justify-content:space-between;font-size:7.5pt;margin-top:.1cm}
+.signal-label{color:#888}
+.signal-val{color:#fff;font-weight:600}
+.conf-bar-wrap{background:#333;border-radius:.1cm;height:.15cm;margin:.1cm 0}
+.conf-bar{background:#00e676;border-radius:.1cm;height:.15cm}
+
+/* خبر */
+.news-card{
+  background:#1e1e35;border-radius:.2cm;padding:.2cm;
+  margin-bottom:.12cm;border-right:3px solid #444
+}
+.news-sym{font-size:6.5pt;color:#f0a060;font-weight:700}
+.news-title{font-size:7.5pt;color:#ddd;line-height:1.4;margin:.05cm 0}
+.news-sentiment{font-size:6pt;padding:.03cm .1cm;border-radius:.1cm;
+  display:inline-block;margin-top:.05cm}
+.bull{background:rgba(0,230,118,.2);color:#00e676}
+.bear{background:rgba(255,82,82,.2);color:#ff5252}
+.neut{background:rgba(136,136,136,.2);color:#aaa}
+
+/* bottom nav */
+.bottom-nav{
+  display:flex;justify-content:space-around;
+  background:#1a1a30;padding:.15cm .1cm;
+  border-top:1px solid #333;position:absolute;
+  bottom:0;left:0;right:0
+}
+.nav-item{text-align:center;font-size:6pt;color:#888;cursor:pointer}
+.nav-item.active{color:#f0a060}
+.nav-icon{font-size:14pt;display:block}
+
+/* تداول وهمي */
+.portfolio-card{
+  background:linear-gradient(135deg,#7B3F00,#c0622a);
+  border-radius:.2cm;padding:.3cm;margin-bottom:.2cm;text-align:center
+}
+.portfolio-balance{font-size:14pt;font-weight:700;color:#fff}
+.portfolio-label{font-size:7pt;color:rgba(255,255,255,.7)}
+.stat-row{display:flex;gap:.1cm;margin-bottom:.1cm}
+.stat-box{
+  flex:1;background:#1e1e35;border-radius:.15cm;
+  padding:.15cm .1cm;text-align:center
+}
+.stat-val{font-size:8pt;font-weight:700}
+.stat-lbl{font-size:6.5pt;color:#888}
+.green{color:#00e676}.red{color:#ff5252}
+
+/* trade row */
+.trade-row{
+  background:#1e1e35;border-radius:.15cm;padding:.15cm;
+  margin-bottom:.1cm;display:flex;justify-content:space-between
+}
+
+/* signal review */
+.review-row{
+  background:#1e1e35;border-radius:.15cm;padding:.15cm;
+  margin-bottom:.1cm;
+}
+.acc-badge{
+  display:inline-block;padding:.05cm .2cm;border-radius:.15cm;
+  font-size:7pt;font-weight:700
+}
+
+/* settings */
+.settings-item{
+  background:#1e1e35;border-radius:.2cm;padding:.2cm .25cm;
+  margin-bottom:.1cm;display:flex;align-items:center;
+  justify-content:space-between
+}
+.settings-label{font-size:8.5pt;color:#ddd}
+.settings-icon{font-size:10pt;color:#888}
+
+/* ── تسميات توضيحية ── */
+.annotation{
+  position:absolute;right:-2.5cm;
+  font-size:7pt;color:#f0a060;
+  background:rgba(123,63,0,.2);
+  padding:.05cm .1cm;border-radius:.05cm;
+  border-right:2px solid #7B3F00;
+  width:2.3cm;text-align:right
+}
+
+/* ── فاصل قسم ── */
+.divider{
+  border:none;border-top:1px solid #333;margin:.4cm 0
+}
+
+/* progress */
+.progress-wrap{background:#333;border-radius:.1cm;height:.12cm;margin:.1cm 0}
+.progress{border-radius:.1cm;height:.12cm}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════ HEADER ══════════════════════════════ -->
+<div class="doc-header">
+  <h1>Market Insight — تصميم الواجهات</h1>
+  <p>UI Wireframes & Screen Design — نظام التداول الذكي</p>
+</div>
+
+<!-- ════════════════ GROUP 1: المصادقة ════════════════ -->
+<div class="section">
+<div class="section-title">1. شاشات المصادقة (Authentication Screens)</div>
+<div class="screens-grid">
+
+  <!-- شاشة تسجيل الدخول -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div style="text-align:center;margin:.3cm 0 .4cm">
+          <div style="width:1.2cm;height:1.2cm;border-radius:.3cm;background:linear-gradient(135deg,#7B3F00,#c0622a);margin:0 auto .1cm;display:flex;align-items:center;justify-content:center;font-size:14pt">📈</div>
+          <div style="font-size:12pt;font-weight:700;color:#f0a060">Market Insight</div>
+          <div style="font-size:7.5pt;color:#888;margin-top:.05cm">مرحباً بعودتك</div>
+        </div>
+        <div class="input-field"><span class="input-icon">✉️</span>البريد الإلكتروني</div>
+        <div class="input-field"><span class="input-icon">🔒</span>كلمة المرور <span style="margin-right:auto;font-size:8pt;color:#7B3F00">👁</span></div>
+        <div style="text-align:left;font-size:7.5pt;color:#7B3F00;margin-bottom:.2cm">نسيت كلمة المرور؟</div>
+        <div class="btn btn-primary">تسجيل الدخول</div>
+        <div style="text-align:center;font-size:7.5pt;color:#888;margin:.15cm 0">
+          ليس لديك حساب؟ <span style="color:#f0a060">إنشاء حساب</span>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">تسجيل الدخول</div>
+    <div class="phone-sub">Firebase Auth — بريد + كلمة مرور</div>
+  </div>
+
+  <!-- شاشة إنشاء الحساب -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div style="text-align:center;margin:.2cm 0 .3cm">
+          <div style="font-size:12pt;font-weight:700;color:#f0a060">إنشاء حساب جديد</div>
+          <div style="font-size:7pt;color:#888">انضم إلى منصة التداول الذكي</div>
+        </div>
+        <div class="input-field"><span class="input-icon">✉️</span>البريد الإلكتروني</div>
+        <div class="input-field"><span class="input-icon">🔒</span>كلمة المرور</div>
+        <div class="input-field"><span class="input-icon">🔒</span>تأكيد كلمة المرور</div>
+        <div class="btn btn-primary">إنشاء الحساب</div>
+        <div style="text-align:center;font-size:7.5pt;color:#888;margin:.1cm 0">
+          لديك حساب؟ <span style="color:#f0a060">تسجيل الدخول</span>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">إنشاء حساب</div>
+    <div class="phone-sub">Firebase Auth + إرسال بريد التحقق</div>
+  </div>
+
+  <!-- شاشة التحقق من البريد -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark" style="display:flex;flex-direction:column;justify-content:center;text-align:center;padding:.5cm .3cm">
+        <div style="font-size:30pt;margin-bottom:.2cm">📧</div>
+        <div style="font-size:10pt;font-weight:700;color:#f0a060;margin-bottom:.1cm">تحقق من بريدك</div>
+        <div style="font-size:7.5pt;color:#888;line-height:1.6;margin-bottom:.3cm">
+          أرسلنا رابط التحقق إلى<br>
+          <span style="color:#fff">user@email.com</span><br>
+          افتح البريد وانقر الرابط
+        </div>
+        <div class="btn btn-outline">أعد إرسال البريد</div>
+        <div class="btn btn-primary">تحققت ✓</div>
+        <div style="font-size:7pt;color:#888;margin-top:.1cm">تسجيل الخروج</div>
+      </div>
+    </div>
+    <div class="phone-label">التحقق من البريد</div>
+    <div class="phone-sub">emailVerified check قبل الدخول</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ════════════════ GROUP 2: قائمة الأسواق ════════════════ -->
+<div class="section page-break">
+<div class="section-title">2. شاشات قائمة الأسواق (Markets List)</div>
+<div class="screens-grid">
+
+  <!-- العملات الرقمية -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div class="top-bar">
+          <span class="top-bar-title">السوق</span>
+          <span style="font-size:8pt;color:#888">⭐ مراجعة</span>
+        </div>
+        <div class="tab-bar">
+          <div class="tab active">🪙 رقمي</div>
+          <div class="tab">🥇 معادن</div>
+          <div class="tab">💱 فوركس</div>
+          <div class="tab">📊 أسهم</div>
+          <div class="tab">📰 أخبار</div>
+        </div>
+        <div class="symbol-card">
+          <div><div class="sym-name">Bitcoin</div><div class="sym-code">BTC/USD</div></div>
+          <div style="text-align:center"><div class="sym-price-up">95,420</div><div style="font-size:6pt;color:#00e676">+2.3%</div></div>
+          <div><div class="sig-buy">BUY</div><div style="font-size:6pt;color:#888;text-align:center;margin-top:.03cm">⭐</div></div>
+        </div>
+        <div class="symbol-card">
+          <div><div class="sym-name">Ethereum</div><div class="sym-code">ETH/USD</div></div>
+          <div style="text-align:center"><div class="sym-price-up">3,240</div><div style="font-size:6pt;color:#00e676">+1.1%</div></div>
+          <div><div class="sig-hold">HOLD</div></div>
+        </div>
+        <div class="symbol-card">
+          <div><div class="sym-name">BNB</div><div class="sym-code">BNB/USD</div></div>
+          <div style="text-align:center"><div class="sym-price-dn">580</div><div style="font-size:6pt;color:#ff5252">-0.8%</div></div>
+          <div><div class="sig-sell">SELL</div></div>
+        </div>
+        <div style="font-size:7pt;color:#555;text-align:center;margin-top:.15cm">يتجدد كل 3 ثوانٍ</div>
+        <div class="bottom-nav">
+          <div class="nav-item active"><span class="nav-icon">📈</span>السوق</div>
+          <div class="nav-item"><span class="nav-icon">📋</span>محفظتي</div>
+          <div class="nav-item"><span class="nav-icon">📰</span>أخبار</div>
+          <div class="nav-item"><span class="nav-icon">⚙️</span>إعدادات</div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">العملات الرقمية</div>
+    <div class="phone-sub">Binance — تحديث كل 3 ثوانٍ</div>
+  </div>
+
+  <!-- المعادن -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div class="top-bar">
+          <span class="top-bar-title">السوق</span>
+          <span style="font-size:8pt;color:#888">⭐ مراجعة</span>
+        </div>
+        <div class="tab-bar">
+          <div class="tab">🪙 رقمي</div>
+          <div class="tab active">🥇 معادن</div>
+          <div class="tab">💱 فوركس</div>
+          <div class="tab">📊 أسهم</div>
+          <div class="tab">📰 أخبار</div>
+        </div>
+        <div class="symbol-card" style="border-color:#ffd700">
+          <div><div class="sym-name">الذهب</div><div class="sym-code">XAU/USD</div></div>
+          <div style="text-align:center"><div class="sym-price-up">3,380</div><div style="font-size:6pt;color:#00e676">+0.5%</div></div>
+          <div><div class="sig-buy">BUY</div><div style="font-size:6pt;color:#888;text-align:center;margin-top:.03cm">⭐</div></div>
+        </div>
+        <div class="symbol-card">
+          <div><div class="sym-name">الفضة</div><div class="sym-code">XAG/USD</div></div>
+          <div style="text-align:center"><div class="sym-price-dn">32.4</div><div style="font-size:6pt;color:#ff5252">-0.3%</div></div>
+          <div><div class="sig-hold">HOLD</div></div>
+        </div>
+        <div class="symbol-card">
+          <div><div class="sym-name">البلاتين</div><div class="sym-code">XPT/USD</div></div>
+          <div style="text-align:center"><div class="sym-price-up">980</div><div style="font-size:6pt;color:#00e676">+1.2%</div></div>
+          <div><div class="sig-buy">BUY</div></div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item active"><span class="nav-icon">📈</span>السوق</div>
+          <div class="nav-item"><span class="nav-icon">📋</span>محفظتي</div>
+          <div class="nav-item"><span class="nav-icon">📰</span>أخبار</div>
+          <div class="nav-item"><span class="nav-icon">⚙️</span>إعدادات</div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">المعادن الثمينة</div>
+    <div class="phone-sub">Yahoo Finance (GC=F / SI=F / PL=F)</div>
+  </div>
+
+  <!-- الفوركس -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div class="top-bar">
+          <span class="top-bar-title">السوق</span>
+        </div>
+        <div class="tab-bar">
+          <div class="tab">🪙 رقمي</div>
+          <div class="tab">🥇 معادن</div>
+          <div class="tab active">💱 فوركس</div>
+          <div class="tab">📊 أسهم</div>
+          <div class="tab">📰 أخبار</div>
+        </div>
+        <div class="symbol-card" style="border-color:#2196f3">
+          <div><div class="sym-name">EUR/USD</div><div class="sym-code">يورو/دولار</div></div>
+          <div style="text-align:center"><div class="sym-price-up">1.0850</div><div style="font-size:6pt;color:#00e676">+0.2%</div></div>
+          <div><div class="sig-buy">BUY</div></div>
+        </div>
+        <div class="symbol-card">
+          <div><div class="sym-name">GBP/USD</div><div class="sym-code">جنيه/دولار</div></div>
+          <div style="text-align:center"><div class="sym-price-dn">1.2640</div><div style="font-size:6pt;color:#ff5252">-0.1%</div></div>
+          <div><div class="sig-sell">SELL</div></div>
+        </div>
+        <div class="symbol-card">
+          <div><div class="sym-name">EUR/GBP</div><div class="sym-code">يورو/جنيه</div></div>
+          <div style="text-align:center"><div class="sym-price-up">0.8580</div><div style="font-size:6pt;color:#00e676">+0.1%</div></div>
+          <div><div class="sig-hold">HOLD</div></div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item active"><span class="nav-icon">📈</span>السوق</div>
+          <div class="nav-item"><span class="nav-icon">📋</span>محفظتي</div>
+          <div class="nav-item"><span class="nav-icon">📰</span>أخبار</div>
+          <div class="nav-item"><span class="nav-icon">⚙️</span>إعدادات</div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">العملات الأجنبية (FX)</div>
+    <div class="phone-sub">Yahoo Finance (EURUSD=X)</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ════════════════ GROUP 3: تفاصيل الرمز ════════════════ -->
+<div class="section page-break">
+<div class="section-title">3. شاشة تفاصيل الرمز والرسم البياني</div>
+<div class="screens-grid">
+
+  <!-- تفاصيل مع BUY -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark2">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div class="top-bar" style="padding:.15cm .2cm">
+          <span style="font-size:8pt;color:#888">← رجوع</span>
+          <span style="font-size:9pt;font-weight:700;color:#fff">BTC/USD ⭐</span>
+          <span style="font-size:8pt;color:#888">📊</span>
+        </div>
+        <!-- السعر اللحظي -->
+        <div style="display:flex;justify-content:space-between;margin-bottom:.15cm;background:#1e1e35;border-radius:.15cm;padding:.15cm">
+          <div><div style="font-size:7pt;color:#888">Bid</div><div style="font-size:9pt;color:#00e676;font-weight:700">95,415</div></div>
+          <div style="text-align:center"><div style="font-size:7pt;color:#888">السعر</div><div style="font-size:10pt;color:#fff;font-weight:700">95,420</div></div>
+          <div style="text-align:left"><div style="font-size:7pt;color:#888">Ask</div><div style="font-size:9pt;color:#ff5252;font-weight:700">95,425</div></div>
+        </div>
+        <!-- الإطار الزمني -->
+        <div style="display:flex;gap:.05cm;margin-bottom:.12cm;overflow-x:auto">
+          <div style="padding:.06cm .1cm;background:#7B3F00;border-radius:.08cm;font-size:6pt;color:#fff;white-space:nowrap">1m</div>
+          <div style="padding:.06cm .1cm;background:#1e1e35;border-radius:.08cm;font-size:6pt;color:#888;white-space:nowrap">5m</div>
+          <div style="padding:.06cm .1cm;background:#1e1e35;border-radius:.08cm;font-size:6pt;color:#888;white-space:nowrap">15m</div>
+          <div style="padding:.06cm .1cm;background:#1e1e35;border-radius:.08cm;font-size:6pt;color:#888;white-space:nowrap">30m</div>
+          <div style="padding:.06cm .1cm;background:#1e1e35;border-radius:.08cm;font-size:6pt;color:#888;white-space:nowrap">1h</div>
+          <div style="padding:.06cm .1cm;background:#1e1e35;border-radius:.08cm;font-size:6pt;color:#888;white-space:nowrap">4h</div>
+          <div style="padding:.06cm .1cm;background:#1e1e35;border-radius:.08cm;font-size:6pt;color:#888;white-space:nowrap">1d</div>
+        </div>
+        <!-- الرسم البياني -->
+        <div class="chart-area">
+          <!-- شموع مصغّرة -->
+          <div style="display:flex;align-items:flex-end;gap:.03cm;padding:.05cm;width:100%">
+            <div class="candle dn" style="height:.8cm"></div>
+            <div class="candle up" style="height:1cm"></div>
+            <div class="candle up" style="height:1.3cm"></div>
+            <div class="candle dn" style="height:.9cm"></div>
+            <div class="candle up" style="height:1.5cm"></div>
+            <div class="candle up" style="height:1.8cm"></div>
+            <div class="candle dn" style="height:1.2cm"></div>
+            <div class="candle up" style="height:2cm"></div>
+            <div class="candle up" style="height:2.2cm"></div>
+            <div class="candle dn" style="height:1.6cm"></div>
+            <div class="candle up" style="height:2.4cm"></div>
+            <div class="candle dn" style="height:2cm"></div>
+          </div>
+          <div style="position:absolute;top:.1cm;right:.1cm;font-size:6pt;color:#888">interactive_chart</div>
+        </div>
+        <!-- horizon + auto -->
+        <div style="display:flex;gap:.1cm;margin-bottom:.12cm;align-items:center">
+          <div style="background:#1e1e35;border-radius:.15cm;padding:.1cm .15cm;flex:1;font-size:7.5pt;color:#888">
+            Horizon: <span style="color:#fff;font-weight:700">4</span>
+          </div>
+          <div style="background:#7B3F00;border-radius:.15cm;padding:.1cm .15cm;font-size:7pt;color:#fff;font-weight:700">
+            🔄 Auto OFF
+          </div>
+        </div>
+        <!-- بطاقة الإشارة BUY -->
+        <div class="signal-card buy">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="signal-title buy">🟢 BUY</span>
+            <span style="font-size:7pt;color:#888">قوي — 78%</span>
+          </div>
+          <div class="conf-bar-wrap"><div class="conf-bar" style="width:78%"></div></div>
+          <div class="signal-row">
+            <span class="signal-label">دخول</span><span class="signal-val">95,425</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">وقف خسارة</span><span class="signal-val" style="color:#ff5252">93,800</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">TP1/TP2/TP3</span>
+            <span class="signal-val" style="color:#00e676">96.6k / 97.9k / 99.2k</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">رسم بياني + إشارة BUY</div>
+    <div class="phone-sub">النموذج الهجين — ثقة 78% — قوي</div>
+  </div>
+
+  <!-- تفاصيل مع SELL -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark2">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div class="top-bar" style="padding:.15cm .2cm">
+          <span style="font-size:8pt;color:#888">← رجوع</span>
+          <span style="font-size:9pt;font-weight:700;color:#fff">XAU/USD ⭐</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:.15cm;background:#1e1e35;border-radius:.15cm;padding:.15cm">
+          <div><div style="font-size:7pt;color:#888">Bid</div><div style="font-size:9pt;color:#00e676;font-weight:700">3,379</div></div>
+          <div style="text-align:center"><div style="font-size:7pt;color:#888">السعر</div><div style="font-size:10pt;color:#fff;font-weight:700">3,380</div></div>
+          <div style="text-align:left"><div style="font-size:7pt;color:#888">Ask</div><div style="font-size:9pt;color:#ff5252;font-weight:700">3,381</div></div>
+        </div>
+        <div style="display:flex;gap:.05cm;margin-bottom:.12cm">
+          <div style="padding:.06cm .1cm;background:#1e1e35;border-radius:.08cm;font-size:6pt;color:#888">1m</div>
+          <div style="padding:.06cm .1cm;background:#7B3F00;border-radius:.08cm;font-size:6pt;color:#fff">1h</div>
+          <div style="padding:.06cm .1cm;background:#1e1e35;border-radius:.08cm;font-size:6pt;color:#888">4h</div>
+          <div style="padding:.06cm .1cm;background:#1e1e35;border-radius:.08cm;font-size:6pt;color:#888">1d</div>
+        </div>
+        <div class="chart-area">
+          <div style="display:flex;align-items:flex-end;gap:.03cm;padding:.05cm;width:100%">
+            <div class="candle up" style="height:2.2cm"></div>
+            <div class="candle up" style="height:2.4cm"></div>
+            <div class="candle dn" style="height:2cm"></div>
+            <div class="candle dn" style="height:1.7cm"></div>
+            <div class="candle dn" style="height:1.4cm"></div>
+            <div class="candle up" style="height:1.6cm"></div>
+            <div class="candle dn" style="height:1.2cm"></div>
+            <div class="candle dn" style="height:1cm"></div>
+            <div class="candle dn" style="height:.8cm"></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:.1cm;margin-bottom:.12cm;align-items:center">
+          <div style="background:#1e1e35;border-radius:.15cm;padding:.1cm .15cm;flex:1;font-size:7.5pt;color:#888">Horizon: <span style="color:#fff">4</span></div>
+          <div style="background:#00e676;border-radius:.15cm;padding:.1cm .15cm;font-size:7pt;color:#000;font-weight:700">🔄 Auto ON</div>
+        </div>
+        <div style="background:#1e1e35;border-radius:.15cm;padding:.12cm;margin-bottom:.1cm;display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:7.5pt;color:#888">⏱ التوليد التلقائي في:</span>
+          <span style="font-size:9pt;color:#f0a060;font-weight:700">02:45</span>
+        </div>
+        <div class="signal-card sell">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="signal-title sell">🔴 SELL</span>
+            <span style="font-size:7pt;color:#888">متوسط — 65%</span>
+          </div>
+          <div class="conf-bar-wrap"><div class="conf-bar" style="width:65%;background:#ff5252"></div></div>
+          <div class="signal-row">
+            <span class="signal-label">دخول</span><span class="signal-val">3,379</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">وقف خسارة</span><span class="signal-val" style="color:#ff5252">3,430</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">TP1/TP2/TP3</span>
+            <span class="signal-val" style="color:#00e676">3,340 / 3,310 / 3,280</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">رسم بياني + إشارة SELL</div>
+    <div class="phone-sub">وضع Auto مفعّل — عداد تنازلي</div>
+  </div>
+
+  <!-- تفاصيل مع HOLD -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark2">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div class="top-bar" style="padding:.15cm .2cm">
+          <span style="font-size:8pt;color:#888">← رجوع</span>
+          <span style="font-size:9pt;font-weight:700;color:#fff">EUR/USD</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:.15cm;background:#1e1e35;border-radius:.15cm;padding:.15cm">
+          <div><div style="font-size:7pt;color:#888">Bid</div><div style="font-size:9pt;color:#00e676;font-weight:700">1.0849</div></div>
+          <div style="text-align:center"><div style="font-size:7pt;color:#888">Spread</div><div style="font-size:8pt;color:#888">0.0002</div></div>
+          <div style="text-align:left"><div style="font-size:7pt;color:#888">Ask</div><div style="font-size:9pt;color:#ff5252;font-weight:700">1.0851</div></div>
+        </div>
+        <div class="chart-area" style="height:3.2cm">
+          <div style="display:flex;align-items:center;gap:.03cm;padding:.05cm;width:100%">
+            <div class="candle up" style="height:1.4cm"></div>
+            <div class="candle dn" style="height:1.3cm"></div>
+            <div class="candle up" style="height:1.5cm"></div>
+            <div class="candle up" style="height:1.4cm"></div>
+            <div class="candle dn" style="height:1.6cm"></div>
+            <div class="candle up" style="height:1.5cm"></div>
+            <div class="candle dn" style="height:1.4cm"></div>
+            <div class="candle up" style="height:1.6cm"></div>
+          </div>
+        </div>
+        <!-- أخبار الرمز mini -->
+        <div style="background:#1e1e35;border-radius:.15cm;padding:.15cm;margin:.1cm 0;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:7.5pt;color:#aaa">📰 تأثير الأخبار</span>
+          <div style="display:flex;gap:.05cm">
+            <span style="background:rgba(0,230,118,.2);color:#00e676;font-size:6pt;padding:.03cm .08cm;border-radius:.1cm">5 إيجابية</span>
+            <span style="background:rgba(255,82,82,.2);color:#ff5252;font-size:6pt;padding:.03cm .08cm;border-radius:.1cm">2 سلبية</span>
+          </div>
+        </div>
+        <div class="signal-card hold">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="signal-title hold">⬜ HOLD</span>
+            <span style="font-size:7pt;color:#888">غير محدد — 38%</span>
+          </div>
+          <div class="conf-bar-wrap"><div class="conf-bar" style="width:38%;background:#888"></div></div>
+          <div style="font-size:7pt;color:#888;margin-top:.1cm;text-align:center">
+            السوق غير واضح — ثقة أقل من 42%
+          </div>
+          <div style="font-size:7pt;color:#555;text-align:center;margin-top:.05cm">
+            BUY: 38% | SELL: 35% | HOLD: 27%
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">إشارة HOLD</div>
+    <div class="phone-sub">ثقة < 42% → تحويل تلقائي لـ HOLD</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ════════════════ GROUP 4: الأخبار والتداول والمراجعة ════════════════ -->
+<div class="section page-break">
+<div class="section-title">4. شاشات الأخبار والتداول الوهمي ومراجعة التوصيات</div>
+<div class="screens-grid">
+
+  <!-- الأخبار -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div class="top-bar">
+          <span class="top-bar-title">📰 الأخبار المالية</span>
+        </div>
+        <!-- فلتر الفئة -->
+        <div style="display:flex;gap:.06cm;margin-bottom:.2cm;overflow-x:auto">
+          <div style="padding:.07cm .12cm;background:#7B3F00;border-radius:.1cm;font-size:6.5pt;color:#fff;white-space:nowrap">الكل</div>
+          <div style="padding:.07cm .12cm;background:#1e1e35;border-radius:.1cm;font-size:6.5pt;color:#888;white-space:nowrap">🪙 رقمي</div>
+          <div style="padding:.07cm .12cm;background:#1e1e35;border-radius:.1cm;font-size:6.5pt;color:#888;white-space:nowrap">📊 أسهم</div>
+          <div style="padding:.07cm .12cm;background:#1e1e35;border-radius:.1cm;font-size:6.5pt;color:#888;white-space:nowrap">💱 فوركس</div>
+          <div style="padding:.07cm .12cm;background:#1e1e35;border-radius:.1cm;font-size:6.5pt;color:#888;white-space:nowrap">🥇 معادن</div>
+        </div>
+        <div class="news-card" style="border-color:#00e676">
+          <div style="display:flex;justify-content:space-between">
+            <span class="news-sym">BTCUSD</span>
+            <span style="font-size:6pt;color:#555">منذ 12 دقيقة</span>
+          </div>
+          <div class="news-title">Bitcoin surges past $95K as institutional demand increases significantly</div>
+          <div style="display:flex;gap:.08cm;align-items:center;margin-top:.05cm">
+            <span class="news-sentiment bull">🔼 Bullish</span>
+            <span style="font-size:6pt;color:#888">ثقة: 82%</span>
+            <div style="flex:1;background:#333;border-radius:.05cm;height:.1cm;margin:0 .05cm">
+              <div style="width:75%;background:#00e676;height:.1cm;border-radius:.05cm"></div>
+            </div>
+          </div>
+        </div>
+        <div class="news-card" style="border-color:#ff5252">
+          <div style="display:flex;justify-content:space-between">
+            <span class="news-sym">AAPL</span>
+            <span style="font-size:6pt;color:#555">منذ 35 دقيقة</span>
+          </div>
+          <div class="news-title">Apple faces regulatory challenges in EU markets amid antitrust probe</div>
+          <div style="display:flex;gap:.08cm;align-items:center;margin-top:.05cm">
+            <span class="news-sentiment bear">🔽 Bearish</span>
+            <span style="font-size:6pt;color:#888">ثقة: 71%</span>
+            <div style="flex:1;background:#333;border-radius:.05cm;height:.1cm;margin:0 .05cm">
+              <div style="width:60%;background:#ff5252;height:.1cm;border-radius:.05cm"></div>
+            </div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div style="display:flex;justify-content:space-between">
+            <span class="news-sym">XAUUSD</span>
+            <span style="font-size:6pt;color:#555">منذ ساعة</span>
+          </div>
+          <div class="news-title">Gold holds steady as investors await Fed rate decision</div>
+          <div style="display:flex;gap:.08cm;align-items:center;margin-top:.05cm">
+            <span class="news-sentiment neut">➡️ Neutral</span>
+            <span style="font-size:6pt;color:#888">ثقة: 58%</span>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item"><span class="nav-icon">📈</span>السوق</div>
+          <div class="nav-item"><span class="nav-icon">📋</span>محفظتي</div>
+          <div class="nav-item active"><span class="nav-icon">📰</span>أخبار</div>
+          <div class="nav-item"><span class="nav-icon">⚙️</span>إعدادات</div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">صفحة الأخبار</div>
+    <div class="phone-sub">TF-IDF+XGBoost — تحديث كل 5 دقائق</div>
+  </div>
+
+  <!-- التداول الوهمي -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div class="top-bar">
+          <span class="top-bar-title">💼 محفظتي الوهمية</span>
+          <span style="font-size:7.5pt;color:#888">🔄 إعادة تعيين</span>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-label">إجمالي المحفظة</div>
+          <div class="portfolio-balance">$10,842.50</div>
+          <div style="display:flex;justify-content:center;gap:.2cm;margin-top:.1cm">
+            <span style="font-size:7pt;color:rgba(255,255,255,.7)">ربح: </span>
+            <span style="font-size:7pt;color:#00e676;font-weight:700">+$842.50 (+8.4%)</span>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-box"><div class="stat-val green">$1,230</div><div class="stat-lbl">ربح مفتوح</div></div>
+          <div class="stat-box"><div class="stat-val red">-$387</div><div class="stat-lbl">خسارة مغلقة</div></div>
+          <div class="stat-box"><div class="stat-val" style="color:#f0a060">$24.5</div><div class="stat-lbl">إجمالي الرسوم</div></div>
+        </div>
+        <div style="font-size:8pt;color:#f0a060;font-weight:700;margin:.12cm 0 .08cm">الصفقات المفتوحة</div>
+        <div class="trade-row">
+          <div><div style="font-size:7.5pt;font-weight:700;color:#fff">BTC/USD</div><div style="font-size:6pt;color:#00e676">🟢 شراء × 0.1</div></div>
+          <div style="text-align:left"><div style="font-size:7.5pt;color:#00e676;font-weight:700">+$230</div><div style="font-size:6pt;color:#888">دخول: 93,200</div></div>
+        </div>
+        <div class="trade-row">
+          <div><div style="font-size:7.5pt;font-weight:700;color:#fff">XAU/USD</div><div style="font-size:6pt;color:#ff5252">🔴 بيع × 1</div></div>
+          <div style="text-align:left"><div style="font-size:7.5pt;color:#ff5252;font-weight:700">-$45</div><div style="font-size:6pt;color:#888">دخول: 3,395</div></div>
+        </div>
+        <div style="display:flex;gap:.1cm;margin-top:.15cm">
+          <div class="btn btn-primary" style="font-size:7.5pt;padding:.15cm;margin:0">+ فتح صفقة</div>
+          <div class="btn btn-outline" style="font-size:7.5pt;padding:.15cm;margin:0">تاريخ الصفقات</div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item"><span class="nav-icon">📈</span>السوق</div>
+          <div class="nav-item active"><span class="nav-icon">📋</span>محفظتي</div>
+          <div class="nav-item"><span class="nav-icon">📰</span>أخبار</div>
+          <div class="nav-item"><span class="nav-icon">⚙️</span>إعدادات</div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">التداول الوهمي</div>
+    <div class="phone-sub">$10,000 افتراضي — رسوم 0.1% + انزلاق</div>
+  </div>
+
+  <!-- مراجعة التوصيات -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div class="top-bar">
+          <span class="top-bar-title">📋 مراجعة التوصيات</span>
+        </div>
+        <!-- إحصائية الدقة -->
+        <div style="background:#1e1e35;border-radius:.2cm;padding:.2cm;margin-bottom:.15cm;text-align:center">
+          <div style="font-size:7pt;color:#888;margin-bottom:.05cm">نسبة الدقة الإجمالية</div>
+          <div style="font-size:16pt;font-weight:700;color:#00e676">62%</div>
+          <div style="font-size:7pt;color:#888">13 صحيح من 21 محلول</div>
+          <div class="progress-wrap" style="margin:.1cm 0">
+            <div class="progress" style="width:62%;background:#00e676"></div>
+          </div>
+        </div>
+        <!-- توصية محلولة صحيحة -->
+        <div class="review-row" style="border-right:3px solid #00e676">
+          <div style="display:flex;justify-content:space-between">
+            <span style="font-size:8pt;font-weight:700;color:#fff">BTC/USD</span>
+            <span class="acc-badge" style="background:rgba(0,230,118,.2);color:#00e676">✓ صحيح</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:6.5pt;margin-top:.05cm">
+            <span style="color:#00e676">🟢 BUY — 78%</span>
+            <span style="color:#888">1h — قبل 2 ساعة</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:6.5pt;margin-top:.04cm">
+            <span style="color:#888">دخول: 93,200</span>
+            <span style="color:#00e676">فعلي: 95,400 ↑</span>
+          </div>
+        </div>
+        <!-- توصية محلولة خاطئة -->
+        <div class="review-row" style="border-right:3px solid #ff5252">
+          <div style="display:flex;justify-content:space-between">
+            <span style="font-size:8pt;font-weight:700;color:#fff">EUR/USD</span>
+            <span class="acc-badge" style="background:rgba(255,82,82,.2);color:#ff5252">✗ خطأ</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:6.5pt;margin-top:.05cm">
+            <span style="color:#ff5252">🔴 SELL — 63%</span>
+            <span style="color:#888">4h — قبل 5 ساعات</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:6.5pt;margin-top:.04cm">
+            <span style="color:#888">دخول: 1.0820</span>
+            <span style="color:#ff5252">فعلي: 1.0870 ↑</span>
+          </div>
+        </div>
+        <!-- توصية معلقة -->
+        <div class="review-row" style="border-right:3px solid #f0a060">
+          <div style="display:flex;justify-content:space-between">
+            <span style="font-size:8pt;font-weight:700;color:#fff">XAU/USD</span>
+            <span class="acc-badge" style="background:rgba(240,160,96,.2);color:#f0a060">⏳ معلق</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:6.5pt;margin-top:.05cm">
+            <span style="color:#00e676">🟢 BUY — 71%</span>
+            <span style="color:#888">يُحلّ بعد 45 دق</span>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item"><span class="nav-icon">📈</span>السوق</div>
+          <div class="nav-item"><span class="nav-icon">📋</span>محفظتي</div>
+          <div class="nav-item"><span class="nav-icon">📰</span>أخبار</div>
+          <div class="nav-item"><span class="nav-icon">⚙️</span>إعدادات</div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">مراجعة التوصيات</div>
+    <div class="phone-sub">Firestore — حل تلقائي كل 30 ثانية</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ════════════════ GROUP 5: الإعدادات + تدفق التنقل ════════════════ -->
+<div class="section page-break">
+<div class="section-title">5. شاشة الإعدادات وتدفق التنقل الكامل</div>
+<div class="screens-grid">
+
+  <!-- الإعدادات -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div class="top-bar">
+          <span class="top-bar-title">⚙️ الإعدادات</span>
+        </div>
+        <!-- معلومات المستخدم -->
+        <div style="text-align:center;margin:.2cm 0 .25cm">
+          <div style="width:1.2cm;height:1.2cm;background:#7B3F00;border-radius:50%;margin:0 auto .1cm;display:flex;align-items:center;justify-content:center;font-size:14pt">👤</div>
+          <div style="font-size:9pt;font-weight:700;color:#fff">user@email.com</div>
+          <div style="font-size:6.5pt;color:#888;font-family:monospace">UID: xK9mP2...qR7n</div>
+        </div>
+        <div style="font-size:7.5pt;color:#888;margin-bottom:.08cm">الحساب</div>
+        <div class="settings-item">
+          <span class="settings-label">🔑 تغيير كلمة المرور</span>
+          <span class="settings-icon">›</span>
+        </div>
+        <div style="font-size:7.5pt;color:#888;margin:.12cm 0 .08cm">التفضيلات</div>
+        <div class="settings-item">
+          <span class="settings-label">🌐 اللغة</span>
+          <div style="display:flex;gap:.06cm">
+            <span style="background:#7B3F00;color:#fff;font-size:6.5pt;padding:.03cm .1cm;border-radius:.08cm">العربية</span>
+            <span style="background:#1a1a30;color:#888;font-size:6.5pt;padding:.03cm .1cm;border-radius:.08cm">English</span>
+          </div>
+        </div>
+        <div class="settings-item">
+          <span class="settings-label">🌙 المظهر</span>
+          <span style="font-size:7pt;color:#888">داكن ●</span>
+        </div>
+        <div class="settings-item">
+          <span class="settings-label">📋 مراجعة التوصيات</span>
+          <span class="settings-icon">›</span>
+        </div>
+        <div style="height:.1cm"></div>
+        <div class="btn btn-danger" style="padding:.15cm;font-size:8.5pt">
+          🚪 تسجيل الخروج
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item"><span class="nav-icon">📈</span>السوق</div>
+          <div class="nav-item"><span class="nav-icon">📋</span>محفظتي</div>
+          <div class="nav-item"><span class="nav-icon">📰</span>أخبار</div>
+          <div class="nav-item active"><span class="nav-icon">⚙️</span>إعدادات</div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">صفحة الإعدادات</div>
+    <div class="phone-sub">Firebase Auth — تغيير كلمة المرور + اللغة</div>
+  </div>
+
+  <!-- تغيير كلمة المرور -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen dark">
+        <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+        <div class="top-bar">
+          <span style="font-size:8pt;color:#888">← رجوع</span>
+          <span class="top-bar-title">تغيير كلمة المرور</span>
+          <span></span>
+        </div>
+        <div style="margin:.3cm 0 .2cm">
+          <div style="font-size:8pt;color:#888;margin-bottom:.05cm">إعادة المصادقة مطلوبة</div>
+          <div style="font-size:7pt;color:#555;line-height:1.5">لحماية حسابك، أدخل كلمة المرور الحالية أولاً</div>
+        </div>
+        <div class="input-field"><span class="input-icon">🔒</span>كلمة المرور الحالية</div>
+        <hr class="divider">
+        <div class="input-field"><span class="input-icon">🔑</span>كلمة المرور الجديدة</div>
+        <div class="input-field"><span class="input-icon">🔑</span>تأكيد كلمة المرور</div>
+        <div style="background:rgba(255,193,7,.1);border:1px solid #ffc107;border-radius:.15cm;padding:.15cm;margin:.1cm 0">
+          <div style="font-size:7pt;color:#ffc107">⚠️ متطلبات كلمة المرور:</div>
+          <div style="font-size:6.5pt;color:#888;margin-top:.05cm">• 8 أحرف على الأقل</div>
+          <div style="font-size:6.5pt;color:#888">• حرف كبير + رقم</div>
+        </div>
+        <div class="btn btn-primary" style="margin-top:.2cm">حفظ كلمة المرور</div>
+      </div>
+    </div>
+    <div class="phone-label">تغيير كلمة المرور</div>
+    <div class="phone-sub">إعادة مصادقة + Firebase Auth</div>
+  </div>
+
+  <!-- خريطة تدفق التنقل -->
+  <div class="phone-wrap" style="width:auto">
+    <div style="background:#12121f;border-radius:.3cm;border:2px solid #333;padding:.4cm;min-width:8cm">
+      <div style="font-size:9pt;font-weight:700;color:#f0a060;margin-bottom:.3cm;text-align:center">
+        🗺️ تدفق التنقل — GoRouter
+      </div>
+      <!-- flowchart بسيط -->
+      <div style="font-size:8pt;line-height:2;direction:ltr;text-align:left;font-family:monospace;color:#ddd">
+        <div style="color:#7B3F00;font-weight:700">/ (root)</div>
+        <div>&nbsp;├─ <span style="color:#f0a060">/login</span> → LoginPage</div>
+        <div>&nbsp;├─ <span style="color:#f0a060">/register</span> → RegisterPage</div>
+        <div>&nbsp;├─ <span style="color:#f0a060">/verify-email</span> → VerifyPage</div>
+        <div>&nbsp;├─ <span style="color:#f0a060">/settings</span> → SettingsPage</div>
+        <div>&nbsp;├─ <span style="color:#f0a060">/signal-review</span> → ReviewPage</div>
+        <div>&nbsp;├─ <span style="color:#f0a060">/symbol/:code</span> → DetailsPage</div>
+        <div>&nbsp;└─ <span style="color:#00e676">ShellRoute (TabBar)</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;├─ <span style="color:#aaa">/crypto</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;├─ <span style="color:#aaa">/metals</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;├─ <span style="color:#aaa">/fx</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;├─ <span style="color:#aaa">/stocks</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;└─ <span style="color:#aaa">/news</span></div>
+      </div>
+      <hr style="border-color:#333;margin:.2cm 0">
+      <div style="font-size:7.5pt;color:#888;direction:rtl;text-align:right;line-height:1.8">
+        <div>🔐 redirect: تحقق من Firebase Auth</div>
+        <div>→ غير مسجل: يُوجَّه لـ /login</div>
+        <div>→ بريد غير موثق: يُوجَّه لـ /verify-email</div>
+        <div>→ موثق ✓: يدخل ShellRoute</div>
+      </div>
+    </div>
+    <div class="phone-label" style="margin-top:.2cm">خريطة التنقل</div>
+    <div class="phone-sub">GoRouter + AuthListenable</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ════════════════ ملاحظات التصميم ════════════════ -->
+<div class="section" style="background:#0d0d1a;margin-top:.3cm">
+<div class="section-title" style="color:#f0a060">ملاحظات التصميم (Design Notes)</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4cm">
+  <div style="background:#1e1e35;border-radius:.2cm;padding:.3cm;border-top:3px solid #7B3F00">
+    <div style="font-size:9pt;font-weight:700;color:#f0a060;margin-bottom:.15cm">🎨 نظام الألوان</div>
+    <div style="font-size:8pt;color:#aaa;line-height:2">
+      <div>🟤 <span style="color:#c0622a">#7B3F00</span> — اللون الأساسي</div>
+      <div>🟢 <span style="color:#00e676">#00E676</span> — شراء / ربح</div>
+      <div>🔴 <span style="color:#ff5252">#FF5252</span> — بيع / خسارة</div>
+      <div>⬛ <span style="color:#888">#12121F</span> — خلفية</div>
+      <div>🔲 <span style="color:#aaa">#1E1E35</span> — بطاقات</div>
+    </div>
+  </div>
+  <div style="background:#1e1e35;border-radius:.2cm;padding:.3cm;border-top:3px solid #00e676">
+    <div style="font-size:9pt;font-weight:700;color:#f0a060;margin-bottom:.15cm">📐 مبادئ الواجهة</div>
+    <div style="font-size:8pt;color:#aaa;line-height:2">
+      <div>• مظهر داكن (Dark Theme)</div>
+      <div>• الخط: Cairo (عربي)</div>
+      <div>• حجم الخط: 13-16pt عناوين</div>
+      <div>• زوايا مدوّرة: 8-16px</div>
+      <div>• دعم RTL + LTR</div>
+    </div>
+  </div>
+  <div style="background:#1e1e35;border-radius:.2cm;padding:.3cm;border-top:3px solid #2196f3">
+    <div style="font-size:9pt;font-weight:700;color:#f0a060;margin-bottom:.15cm">🔄 ترددات التحديث</div>
+    <div style="font-size:8pt;color:#aaa;line-height:2">
+      <div>⚡ السعر اللحظي: 1 ثانية</div>
+      <div>📊 قائمة الأسواق: 3 ثوانٍ</div>
+      <div>🕯 بيانات الشموع: 5 ثوانٍ</div>
+      <div>📰 الأخبار: 5 دقائق</div>
+      <div>✅ حل التوصيات: 30 ثانية</div>
+    </div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الفصل الثالث — Market Insight</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4;direction:rtl}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .page{margin:0!important;width:21cm!important;min-height:29.7cm!important;
+    page-break-after:always;border:4px double #7B3F00!important;box-shadow:none!important}
+}
+.page{
+  width:21cm;min-height:29.7cm;background:#fff;
+  margin:1cm auto;padding:2cm 2.2cm 2cm 2cm;
+  border:4px double #7B3F00;
+  box-shadow:0 4px 24px rgba(0,0,0,.18);position:relative;
+}
+h1{font-size:18pt;font-weight:700;color:#fff;background:#7B3F00;
+  padding:.25cm .5cm;margin-bottom:.5cm;text-align:center;border-radius:2px}
+h2{font-size:14pt;font-weight:700;color:#7B3F00;border-right:5px solid #7B3F00;
+  padding-right:.3cm;margin:.5cm 0 .3cm}
+h3{font-size:12.5pt;font-weight:700;color:#5a2e00;padding-right:.6cm;
+  margin:.35cm 0 .2cm;position:relative}
+h3::before{content:"◆";position:absolute;right:.1cm;color:#7B3F00;font-size:8pt;top:.1cm}
+p{font-size:13.5pt;line-height:2;text-align:justify;margin-bottom:.25cm;color:#222}
+ul,ol{margin:.1cm .5cm .3cm 0;padding-right:.6cm;font-size:13.5pt;line-height:2;color:#222}
+li{margin-bottom:.1cm;text-align:justify}
+table{width:100%;border-collapse:collapse;margin:.3cm 0;font-size:11.5pt}
+th{background:#7B3F00;color:#fff;padding:.2cm .3cm;border:1px solid #7B3F00;text-align:center;font-size:12pt}
+td{padding:.18cm .3cm;border:1px solid #ccc;text-align:center}
+td.rtd{text-align:right;padding-right:.35cm}
+tr:nth-child(even){background:#fdf5ec}
+.cap{text-align:center;font-size:11pt;color:#555;margin:.08cm 0 .4cm;font-style:italic}
+.pnum{position:absolute;bottom:.6cm;left:50%;transform:translateX(-50%);
+  font-size:11pt;color:#7B3F00;font-weight:700;border-top:1px solid #7B3F00;
+  padding-top:.1cm;width:1.5cm;text-align:center}
+.note-box{background:#fdf5ec;border-right:4px solid #7B3F00;padding:.25cm .4cm;margin:.3cm 0;border-radius:2px}
+.note-box p{margin:0;font-size:12.5pt}
+.ch-page{display:flex;align-items:center;justify-content:center;min-height:25cm;flex-direction:column;gap:.5cm}
+.ch-number{font-size:22pt;color:#7B3F00;font-weight:700;letter-spacing:2px}
+.ch-title-ar{font-size:28pt;font-weight:700;color:#3d1f00;text-align:center;line-height:1.6}
+.ch-line{width:6cm;height:3px;background:linear-gradient(90deg,transparent,#7B3F00,transparent);margin:.2cm 0}
+.sep{border:none;border-top:1px dashed #d4a870;margin:.4cm 0}
+
+/* Waterfall مخطط */
+.wf-flow{display:flex;flex-direction:column;gap:.08cm;margin:.25cm 0}
+.wf-step{display:flex;align-items:stretch;gap:.15cm}
+.wf-num{background:#7B3F00;color:#fff;min-width:.7cm;display:flex;
+  align-items:center;justify-content:center;font-size:11pt;font-weight:700;
+  border-radius:2px;flex-shrink:0}
+.wf-body{background:#fdf5ec;border:1px solid #d4a870;border-radius:2px;
+  flex:1;padding:.15cm .3cm}
+.wf-title{font-size:12pt;font-weight:700;color:#7B3F00}
+.wf-detail{font-size:11.5pt;color:#444;line-height:1.8}
+.wf-arrow{text-align:right;padding-right:1.5cm;color:#7B3F00;font-size:10pt;
+  margin:.02cm 0;letter-spacing:1px}
+
+/* مصدر البيانات */
+.source-card{background:#fdf5ec;border:1px solid #d4a870;border-radius:4px;
+  padding:.2cm .35cm;margin-bottom:.15cm;display:flex;gap:.2cm;align-items:flex-start;
+  border-right:4px solid #7B3F00}
+.source-icon{font-size:14pt;flex-shrink:0;margin-top:.05cm}
+.source-name{font-size:12.5pt;font-weight:700;color:#7B3F00;margin-bottom:.04cm}
+.source-desc{font-size:12.5pt;color:#333;line-height:1.8}
+
+/* متطلبات */
+.req-high td:first-child::before{content:"🔴 ";} 
+.req-med  td:first-child::before{content:"🟡 ";}
+.req-low  td:first-child::before{content:"🟢 ";}
+
+/* جدوى */
+.feas-row{display:flex;gap:.2cm;margin-bottom:.15cm}
+.feas-icon{font-size:18pt;flex-shrink:0;margin-top:.05cm}
+.feas-body{background:#fdf5ec;border:1px solid #d4a870;border-radius:4px;
+  flex:1;padding:.2cm .3cm;border-right:4px solid #7B3F00}
+.feas-title{font-size:12.5pt;font-weight:700;color:#7B3F00;margin-bottom:.06cm}
+.feas-desc{font-size:12.5pt;color:#333;line-height:1.8}
+</style>
+</head>
+<body>
+
+<!-- ══════════ غلاف الفصل الثالث ══════════ -->
+<div class="page">
+  <div class="ch-page">
+    <div class="ch-line"></div>
+    <div class="ch-number">الفصل الثالث</div>
+    <div class="ch-title-ar">التحليل</div>
+    <div class="ch-line"></div>
+    <div style="margin-top:.5cm;text-align:center;font-size:11.5pt;color:#888;line-height:2.4">
+      <div>3.1 &nbsp; المنهجية المستخدمة في المشروع (Waterfall)</div>
+      <div>3.2 &nbsp; جمع البيانات (Data Collection)</div>
+      <div>3.3 &nbsp; تحديد المتطلبات</div>
+      <div>3.4 &nbsp; دراسة الجدوى</div>
+    </div>
+  </div>
+  <div class="pnum">27</div>
+</div>
+
+<!-- ══════════ صفحة 3.1 ══════════ -->
+<div class="page">
+  <h1>الفصل الثالث: التحليل</h1>
+
+  <h2>3.1 المنهجية المستخدمة في المشروع (Waterfall Methodology):</h2>
+  <p>
+    اعتمدنا في تطوير نظام Market Insight على <b>منهجية Waterfall</b> كإطار منهجي لإدارة مراحل المشروع. تُعدّ هذه المنهجية من أقدم المناهج وأكثرها استخداماً في هندسة البرمجيات؛ إذ تسير وفق مراحل متسلسلة ومتعاقبة لا تبدأ المرحلة التالية فيها إلا بعد اكتمال السابقة وتوثيقها بشكل كامل. اخترناها لأن متطلبات مشروعنا كانت محددةً ومعروفةً منذ البداية، مما أتاح لنا التخطيط الدقيق لكل مرحلة.
+  </p>
+
+  <div class="wf-flow">
+    <div class="wf-step">
+      <div class="wf-num">1</div>
+      <div class="wf-body">
+        <div class="wf-title">مرحلة التخطيط والدراسة (Planning)</div>
+        <div class="wf-detail">حددنا نطاق المشروع وأهدافه، درسنا الجدوى التقنية والاقتصادية، واخترنا التقنيات المناسبة. كما أجرينا مقابلات مع متداولين لاستيعاب احتياجاتهم الفعلية.</div>
+      </div>
+    </div>
+    <div class="wf-arrow">▼</div>
+    <div class="wf-step">
+      <div class="wf-num">2</div>
+      <div class="wf-body">
+        <div class="wf-title">مرحلة التحليل (Analysis)</div>
+        <div class="wf-detail">جمعنا ووثّقنا المتطلبات الوظيفية وغير الوظيفية، حللنا المستخدمين المستهدفين، وأجرينا دراسة تفصيلية للمنافسين والدراسات السابقة. وهذا ما يُغطيه هذا الفصل.</div>
+      </div>
+    </div>
+    <div class="wf-arrow">▼</div>
+    <div class="wf-step">
+      <div class="wf-num">3</div>
+      <div class="wf-body">
+        <div class="wf-title">مرحلة التصميم (Design)</div>
+        <div class="wf-detail">صمّمنا بنية النظام المعمارية (Architecture)، ورسمنا مخططات UML (Use Case، Class Diagram، Sequence Diagram، ERD)، وصمّمنا واجهات المستخدم (Wireframes) وقاعدة البيانات في Firestore.</div>
+      </div>
+    </div>
+    <div class="wf-arrow">▼</div>
+    <div class="wf-step">
+      <div class="wf-num">4</div>
+      <div class="wf-body">
+        <div class="wf-title">مرحلة التنفيذ (Implementation)</div>
+        <div class="wf-detail">طوّرنا الخادم الخلفي بـ FastAPI/Python ودرّبنا نماذج XGBoost وTF-IDF والهجين، ثم بنينا تطبيق Flutter مع تكامل Firebase. استغرقت هذه المرحلة النصيب الأكبر من وقت المشروع.</div>
+      </div>
+    </div>
+    <div class="wf-arrow">▼</div>
+    <div class="wf-step">
+      <div class="wf-num">5</div>
+      <div class="wf-body">
+        <div class="wf-title">مرحلة الاختبار (Testing)</div>
+        <div class="wf-detail">أجرينا 83 حالة اختبار شاملة تغطي: اختبار الوحدات (Unit Testing)، اختبار التكامل (Integration Testing)، اختبار الأداء (Performance Testing)، واختبار واجهة المستخدم. حققنا نسبة نجاح 94%.</div>
+      </div>
+    </div>
+    <div class="wf-arrow">▼</div>
+    <div class="wf-step">
+      <div class="wf-num">6</div>
+      <div class="wf-body">
+        <div class="wf-title">مرحلة النشر والتوثيق (Deployment & Documentation)</div>
+        <div class="wf-detail">نشرنا الخادم الخلفي على Render.com، ووثّقنا جميع مكونات النظام في هذه الوثيقة، وأعددنا ملفات الإعداد اللازمة لتشغيل التطبيق على بيئات مختلفة.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <p><b>لماذا اخترنا Waterfall دون Agile؟</b> لأن متطلباتنا كانت واضحةً ومستقرةً منذ مرحلة التخطيط ولم تشهد تغييرات جوهرية، فضلاً عن أن حجم الفريق الصغير يجعل التوثيق التفصيلي بين المراحل أمراً أيسر من إدارة Sprints متعددة.</p>
+  </div>
+
+  <div class="pnum">28</div>
+</div>
+
+<!-- ══════════ صفحة 3.2 — جمع البيانات ══════════ -->
+<div class="page">
+
+  <h2>3.2 جمع البيانات (Data Collection):</h2>
+  <p>
+    تمثّل مرحلة جمع البيانات ركيزةً أساسيةً في بناء نظامنا، إذ يعتمد أداء نماذج الذكاء الاصطناعي اعتماداً مباشراً على جودة البيانات وتنوعها وحجمها. انتهجنا في جمع البيانات مسارين متوازيين: <b>جمع بيانات الأسواق المالية</b> لتدريب نماذج التحليل الفني، و<b>جمع بيانات الأخبار المالية</b> لتدريب نموذج تحليل المشاعر.
+  </p>
+
+  <h3>3.2.1 مرحلة جمع البيانات السوقية:</h3>
+  <p>
+    جمعنا بيانات الأسعار التاريخية من مصدرين رئيسيين موثوقين ومجانيين:
+  </p>
+
+  <div class="source-card">
+    <div class="source-icon">🪙</div>
+    <div>
+      <div class="source-name">Binance عبر مكتبة ccxt — العملات الرقمية</div>
+      <div class="source-desc">
+        جلبنا لكل رمز رقمي (BTC/USDT، ETH/USDT، BNB/USDT) آخر <b>5,000 شمعة تاريخية</b> بكل إطار زمني متاح (من 1 دقيقة حتى شهر). تتضمن كل شمعة: سعر الفتح (Open)، الأعلى (High)، الأدنى (Low)، الإغلاق (Close)، وحجم التداول (Volume). بلغ إجمالي نقاط البيانات المجموعة من Binance وحدها أكثر من <b>135,000 شمعة</b> عبر 3 رموز و9 أطر زمنية.
+      </div>
+    </div>
+  </div>
+
+  <div class="source-card">
+    <div class="source-icon">📈</div>
+    <div>
+      <div class="source-name">Yahoo Finance عبر مكتبة yfinance — المعادن والفوركس والأسهم</div>
+      <div class="source-desc">
+        جلبنا بيانات الأسعار التاريخية لـ 12 رمزاً (3 معادن + 3 عملات أجنبية + 3 أسهم + مؤشرات) بنفس هيكل OHLCV. يُوفّر yfinance واجهة موحّدة للوصول إلى Yahoo Finance API مجاناً وبدون مفتاح API. استُخدمت الدالة <code>yf.download(symbol, period, interval)</code> لجلب البيانات التاريخية.
+      </div>
+    </div>
+  </div>
+
+  <div class="source-card">
+    <div class="source-icon">📰</div>
+    <div>
+      <div class="source-name">قاعدة بيانات الأخبار — filtered_markets_news.csv</div>
+      <div class="source-desc">
+        جمعنا قاعدة بيانات نصية تحتوي على أكثر من <b>100,000 خبر مالي</b> مُصنَّف يدوياً بمشاعر (Bullish / Bearish / Neutral). تتضمن كل سجل: عنوان الخبر (title)، الملخص (summary)، الرمز المالي المرتبط (symbol)، الفئة (category)، والتصنيف (sentiment_label). استُخدمت هذه القاعدة لتدريب نموذج TF-IDF + XGBoost للأخبار.
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>المصدر</th><th>نوع البيانات</th><th>الحجم</th><th>التحديث</th></tr>
+    <tr><td>Binance (ccxt)</td><td>OHLCV — عملات رقمية</td><td>5,000 شمعة/رمز</td><td>لحظي (1 ثانية)</td></tr>
+    <tr><td>Yahoo Finance (yfinance)</td><td>OHLCV — معادن/فوركس/أسهم</td><td>5,000 شمعة/رمز</td><td>لحظي (5 ثوانٍ)</td></tr>
+    <tr><td>filtered_markets_news.csv</td><td>أخبار نصية مصنّفة</td><td>100,000+ خبر</td><td>تدريبي (ثابت)</td></tr>
+    <tr><td>Yahoo Finance News API</td><td>أخبار لحظية</td><td>آخر 10 أخبار/رمز</td><td>كل 5 دقائق</td></tr>
+  </table>
+  <p class="cap">جدول 3.1 مصادر البيانات المستخدمة في النظام</p>
+
+  <hr class="sep">
+
+  <h3>3.2.2 مرحلة المقابلات وفهم احتياجات المستخدمين:</h3>
+  <p>
+    أجرينا مقابلات غير رسمية وجلسات استبيان مع <b>عينة من المتداولين</b> في مرحلة التخطيط لفهم نقاط ألمهم الفعلية وتوجيه قرارات التصميم. شملت العينة متداولين بمستويات خبرة مختلفة.
+  </p>
+  <p>أبرز ما استخلصناه من المقابلات:</p>
+  <ul>
+    <li><b>95%</b> يستخدمون أكثر من تطبيق للحصول على الأسعار والأخبار والتحليل، ويجدون ذلك مُرهِقاً.</li>
+    <li><b>78%</b> يثقون بالتحليل الفني لكنهم يجدون صعوبة في قراءة المؤشرات المتعددة في وقت واحد.</li>
+    <li><b>70%</b> لا يعرفون تأثير الأخبار المالية على قراراتهم بشكل كمّي.</li>
+    <li><b>85%</b> يرغبون في تطبيق عربي احترافي يُقدّم توصيات ذكية مباشرة.</li>
+    <li><b>60%</b> يخشون تجربة استراتيجيات جديدة بأموال حقيقية ويرغبون في نظام تداول تجريبي.</li>
+    <li><b>90%</b> يريدون معرفة مدى صحة التوصيات التي يستلمونها لتقييم الأداء الفعلي.</li>
+  </ul>
+  <p>
+    شكّلت هذه النتائج المدخل الرئيسي لصياغة قائمة المتطلبات الوظيفية في القسم التالي، إذ ترجمنا كل احتياج مُحدَّد إلى متطلب وظيفي قابل للتنفيذ والقياس.
+  </p>
+
+  <div class="pnum">29</div>
+</div>
+
+<!-- ══════════ صفحة 3.3 — المتطلبات ══════════ -->
+<div class="page">
+
+  <h2>3.3 تحديد المتطلبات:</h2>
+  <p>
+    بناءً على مرحلتَي جمع البيانات والمقابلات، وضعنا قائمة شاملة ومصنّفة بمتطلبات النظام مقسّمةً إلى ثلاثة أنواع: متطلبات وظيفية، وغير وظيفية، ومتطلبات إنشاء النظام.
+  </p>
+
+  <h3>3.3.1 متطلبات المستخدمين (المتطلبات الوظيفية):</h3>
+  <p>تصف المتطلبات الوظيفية ما يجب أن يُنجزه النظام وفق منظور المستخدم:</p>
+
+  <table style="font-size:11pt">
+    <tr><th>الكود</th><th>المتطلب الوظيفي</th><th>الأولوية</th></tr>
+    <tr class="req-high"><td>F01</td><td class="rtd">تسجيل الدخول وإنشاء الحساب وإعادة تعيين كلمة المرور عبر Firebase Auth مع التحقق من البريد الإلكتروني</td><td>عالية</td></tr>
+    <tr class="req-high"><td>F02</td><td class="rtd">عرض 15 رمزاً مالياً مصنّفةً في 4 فئات (رقمية / معادن / فوركس / أسهم) مع أسعار Bid/Ask لحظية</td><td>عالية</td></tr>
+    <tr class="req-high"><td>F03</td><td class="rtd">رسم بياني تفاعلي بالشموع اليابانية لآخر 200 شمعة عبر 9 أطر زمنية (1m حتى 1M)</td><td>عالية</td></tr>
+    <tr class="req-high"><td>F04</td><td class="rtd">توليد إشارة تداول هجينة (BUY/SELL/HOLD) مع درجة ثقة ونقاط TP1/TP2/TP3 ووقف الخسارة SL</td><td>عالية</td></tr>
+    <tr class="req-high"><td>F05</td><td class="rtd">وضع Auto لتوليد الإشارات تلقائياً عند إغلاق كل شمعة مع عداد تنازلي للشمعة القادمة</td><td>عالية</td></tr>
+    <tr class="req-high"><td>F06</td><td class="rtd">عرض أخبار مالية مُصنَّفة بالمشاعر (Bullish/Bearish/Neutral) مع درجة ثقة ومستوى تأثير</td><td>عالية</td></tr>
+    <tr class="req-high"><td>F07</td><td class="rtd">فتح وإغلاق صفقات وهمية في محفظة افتراضية بقيمة $10,000 مع احتساب الرسوم والانزلاق</td><td>عالية</td></tr>
+    <tr class="req-med"><td>F08</td><td class="rtd">مراجعة دقة التوصيات: حفظ الإشارات في Firestore وحلّها تلقائياً وعرض نسبة الدقة الإجمالية</td><td>متوسطة</td></tr>
+    <tr class="req-med"><td>F09</td><td class="rtd">إضافة الرموز المالية إلى قائمة المفضلة وحفظها في Firestore ومزامنتها عبر الأجهزة</td><td>متوسطة</td></tr>
+    <tr class="req-med"><td>F10</td><td class="rtd">تصفية الأخبار حسب الفئة المالية (الكل / رقمي / أسهم / فوركس / معادن)</td><td>متوسطة</td></tr>
+    <tr class="req-med"><td>F11</td><td class="rtd">تغيير لغة التطبيق بين العربية والإنجليزية مع حفظ الاختيار محلياً</td><td>متوسطة</td></tr>
+    <tr class="req-low"><td>F12</td><td class="rtd">تغيير كلمة المرور مع إعادة المصادقة للتحقق من هوية المستخدم</td><td>منخفضة</td></tr>
+    <tr class="req-low"><td>F13</td><td class="rtd">إعادة تعيين المحفظة الوهمية إلى الرصيد الابتدائي ($10,000)</td><td>منخفضة</td></tr>
+  </table>
+  <p class="cap">جدول 3.2 المتطلبات الوظيفية مرتّبةً حسب الأولوية<br>🔴 عالية &nbsp;|&nbsp; 🟡 متوسطة &nbsp;|&nbsp; 🟢 منخفضة</p>
+
+  <div class="pnum">30</div>
+</div>
+
+<!-- ══════════ صفحة 3.3.2 + 3.3.3 ══════════ -->
+<div class="page">
+
+  <h3>3.3.2 المتطلبات غير الوظيفية:</h3>
+  <p>
+    تحدد المتطلبات غير الوظيفية معايير الجودة وقيود النظام بمعزل عن وظائفه:
+  </p>
+
+  <table style="font-size:11pt">
+    <tr><th>الكود</th><th>المتطلب</th><th>المعيار القابل للقياس</th></tr>
+    <tr><td>NF01</td><td class="rtd"><b>الأداء:</b> سرعة استجابة الـ API</td><td>زمن الاستجابة &lt; 2 ثانية لأي Endpoint</td></tr>
+    <tr><td>NF02</td><td class="rtd"><b>الأداء:</b> سرعة توليد الإشارة الهجينة</td><td>زمن التوليد &lt; 1.5 ثانية</td></tr>
+    <tr><td>NF03</td><td class="rtd"><b>الدقة:</b> نموذج التحليل الفني</td><td>دقة تنبؤية ≥ 60% على بيانات الاختبار</td></tr>
+    <tr><td>NF04</td><td class="rtd"><b>الدقة:</b> نموذج الأخبار</td><td>F1-Score ≥ 0.70</td></tr>
+    <tr><td>NF05</td><td class="rtd"><b>الأمان:</b> مصادقة المستخدمين</td><td>جميع المسارات محميّة، لا وصول دون توثيق البريد</td></tr>
+    <tr><td>NF06</td><td class="rtd"><b>التوفر:</b> الخادم الخلفي</td><td>نسبة توفر ≥ 95% (Render.com SLA)</td></tr>
+    <tr><td>NF07</td><td class="rtd"><b>قابلية الاستخدام:</b> واجهة المستخدم</td><td>واجهة بديهية مفهومة دون دليل استخدام</td></tr>
+    <tr><td>NF08</td><td class="rtd"><b>التوافق:</b> منصات التشغيل</td><td>Android 8.0+ وiOS 12+ على أي دقة شاشة</td></tr>
+    <tr><td>NF09</td><td class="rtd"><b>التوطين:</b> دعم اللغات</td><td>دعم كامل للعربية (RTL) والإنجليزية (LTR)</td></tr>
+    <tr><td>NF10</td><td class="rtd"><b>الموثوقية:</b> التعامل مع الأخطاء</td><td>رسائل خطأ واضحة عند انقطاع الاتصال بالخادم</td></tr>
+    <tr><td>NF11</td><td class="rtd"><b>الصيانة:</b> وضوح الكود</td><td>كود موثَّق ومنظَّم بمعمارية Clean Architecture</td></tr>
+  </table>
+  <p class="cap">جدول 3.3 المتطلبات غير الوظيفية للنظام</p>
+
+  <hr class="sep">
+
+  <h3>3.3.3 متطلبات إنشاء النظام (System Requirements):</h3>
+  <p>تُحدّد متطلبات إنشاء النظام البيئة التقنية اللازمة لتطوير المشروع ونشره:</p>
+
+  <table style="font-size:11pt">
+    <tr><th colspan="2" style="background:#5a2e00">متطلبات جهاز التطوير (Development Environment)</th></tr>
+    <tr><td class="rtd"><b>نظام التشغيل</b></td><td class="rtd">Windows 10/11 أو macOS 13+</td></tr>
+    <tr><td class="rtd"><b>المعالج والذاكرة</b></td><td class="rtd">Core i5 أو ما يعادله، RAM 8GB كحدٍّ أدنى</td></tr>
+    <tr><td class="rtd"><b>بيئة Python</b></td><td class="rtd">Python 3.10+ مع pip، يُنصح بـ virtualenv</td></tr>
+    <tr><td class="rtd"><b>بيئة Flutter</b></td><td class="rtd">Flutter SDK 3.x، Android Studio أو VS Code</td></tr>
+    <tr><td class="rtd"><b>المحاكي / الجهاز</b></td><td class="rtd">Android Emulator API 28+ أو جهاز حقيقي Android/iOS</td></tr>
+    <tr><th colspan="2" style="background:#5a2e00">متطلبات بيئة الإنتاج (Production Environment)</th></tr>
+    <tr><td class="rtd"><b>الخادم الخلفي</b></td><td class="rtd">Render.com — Python 3.10+، RAM 512MB كحدٍّ أدنى</td></tr>
+    <tr><td class="rtd"><b>قاعدة البيانات</b></td><td class="rtd">Firebase Firestore (خطة Spark المجانية)</td></tr>
+    <tr><td class="rtd"><b>المصادقة</b></td><td class="rtd">Firebase Authentication (Email/Password)</td></tr>
+    <tr><td class="rtd"><b>الاتصال بالإنترنت</b></td><td class="rtd">اتصال مستقر للوصول إلى Binance وYahoo Finance</td></tr>
+    <tr><th colspan="2" style="background:#5a2e00">متطلبات جهاز المستخدم (Client Device)</th></tr>
+    <tr><td class="rtd"><b>نظام Android</b></td><td class="rtd">Android 8.0 (API 26) أو أحدث</td></tr>
+    <tr><td class="rtd"><b>نظام iOS</b></td><td class="rtd">iOS 12.0 أو أحدث</td></tr>
+    <tr><td class="rtd"><b>مساحة التخزين</b></td><td class="rtd">50MB كحدٍّ أدنى لتثبيت التطبيق</td></tr>
+    <tr><td class="rtd"><b>الاتصال</b></td><td class="rtd">اتصال إنترنت نشط (لا يعمل بدون إنترنت)</td></tr>
+  </table>
+  <p class="cap">جدول 3.4 متطلبات إنشاء النظام وبيئة التشغيل</p>
+
+  <div class="pnum">31</div>
+</div>
+
+<!-- ══════════ صفحة 3.4 — دراسة الجدوى ══════════ -->
+<div class="page">
+
+  <h2>3.4 دراسة الجدوى:</h2>
+  <p>
+    أجرينا في المرحلة الأولى من المشروع دراسةً تفصيليةً للجدوى من أربعة محاور: تقنية، وتشغيلية، وثقافية تعليمية، واقتصادية. هدفنا من هذه الدراسة التحقق من إمكانية تنفيذ المشروع في حدود الإمكانيات المتاحة وتقديم قيمة فعلية للمستخدمين.
+  </p>
+
+  <h3>3.4.1 الجدوى التقنية (الفنية):</h3>
+  <div class="feas-row">
+    <div class="feas-icon">⚙️</div>
+    <div class="feas-body">
+      <div class="feas-title">النتيجة: جدوى تقنية عالية ✅</div>
+      <div class="feas-desc">
+        تحققنا من توفر جميع التقنيات اللازمة لتنفيذ النظام وهي مفتوحة المصدر ومجانية ومدعومة بمجتمعات نشطة:
+        <ul style="font-size:12pt;margin:.1cm 0 0 .2cm">
+          <li>Python وFastAPI وFlutter جميعها مجانية بالكامل ولا تتطلب تراخيص.</li>
+          <li>مكتبات XGBoost وscikit-learn تعمل على أجهزة CPU عادية دون GPU.</li>
+          <li>Firebase يُقدّم خطة Spark المجانية كافية للتطوير والمرحلة الأولى من التشغيل.</li>
+          <li>Binance وYahoo Finance يُقدّمان بيانات سوقية مجانية بحدود استخدام مقبولة.</li>
+          <li>Render.com يوفر استضافة مجانية للخوادم المبنية بـ FastAPI.</li>
+          <li>أثبتنا في مرحلة النموذج الأولي (Prototype) أن زمن الاستجابة يُحقق المعيار المطلوب (&lt;2 ثانية).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>3.4.2 الجدوى التشغيلية:</h3>
+  <div class="feas-row">
+    <div class="feas-icon">🔄</div>
+    <div class="feas-body">
+      <div class="feas-title">النتيجة: جدوى تشغيلية عالية ✅</div>
+      <div class="feas-desc">
+        تحققنا من أن النظام قابل للتشغيل والاستدامة في البيئة المستهدفة:
+        <ul style="font-size:12pt;margin:.1cm 0 0 .2cm">
+          <li>التطبيق مُصمَّم بواجهة بسيطة وبديهية تناسب جميع مستويات المستخدمين دون الحاجة لتدريب مسبق.</li>
+          <li>النماذج تُدرَّب تلقائياً عند فتح أي رمز مالي دون تدخل المستخدم.</li>
+          <li>تحديث الأخبار كل 5 دقائق والأسعار كل ثانية يتم في الخلفية بشكل آلي.</li>
+          <li>مراجعة التوصيات وحلّها يتم تلقائياً كل 30 ثانية دون إجراء من المستخدم.</li>
+          <li>نظام التداول الوهمي يُقلّل الحاجز النفسي للمستخدمين الجدد تجاه التداول الفعلي.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>3.4.3 الجدوى الثقافية والتعليمية:</h3>
+  <div class="feas-row">
+    <div class="feas-icon">🌍</div>
+    <div class="feas-body">
+      <div class="feas-title">النتيجة: جدوى ثقافية وتعليمية مرتفعة ✅</div>
+      <div class="feas-desc">
+        يخدم نظامنا حاجةً ثقافيةً وتعليميةً حقيقيةً لدى المجتمع العربي:
+        <ul style="font-size:12pt;margin:.1cm 0 0 .2cm">
+          <li><b>الفجوة اللغوية:</b> يُعاني المتداول العربي من شُحّ التطبيقات المالية الذكية المدعومة بالعربية الكاملة، ونظامنا يسدّ هذه الفجوة.</li>
+          <li><b>الوعي المالي:</b> يُعزّز النظام الوعي المالي من خلال عرض الأخبار وتحليل مشاعرها وربطها بحركة الأسعار بشكل مرئي ومبسّط.</li>
+          <li><b>التعلم بالتجربة:</b> يُتيح نظام التداول الوهمي اكتساب مهارات التداول دون خسارة مالية، وهو ما يتوافق مع مبادئ التعليم العملي.</li>
+          <li><b>الشفافية والمساءلة:</b> آلية مراجعة دقة التوصيات تُعلّم المستخدم تقييم النماذج بموضوعية وعدم الثقة العمياء بأي نظام آلي.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="pnum">32</div>
+</div>
+
+<!-- ══════════ صفحة 3.4.4 + جدول تكاليف ══════════ -->
+<div class="page">
+
+  <h3>3.4.4 الجدوى الاقتصادية:</h3>
+  <p>
+    أجرينا تحليلاً تفصيلياً للتكاليف المرتبطة بتطوير النظام وتشغيله، مُميِّزين بين التكاليف التطويرية (لمرة واحدة) والتكاليف التشغيلية الشهرية المستمرة:
+  </p>
+
+  <div class="feas-row">
+    <div class="feas-icon">💰</div>
+    <div class="feas-body">
+      <div class="feas-title">النتيجة: جدوى اقتصادية ممتازة ✅</div>
+      <div class="feas-desc">التكلفة التشغيلية صفرية في المرحلة الأولى بالكامل بفضل الخطط المجانية.</div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>البند</th><th>النوع</th><th>التكلفة</th><th>الملاحظة</th></tr>
+    <tr><td>Firebase Auth</td><td>تشغيلي/شهري</td><td style="color:green;font-weight:700">$0</td><td class="rtd">Spark Plan: 10,000 مصادقة/شهر مجاناً</td></tr>
+    <tr><td>Firebase Firestore</td><td>تشغيلي/شهري</td><td style="color:green;font-weight:700">$0</td><td class="rtd">1 GB تخزين + 50,000 قراءة يومياً مجاناً</td></tr>
+    <tr><td>Render.com (Backend)</td><td>تشغيلي/شهري</td><td style="color:green;font-weight:700">$0</td><td class="rtd">الخطة المجانية: 512MB RAM، تُغلق بعد خمول</td></tr>
+    <tr><td>Binance API</td><td>تشغيلي/شهري</td><td style="color:green;font-weight:700">$0</td><td class="rtd">بيانات عامة مجانية بحدود معقولة</td></tr>
+    <tr><td>Yahoo Finance API</td><td>تشغيلي/شهري</td><td style="color:green;font-weight:700">$0</td><td class="rtd">مجاني عبر yfinance</td></tr>
+    <tr><td>أدوات التطوير (VS Code، Git)</td><td>تطويري</td><td style="color:green;font-weight:700">$0</td><td class="rtd">مفتوحة المصدر ومجانية</td></tr>
+    <tr><td>خدمة نشر التطبيق (iOS)</td><td>مستقبلي</td><td>$99/سنة</td><td class="rtd">Apple Developer Account (للنشر الرسمي)</td></tr>
+    <tr><td>خدمة نشر التطبيق (Android)</td><td>مستقبلي</td><td>$25 لمرة</td><td class="rtd">Google Play Developer Account</td></tr>
+    <tr style="font-weight:700"><td>إجمالي المرحلة الأولى</td><td>—</td><td style="color:green;font-weight:700">$0 / شهر</td><td class="rtd">تكلفة تشغيلية صفرية</td></tr>
+  </table>
+  <p class="cap">جدول 3.5 التحليل الاقتصادي لتكاليف النظام</p>
+
+  <hr class="sep">
+
+  <h2>خلاصة دراسة الجدوى:</h2>
+  <table>
+    <tr><th>المحور</th><th>النتيجة</th><th>المستوى</th></tr>
+    <tr><td>الجدوى التقنية</td><td class="rtd">جميع التقنيات متاحة ومُختبرة بنجاح</td><td style="color:green;font-weight:700">✅ مرتفعة</td></tr>
+    <tr><td>الجدوى التشغيلية</td><td class="rtd">النظام قابل للتشغيل الكامل بدون تدخل يدوي</td><td style="color:green;font-weight:700">✅ مرتفعة</td></tr>
+    <tr><td>الجدوى الثقافية والتعليمية</td><td class="rtd">يسدّ فجوةً حقيقيةً في السوق العربي</td><td style="color:green;font-weight:700">✅ مرتفعة</td></tr>
+    <tr><td>الجدوى الاقتصادية</td><td class="rtd">تكلفة تشغيلية صفرية في المرحلة الأولى</td><td style="color:green;font-weight:700">✅ ممتازة</td></tr>
+  </table>
+  <p class="cap">جدول 3.6 ملخص دراسة الجدوى</p>
+
+  <div class="note-box" style="margin-top:.3cm">
+    <p>
+      <b>القرار:</b> بناءً على نتائج دراسة الجدوى الإيجابية في جميع المحاور الأربعة، قررنا المضيّ قدماً في تطوير نظام Market Insight بالكامل وفق المتطلبات الموثّقة في هذا الفصل.
+    </p>
+  </div>
+
+  <div class="pnum">33</div>
+</div>
+
+</body>
+</html>

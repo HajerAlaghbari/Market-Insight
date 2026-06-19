@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "156244906325",
+    "project_id": "market-insight-300c0",
+    "storage_bucket": "market-insight-300c0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156244906325:android:6a4b9a7d369239a9e39fdc",
+        "android_client_info": {
+          "package_name": "com.example.market_insight"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhjGS6d3xYrCHyU_Czn8shpf9RFGb9pv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

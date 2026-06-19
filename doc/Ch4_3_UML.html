@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الفصل الرابع — UML Diagrams</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Fira+Mono&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4;direction:rtl}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.page{margin:0!important;width:21cm!important;min-height:29.7cm!important;page-break-after:always;border:4px double #7B3F00!important;box-shadow:none!important}}
+.page{width:21cm;min-height:29.7cm;background:#fff;margin:1cm auto;padding:1.5cm 1.8cm;border:4px double #7B3F00;box-shadow:0 4px 24px rgba(0,0,0,.18);position:relative}
+.page-center{display:flex;align-items:center;justify-content:center;min-height:25cm;flex-direction:column;gap:.4cm}
+h1{font-size:16pt;color:#fff;background:#7B3F00;padding:.2cm .4cm;margin-bottom:.3cm;text-align:center;border-radius:2px}
+h2{font-size:13.5pt;font-weight:700;color:#7B3F00;border-right:5px solid #7B3F00;padding-right:.3cm;margin:.3cm 0 .2cm}
+h3{font-size:11.5pt;font-weight:700;color:#5a2e00;margin:.15cm 0 .1cm}
+p{font-size:12pt;line-height:1.9;text-align:justify;color:#222;margin-bottom:.12cm}
+ul{font-size:12pt;line-height:1.9;color:#222;padding-right:.4cm;margin-bottom:.12cm}
+li{margin-bottom:.05cm}
+.cap{text-align:center;font-size:10.5pt;color:#555;margin:.05cm 0 .2cm;font-style:italic}
+.pnum{position:absolute;bottom:.5cm;left:50%;transform:translateX(-50%);font-size:11pt;color:#7B3F00;font-weight:700;border-top:1px solid #7B3F00;padding-top:.07cm;width:1.4cm;text-align:center}
+.ch-line{width:6cm;height:3px;background:linear-gradient(90deg,transparent,#7B3F00,transparent)}
+.sep{border:none;border-top:1px dashed #d4a870;margin:.25cm 0}
+.info-box{background:#fdf5ec;border-right:4px solid #7B3F00;padding:.18cm .28cm;border-radius:2px;margin:.12cm 0}
+
+/* ══════ Use Case ══════ */
+.uc-page{display:flex;gap:.3cm;align-items:flex-start;margin:.1cm 0}
+.uc-actor{display:flex;flex-direction:column;align-items:center;gap:.1cm;flex-shrink:0;padding-top:.6cm}
+.uc-head{width:.65cm;height:.65cm;border-radius:50%;background:#7B3F00}
+.uc-body{width:.03cm;height:.7cm;background:#7B3F00}
+.uc-arms{display:flex;gap:.4cm;margin-top:-.5cm}
+.uc-arm{width:.45cm;height:.03cm;background:#7B3F00;margin-top:.25cm}
+.uc-legs{display:flex;gap:.12cm;margin-top:.02cm}
+.uc-leg{width:.03cm;height:.45cm;background:#7B3F00}
+.uc-lbl{font-size:10pt;color:#7B3F00;font-weight:700;font-family:'Amiri',serif;margin-top:.05cm}
+.uc-sys{flex:1;border:2px solid #7B3F00;border-radius:5px;padding:.2cm}
+.uc-sys-title{font-size:12pt;font-weight:700;color:#7B3F00;text-align:center;border-bottom:1px dashed #d4a870;padding-bottom:.08cm;margin-bottom:.12cm;font-family:'Amiri',serif}
+.uc-section{margin-bottom:.12cm}
+.uc-sec-title{font-size:9pt;color:#888;font-family:'Amiri',serif;border-bottom:1px dotted #e5e7eb;padding-bottom:.03cm;margin-bottom:.06cm;text-align:center}
+.uc-cases{display:grid;grid-template-columns:1fr 1fr;gap:.07cm}
+.uc-case{border:1.5px solid #7B3F00;border-radius:50%;padding:.06cm .15cm;text-align:center;font-size:9.5pt;color:#222;background:#fdf5ec;font-family:'Amiri',serif;white-space:nowrap}
+.uc-case.extend{background:#fff8f0;border-color:#c0622a;color:#7B3F00}
+.uc-rel{font-size:8pt;color:#888;text-align:center;font-style:italic;margin:.03cm 0}
+
+/* ══════ Class Diagram ══════ */
+.class-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.2cm;margin:.15cm 0}
+.class-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:.2cm;margin:.1cm 0}
+.cbox{border:1.5px solid #7B3F00;border-radius:2px;font-family:'Fira Mono',monospace;direction:ltr;overflow:hidden}
+.cname{background:#7B3F00;color:#fff;text-align:center;padding:.06cm .1cm;font-size:9pt;font-weight:700}
+.cattrs{padding:.04cm .1cm;border-bottom:1px solid #d4a870;font-size:7pt;color:#1d4ed8;line-height:1.7}
+.cmeths{padding:.04cm .1cm;font-size:7pt;color:#065f46;line-height:1.7}
+.crel{font-size:8.5pt;color:#7B3F00;text-align:center;margin:.06cm 0;font-style:italic;font-family:'Amiri',serif}
+
+/* ══════ Activity Diagram ══════ */
+.act{display:flex;flex-direction:column;align-items:center;gap:.06cm;margin:.05cm 0}
+.act-start{width:.4cm;height:.4cm;border-radius:50%;background:#111}
+.act-end{width:.45cm;height:.45cm;border-radius:50%;background:#111;border:3px solid #888}
+.act-step{background:#0f172a;color:#f1f5f9;border:1.5px solid #7B3F00;border-radius:3px;padding:.07cm .18cm;font-size:8.5pt;text-align:center;max-width:9cm;font-family:'Amiri',serif}
+.act-ok{background:#064e3b;color:#a7f3d0;border:1.5px solid #059669;border-radius:3px;padding:.06cm .15cm;font-size:8.5pt;text-align:center;max-width:9cm;font-family:'Amiri',serif}
+.act-arr{color:#7B3F00;font-size:11pt}
+.act-decision{width:2.2cm;height:2.2cm;transform:rotate(45deg);border:2px solid #7B3F00;background:#fdf5ec;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.act-dec-text{transform:rotate(-45deg);font-size:8pt;font-family:'Amiri',serif;text-align:center}
+.act-branches{display:flex;gap:1.2cm;justify-content:center;margin:.06cm 0}
+.act-branch{display:flex;flex-direction:column;align-items:center;gap:.05cm}
+.act-branch-lbl{font-size:8pt;font-family:'Amiri',serif;font-weight:700}
+.act-mini{background:#0f172a;color:#f1f5f9;border:1px solid #7B3F00;border-radius:2px;padding:.05cm .1cm;font-size:7.5pt;text-align:center;font-family:'Amiri',serif;min-width:2.8cm;max-width:3.5cm}
+
+/* ══════ Sequence Diagram ══════ */
+.seq-actors{display:grid;gap:.04cm;margin-bottom:.12cm}
+.seq-actor{background:#7B3F00;color:#fff;text-align:center;font-size:8pt;padding:.06cm .04cm;border-radius:2px;font-family:'Amiri',serif}
+.seq-actor-user{background:#3d1f00;color:#fff;text-align:center;font-size:8pt;padding:.06cm .04cm;border-radius:2px;font-family:'Amiri',serif}
+.seq-msg{display:flex;align-items:center;margin-bottom:.08cm;min-height:.4cm}
+.seq-label{font-size:8pt;font-family:'Amiri',serif;color:#222;background:#fdf5ec;border:1px solid #d4a870;border-radius:2px;padding:.02cm .08cm;text-align:center;flex-shrink:0;white-space:nowrap}
+.seq-resp{font-size:8pt;font-family:'Amiri',serif;color:#5a2e00;background:#fff8f0;border:1px dashed #d4a870;border-radius:2px;padding:.02cm .08cm;text-align:center;flex-shrink:0;white-space:nowrap}
+.arr-r{flex:1;height:1px;background:#7B3F00;position:relative;min-width:.3cm}
+.arr-r::after{content:"▶";position:absolute;left:-1px;top:-7px;color:#7B3F00;font-size:9pt}
+.arr-l{flex:1;height:1px;background:#5a2e00;border-top:1px dashed #5a2e00;position:relative;min-width:.3cm}
+.arr-l::before{content:"◀";position:absolute;right:-1px;top:-7px;color:#5a2e00;font-size:9pt}
+.seq-note{background:#fffde7;border:1px dashed #d4a870;border-radius:2px;padding:.04cm .12cm;font-size:8pt;font-family:'Amiri',serif;color:#333;text-align:center;margin:.05cm 0}
+.seq-block{background:#1e293b;color:#e2e8f0;border-radius:2px;padding:.05cm .1cm;font-size:8pt;font-family:'Amiri',serif;text-align:center;margin:.04cm 0}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ غلاف ═══════════════ -->
+<div class="page">
+  <div class="page-center">
+    <div class="ch-line"></div>
+    <div style="font-size:11pt;color:#888">الفصل الرابع — القسم الثالث</div>
+    <div style="font-size:24pt;font-weight:700;color:#3d1f00;text-align:center;line-height:1.5">المخططات الهندسية<br><span style="font-size:15pt;color:#7B3F00">UML Diagrams</span></div>
+    <div class="ch-line"></div>
+    <div style="margin-top:.4cm;text-align:center;font-size:11pt;color:#888;line-height:2.4">
+      <div>4.4 — مخطط حالات الاستخدام (Use Case Diagram)</div>
+      <div>4.5 — مخطط الفصول (Class Diagram)</div>
+      <div>4.6 — مخطط النشاط (Activity Diagram)</div>
+      <div>4.7 — مخطط التسلسل (Sequence Diagram)</div>
+    </div>
+  </div>
+  <div class="pnum">54</div>
+</div>
+
+<!-- ═══════════════ Use Case Diagram ═══════════════ -->
+<div class="page">
+  <h1>4.4 — مخطط حالات الاستخدام (Use Case Diagram)</h1>
+
+  <div class="info-box" style="margin-bottom:.2cm">
+    <p>
+      يُمثّل هذا المخطط جميع التفاعلات الممكنة بين المستخدم ونظام Market Insight من منظور وظيفي عالٍ المستوى.
+      يُظهر المخطط ممثلاً واحداً رئيسياً هو <b>المستخدم</b>، وحدود النظام التي تحتوي على <b>15 حالة استخدام</b> مُوزَّعة في ثلاثة محاور رئيسية.
+    </p>
+    <p>
+      يبدأ المستخدم رحلته بعمليات <b>المصادقة</b>: إما تسجيل الدخول بحساب موجود، أو إنشاء حساب جديد يليه التحقق من البريد الإلكتروني، وفي حال نسيان كلمة المرور يُوفّر النظام خيار استعادتها. بعد تسجيل الدخول الناجح، يُتاح للمستخدم الوصول إلى جميع الوظائف الأخرى.
+    </p>
+    <p>
+      في محور <b>الأسواق والتحليل</b>، يستطيع المستخدم تصفح قوائم الأسواق المالية الأربع، وعند اختياره لرمز معيّن يُعرَض الرسم البياني التفاعلي بالشموع اليابانية. يمكنه بعدها توليد إشارة تداول ذكية يدوياً، أو تفعيل <b>وضع Auto</b> الذي يُوسّع (extend) حالة توليد الإشارة ليجعل العملية تلقائية عند إغلاق كل شمعة. كما يستطيع إضافة الرموز المفضّلة ومتابعة آخر الأخبار المالية المُصنَّفة بالمشاعر.
+    </p>
+    <p>
+      في محور <b>التداول الوهمي والمراجعة</b>، تتضمّن (include) عمليتا فتح وإغلاق الصفقة حالةَ عرض قائمة الأسواق إلزامياً للحصول على السعر اللحظي. وتُتيح صفحة مراجعة التوصيات للمستخدم تتبع دقة الإشارات السابقة بشكل موضوعي.
+    </p>
+  </div>
+
+  <div class="uc-page">
+    <!-- الممثل -->
+    <div class="uc-actor">
+      <div class="uc-head"></div>
+      <div class="uc-body"></div>
+      <div class="uc-arms"><div class="uc-arm"></div><div class="uc-arm"></div></div>
+      <div class="uc-legs"><div class="uc-leg" style="transform:rotate(-12deg)"></div><div class="uc-leg" style="transform:rotate(12deg)"></div></div>
+      <div class="uc-lbl">المستخدم</div>
+    </div>
+
+    <!-- حدود النظام -->
+    <div class="uc-sys">
+      <div class="uc-sys-title">نظام Market Insight</div>
+
+      <!-- المصادقة -->
+      <div class="uc-section">
+        <div class="uc-sec-title">▪ المصادقة وإدارة الحساب</div>
+        <div class="uc-cases">
+          <div class="uc-case">تسجيل الدخول</div>
+          <div class="uc-case">إنشاء حساب</div>
+          <div class="uc-case">استعادة كلمة المرور</div>
+          <div class="uc-case">تغيير كلمة المرور</div>
+          <div class="uc-case">تغيير اللغة</div>
+          <div class="uc-case">تسجيل الخروج</div>
+        </div>
+      </div>
+
+      <!-- الأسواق والإشارات -->
+      <div class="uc-section">
+        <div class="uc-sec-title">▪ الأسواق والتحليل</div>
+        <div class="uc-cases">
+          <div class="uc-case">عرض قائمة الأسواق</div>
+          <div class="uc-case">عرض الرسم البياني</div>
+          <div class="uc-case">توليد إشارة تداول</div>
+          <div class="uc-case extend">وضع Auto للإشارات<br><span style="font-size:7.5pt">«extend»</span></div>
+          <div class="uc-case">إدارة المفضلة</div>
+          <div class="uc-case">عرض الأخبار المالية</div>
+        </div>
+      </div>
+
+      <!-- التداول والمراجعة -->
+      <div class="uc-section">
+        <div class="uc-sec-title">▪ التداول الوهمي والمراجعة</div>
+        <div class="uc-cases">
+          <div class="uc-case">فتح صفقة وهمية<br><span style="font-size:7.5pt">«include» عرض الأسواق</span></div>
+          <div class="uc-case">إغلاق صفقة وهمية<br><span style="font-size:7.5pt">«include» عرض الأسواق</span></div>
+          <div class="uc-case">مراجعة التوصيات</div>
+          <div class="uc-case">إعادة تعيين المحفظة</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="cap">شكل 4.10 — مخطط Use Case الكامل لنظام Market Insight</p>
+  <div class="sep"></div>
+  <h3>ملاحظات العلاقات:</h3>
+  <ul>
+    <li><b>«extend»:</b> وضع Auto يُوسّع حالة "توليد إشارة تداول" — يتفعّل فقط عند اختيار المستخدم هذا الوضع.</li>
+    <li><b>«include»:</b> فتح وإغلاق الصفقة الوهمية تتضمنان إلزامياً "عرض قائمة الأسواق" للحصول على السعر اللحظي.</li>
+  </ul>
+  <div class="pnum">55</div>
+</div>
+
+<!-- ═══════════════ Class Diagram ═══════════════ -->
+<div class="page">
+  <h1>4.5 — مخطط الفصول (Class Diagram)</h1>
+
+  <div class="info-box" style="margin-bottom:.2cm">
+    <p>
+      يُمثّل هذا المخطط البنية الداخلية الكاملة لنظام Market Insight، ويُوضّح <b>10 فصول (Classes)</b> رئيسية موزَّعة على طبقتين: طبقة العرض في Flutter وطبقة البنية التحتية في Python/FastAPI. لكل فصل خصائصه (بالأزرق) وتوابعه (بالأخضر) والعلاقات التي تربطه بالفصول الأخرى.
+    </p>
+    <p>
+      تبدأ البنية من فصلَي <b>SymbolEntity</b> و<b>CandleEntity</b> اللذين يُمثّلان وحدات البيانات الأساسية؛ إذ يحتوي كل رمز مالي على سلسلة من الشموع السعرية. ويرتبط <b>SymbolEntity</b> بـ <b>SignalLogEntry</b> الذي يُسجّل كل إشارة تداول تولّدها ويحفظها في Firestore، كما يرتبط بـ <b>NewsEntity</b> التي تُمثّل الأخبار المالية المرتبطة بالرمز.
+    </p>
+    <p>
+      أما في جانب التداول الوهمي، فيحتوي فصل <b>Portfolio</b> على مجموعة من فصلَي <b>PaperTrade</b> التي تُمثّل الصفقات الفردية المفتوحة. وعلى مستوى طبقة الوصول للبيانات، يستخدم <b>MarketsRepoImpl</b> مصدرَي بيانات (حقيقي ووهمي) ويستدعي <b>ApiService</b> الذي يُوجّه الطلبات إلى الخادم الخلفي. يستقبل الخادم الطلبات عبر <b>HybridSignalGenerator</b> الذي يدمج 15 مؤشراً فنياً مع 4 ميزات إخبارية مُستخرَجة من <b>NewsSentimentPredictor</b>، لينتج توصية نهائية BUY أو SELL أو HOLD بمستوى ثقة محدّد.
+    </p>
+  </div>
+
+  <p>الخصائص <span style="color:#1d4ed8;font-weight:700">بالأزرق</span> والتوابع <span style="color:#065f46;font-weight:700">بالأخضر</span>:</p>
+
+  <!-- Flutter Domain -->
+  <div class="class-grid">
+    <div class="cbox">
+      <div class="cname">SymbolEntity</div>
+      <div class="cattrs">+String code<br>+String name<br>+double bid<br>+double ask<br>+bool isUp<br>+String? signal</div>
+      <div class="cmeths"></div>
+    </div>
+    <div class="cbox">
+      <div class="cname">CandleEntity</div>
+      <div class="cattrs">+DateTime time<br>+double open<br>+double high<br>+double low<br>+double close<br>+double volume</div>
+      <div class="cmeths"></div>
+    </div>
+    <div class="cbox">
+      <div class="cname">NewsEntity</div>
+      <div class="cattrs">+String symbol<br>+String title<br>+String summary<br>+String sentiment<br>+double confidence<br>+double impactScore<br>+DateTime publishedAt</div>
+      <div class="cmeths"></div>
+    </div>
+    <div class="cbox">
+      <div class="cname">SignalLogEntry</div>
+      <div class="cattrs">+String id<br>+String symbol<br>+String recommendation<br>+double entryPrice<br>+String timeframe<br>+int horizon<br>+String status<br>+bool? isCorrect</div>
+      <div class="cmeths">+toFirestore()<br>+fromFirestore()<br>+computeActualDirection()</div>
+    </div>
+    <div class="cbox">
+      <div class="cname">Portfolio</div>
+      <div class="cattrs">+String userId<br>+double balance<br>+double equity<br>+double profitLoss<br>+double totalFees<br>+List openTrades</div>
+      <div class="cmeths"></div>
+    </div>
+    <div class="cbox">
+      <div class="cname">PaperTrade</div>
+      <div class="cattrs">+String tradeId<br>+String symbol<br>+String direction<br>+double entryPrice<br>+double positionSize<br>+double feeOpen<br>+String status</div>
+      <div class="cmeths"></div>
+    </div>
+  </div>
+
+  <div class="crel">MarketsRepoImpl — calls → ApiService — requests → HybridSignalGenerator — uses → NewsSentimentPredictor</div>
+
+  <!-- Infrastructure Layer -->
+  <div class="class-grid-2" style="grid-template-columns:1fr 1fr 1fr;max-width:17cm">
+    <div class="cbox">
+      <div class="cname">MarketsRepoImpl</div>
+      <div class="cattrs">+MarketsApiDataSource api<br>+MarketsMockDataSource ds</div>
+      <div class="cmeths">+getSymbols()<br>+getCandles()<br>+getSignal()<br>+startStream()</div>
+    </div>
+    <div class="cbox">
+      <div class="cname">ApiService</div>
+      <div class="cattrs"></div>
+      <div class="cmeths">+toBackendSymbol()<br>+getHybridSignal()<br>+getPrice()<br>+getCandles()<br>+getNews()</div>
+    </div>
+    <div class="cbox">
+      <div class="cname">HybridSignalGenerator</div>
+      <div class="cattrs">+XGBClassifier model<br>+StandardScaler scaler<br>+List FEATURES[19]</div>
+      <div class="cmeths">+generateSignal()<br>+extractFeatures()<br>+getStrength()<br>+trainFromRealData()</div>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:center;margin:.1cm 0">
+    <div class="cbox" style="max-width:7cm">
+      <div class="cname">NewsSentimentPredictor</div>
+      <div class="cattrs">+XGBClassifier model<br>+TfidfVectorizer tfidf_title (8000 features)<br>+TfidfVectorizer tfidf_summary (3000 features)</div>
+      <div class="cmeths">+predict(title, summary) → {sentiment, confidence, impact}<br>+cleanText(text) → string</div>
+    </div>
+  </div>
+  <p class="cap">شكل 4.11 — مخطط Class Diagram الكامل لنظام Market Insight</p>
+  <div class="pnum">56</div>
+</div>
+
+<!-- ═══════════════ Activity Diagram ═══════════════ -->
+<div class="page">
+  <h1>4.6 — مخطط النشاط (Activity Diagram)</h1>
+
+  <div class="info-box" style="margin-bottom:.2cm">
+    <p>
+      يُمثّل هذا المخطط تدفق العمليات الكامل في نظام Market Insight، ابتداءً من لحظة فتح المستخدم لصفحة رمز مالي معيّن وانتهاءً بحلّ التوصية تلقائياً ومقارنتها بالسوق الفعلي. يُجسّد المخطط رحلتين متوازيتين: الرحلة التقنية على مستوى الخادم الخلفي، والرحلة التفاعلية على مستوى المستخدم.
+    </p>
+    <p>
+      عند فتح صفحة رمز مالي، يُرسِل التطبيق طلباً للخادم لجلب <b>5,000 شمعة تاريخية</b> من Binance أو Yahoo Finance. يقوم الخادم بعدها بحساب أكثر من <b>15 مؤشراً فنياً</b> تشمل المتوسطات المتحركة EMA وقوة الاتجاه RSI ومؤشر الزخم MACD ومتوسط المدى الحقيقي ATR، ثم يُدرّب نموذج XGBoost على هذه البيانات ويُعلن جاهزيته للمستخدم.
+    </p>
+    <p>
+      بعد ذلك يواجه المخطط نقطتَي قرار رئيسيتين: الأولى هي ما إذا كان المستخدم قد فعّل <b>وضع Auto</b>؛ فإن كان مفعَّلاً ينتظر النظام إغلاق كل شمعة لتوليد إشارة تلقائياً، وإلا ينتظر ضغطة المستخدم. والثانية هي ما إذا كانت <b>ثقة النموذج تتجاوز عتبة 0.42</b>؛ فإن كانت كذلك يُولَّد BUY أو SELL مع حسب مستويات الربح (TP1/TP2/TP3) ووقف الخسارة (SL)، وإلا يُعرَض HOLD.
+    </p>
+    <p>
+      بعد عرض الإشارة للمستخدم تُحفَظ في Firestore بحالة <b>pending</b>، ثم بعد انتهاء الأفق الزمني المحدد (horizon) تُجلَب أسعار السوق الفعلية وتُقارَن بالتوصية لتُحدَّث الحالة إلى <b>resolved</b> مع تسجيل صحة الإشارة أو خطئها، لتظهر النتيجة في صفحة مراجعة التوصيات.
+    </p>
+  </div>
+
+  <p>تدفق العمليات التفصيلي من البداية حتى النهاية:</p>
+
+  <div class="act">
+    <div class="act-start"></div>
+    <div class="act-arr">▼</div>
+    <div class="act-step">المستخدم يفتح صفحة رمز مالي (مثلاً: BTC/USDT)</div>
+    <div class="act-arr">▼</div>
+    <div class="act-step">Flutter يُرسل: POST /load-history-timeframe</div>
+    <div class="act-arr">▼</div>
+    <div class="act-step">FastAPI يجلب 5,000 شمعة من Binance / Yahoo Finance</div>
+    <div class="act-arr">▼</div>
+    <div class="act-step">حساب 15+ مؤشر فني: EMA | RSI | MACD | ATR | Stochastic | Log Return | Time sin/cos</div>
+    <div class="act-arr">▼</div>
+    <div class="act-step">تدريب XGBoost + StandardScaler على البيانات التاريخية</div>
+    <div class="act-arr">▼</div>
+    <div class="act-ok">✓ status: ready — النموذج جاهز في الذاكرة</div>
+    <div class="act-arr">▼</div>
+
+    <!-- قرار 1: Auto؟ -->
+    <div style="display:flex;align-items:center;justify-content:center">
+      <div class="act-decision"><div class="act-dec-text">وضع<br>Auto؟</div></div>
+    </div>
+    <div class="act-branches">
+      <div class="act-branch">
+        <div class="act-branch-lbl" style="color:#4ade80">نعم ↙</div>
+        <div class="act-mini">انتظار إغلاق الشمعة</div>
+      </div>
+      <div class="act-branch">
+        <div class="act-branch-lbl" style="color:#f87171">لا ↘</div>
+        <div class="act-mini">انتظار ضغط "توليد الإشارة"</div>
+      </div>
+    </div>
+
+    <div class="act-arr">▼</div>
+    <div class="act-step">GET /signal-hybrid → جلب ميزات الأخبار من News Service</div>
+    <div class="act-arr">▼</div>
+    <div class="act-step">دمج 15 مؤشر فني + 4 ميزات إخبارية = متجه 19 ميزة</div>
+    <div class="act-arr">▼</div>
+
+    <!-- قرار 2: ثقة؟ -->
+    <div style="display:flex;align-items:center;justify-content:center">
+      <div class="act-decision"><div class="act-dec-text">ثقة<br>≥ 0.42؟</div></div>
+    </div>
+    <div class="act-branches">
+      <div class="act-branch">
+        <div class="act-branch-lbl" style="color:#4ade80">BUY/SELL ↙</div>
+        <div class="act-mini" style="background:#064e3b;border-color:#059669">حساب TP1/TP2/TP3<br>+ SL = ATR×2.0</div>
+        <div class="act-arr" style="font-size:9pt">▼</div>
+        <div class="act-mini" style="background:#064e3b;border-color:#059669">عرض بطاقة الإشارة</div>
+      </div>
+      <div class="act-branch">
+        <div class="act-branch-lbl" style="color:#9ca3af">HOLD ↘</div>
+        <div class="act-mini" style="background:#1e293b;border-color:#374151">عرض انتظار ⬛</div>
+      </div>
+    </div>
+
+    <div class="act-arr">▼</div>
+    <div class="act-step">حفظ الإشارة في Firestore: status = pending</div>
+    <div class="act-arr">▼</div>
+    <div class="act-step" style="background:#1e293b;border-color:#374151">⏳ انتظار مرور horizon × ثواني الإطار الزمني</div>
+    <div class="act-arr">▼</div>
+    <div class="act-step">SignalLogService: GET /price → جلب السعر الفعلي + مقارنة الاتجاه</div>
+    <div class="act-arr">▼</div>
+    <div class="act-ok">تحديث Firestore: status = resolved | isCorrect = true/false</div>
+    <div class="act-arr">▼</div>
+    <div class="act-end"></div>
+  </div>
+  <p class="cap">شكل 4.12 — مخطط Activity Diagram الكامل لتدفق توليد الإشارة ومراجعتها</p>
+  <div class="pnum">57</div>
+</div>
+
+<!-- ═══════════════ Sequence Diagram ═══════════════ -->
+<div class="page">
+  <h1>4.7 — مخطط التسلسل (Sequence Diagram)</h1>
+
+  <div class="info-box" style="margin-bottom:.2cm">
+    <p>
+      يُمثّل هذا المخطط التفاعل الزمني المتسلسل بين <b>سبعة مكوّنات</b> رئيسية في نظام Market Insight: المستخدم، وتطبيق Flutter، والخادم الخلفي FastAPI، ونموذج XGBoost، والنموذج الهجين Hybrid Model، وخدمة الأخبار News Service، وقاعدة بيانات Firestore. يُوضّح المخطط بدقة مَن يُرسل ماذا ولمن وفي أي لحظة زمنية خلال دورة حياة الإشارة الكاملة.
+    </p>
+    <p>
+      تبدأ العملية بمجرد فتح المستخدم لصفحة رمز مالي كـ BTC/USDT، إذ يُرسل التطبيق طلب <b>POST /load-history-timeframe</b> للخادم الذي يجلب الشموع التاريخية ويُدرّب نموذج XGBoost، ثم يُعيد تأكيداً بالجاهزية. بعدها يدخل التطبيق في حلقة تلقائية (loop) تجلب السعر اللحظي كل ثانية عبر <b>GET /price</b> لتحديث العرض المباشر للمستخدم.
+    </p>
+    <p>
+      عند ضغط المستخدم على "توليد الإشارة"، يُرسَل طلب <b>GET /signal-hybrid</b> إلى الخادم الذي يتواصل أولاً مع <b>News Service</b> لاستخراج الميزات الإخبارية للرمز (المشاعر، الثقة، مستوى التأثير)، ثم يُمرّرها مع المؤشرات الفنية إلى <b>Hybrid Model</b> الذي يُنتج التوصية النهائية مع مستويات الربح ووقف الخسارة. تُرسَل النتيجة للتطبيق الذي يعرضها للمستخدم بينما يُرسل الخادم الإشارة لـ <b>Firestore</b> بحالة pending.
+    </p>
+    <p>
+      بعد انتهاء الأفق الزمني (horizon)، يُجلَب السعر الفعلي مجدداً من الخادم ويُقارَن بسعر الدخول لتحديد صحة التوصية، وتُرسَل النتيجة النهائية لـ Firestore لتحديث حالة الإشارة إلى <b>resolved</b> مع تسجيل قيمة <b>isCorrect</b>، لتظهر النتيجة تلقائياً في صفحة مراجعة التوصيات.
+    </p>
+  </div>
+
+  <p>تسلسل الرسائل بين مكوّنات النظام:</p>
+
+  <!-- رؤوس الأعمدة -->
+  <div style="display:grid;grid-template-columns:1.3cm repeat(6,1fr);gap:.04cm;margin-bottom:.12cm">
+    <div class="seq-actor-user">المستخدم</div>
+    <div class="seq-actor">Flutter App</div>
+    <div class="seq-actor">FastAPI Backend</div>
+    <div class="seq-actor">XGBoost Model</div>
+    <div class="seq-actor">Hybrid Model</div>
+    <div class="seq-actor">News Service</div>
+    <div class="seq-actor">Firestore</div>
+  </div>
+
+  <!-- الرسائل -->
+  <div style="display:flex;flex-direction:column;gap:.07cm">
+
+    <div style="display:grid;grid-template-columns:1.3cm 1fr;gap:.1cm;align-items:center">
+      <div style="font-size:7.5pt;color:#7B3F00;font-family:'Amiri',serif;text-align:center">فتح صفحة BTCUSDT</div>
+      <div style="display:flex;align-items:center;gap:.04cm">
+        <div class="arr-r"></div>
+        <div class="seq-label">POST /load-history-timeframe</div>
+        <div style="width:3cm;height:1px;background:#7B3F00"></div>
+      </div>
+    </div>
+
+    <div class="seq-note">FastAPI ← جلب 5,000 شمعة تاريخية ← XGBoost: حساب 15+ مؤشر → تدريب النموذج</div>
+
+    <div style="display:grid;grid-template-columns:1.3cm 1fr;gap:.1cm;align-items:center">
+      <div></div>
+      <div style="display:flex;align-items:center;gap:.04cm">
+        <div style="width:3cm;height:1px;background:#5a2e00;border-top:1px dashed #5a2e00"></div>
+        <div class="seq-resp">← status: ready (model trained ✓)</div>
+        <div class="arr-l"></div>
+      </div>
+    </div>
+
+    <div class="seq-block">loop [كل ثانية] — Flutter → GET /price?symbol=BTC/USDT → bid: 95,415 | ask: 95,425 ← Flutter</div>
+
+    <div style="display:grid;grid-template-columns:1.3cm 1fr;gap:.1cm;align-items:center">
+      <div style="font-size:7.5pt;color:#7B3F00;font-family:'Amiri',serif;text-align:center">يضغط "توليد إشارة"</div>
+      <div style="display:flex;align-items:center;gap:.04cm">
+        <div class="arr-r"></div>
+        <div class="seq-label" style="font-size:7.5pt">GET /signal-hybrid?symbol=BTC/USDT&amp;timeframe=1h&amp;horizon=4</div>
+        <div style="width:.8cm;height:1px;background:#7B3F00"></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.3cm 1fr;gap:.1cm;align-items:center">
+      <div></div>
+      <div style="display:flex;align-items:center;gap:.04cm">
+        <div style="width:4.5cm;height:1px;background:#7B3F00;position:relative">
+          <span style="position:absolute;left:-1px;top:-7px;color:#7B3F00;font-size:9pt">▶</span>
+        </div>
+        <div class="seq-label">getNewsFeatures(BTCUSD)</div>
+        <div style="width:.4cm;height:1px;background:#7B3F00"></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.3cm 1fr;gap:.1cm;align-items:center">
+      <div></div>
+      <div style="display:flex;align-items:center;gap:.04cm">
+        <div style="width:4.5cm;height:1px;background:#5a2e00;border-top:1px dashed #5a2e00"></div>
+        <div class="seq-resp">← sentiment=0.8, confidence=0.75, impact=0.6</div>
+        <div style="width:.2cm;height:1px;background:#5a2e00;position:relative">
+          <span style="position:absolute;right:-1px;top:-7px;color:#5a2e00;font-size:9pt">◀</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="seq-note">FastAPI → Hybrid Model: compute(15 مؤشر + 4 ميزات = 19 ميزة) → BUY, confidence=0.78, TP1/2/3, SL</div>
+
+    <div style="display:grid;grid-template-columns:1.3cm 1fr;gap:.1cm;align-items:center">
+      <div></div>
+      <div style="display:flex;align-items:center;gap:.04cm">
+        <div style="width:5.5cm;height:1px;background:#7B3F00;position:relative">
+          <span style="position:absolute;left:-1px;top:-7px;color:#7B3F00;font-size:9pt">▶</span>
+        </div>
+        <div class="seq-label">saveSignal(pending)</div>
+        <div style="width:.2cm;height:1px;background:#7B3F00"></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.3cm 1fr;gap:.1cm;align-items:center">
+      <div style="font-size:7pt;color:#4ade80;font-family:'Amiri',serif;text-align:center">بطاقة BUY 🟢 78%</div>
+      <div style="display:flex;align-items:center;gap:.04cm">
+        <div style="width:.4cm;height:1px;background:#5a2e00"></div>
+        <div class="seq-resp" style="background:#ecfdf5;border-color:#4ade80;color:#065f46">← recommendation JSON → BUY ثقة 78% | TP1/TP2/TP3 | SL</div>
+        <div class="arr-l"></div>
+      </div>
+    </div>
+
+    <div class="seq-block" style="background:#1e3a5f;color:#bfdbfe">⏳ انتظار مرور horizon = 4 شموع (4h = 14,400 ثانية)</div>
+
+    <div style="display:grid;grid-template-columns:1.3cm 1fr;gap:.1cm;align-items:center">
+      <div></div>
+      <div style="display:flex;align-items:center;gap:.04cm">
+        <div class="arr-r"></div>
+        <div class="seq-label">GET /price?symbol=BTC/USDT (الحل الثاني)</div>
+        <div style="width:2.5cm;height:1px;background:#7B3F00"></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.3cm 1fr;gap:.1cm;align-items:center">
+      <div></div>
+      <div style="display:flex;align-items:center;gap:.04cm">
+        <div style="width:5.5cm;height:1px;background:#7B3F00;position:relative">
+          <span style="position:absolute;left:-1px;top:-7px;color:#7B3F00;font-size:9pt">▶</span>
+        </div>
+        <div class="seq-label" style="background:#ecfdf5;border-color:#4ade80;font-size:7.5pt">updateSignal(resolved, isCorrect=true)</div>
+        <div style="width:.2cm;height:1px;background:#7B3F00"></div>
+      </div>
+    </div>
+
+  </div>
+  <p class="cap">شكل 4.13 — مخطط Sequence Diagram الكامل لتدفق توليد الإشارة ومراجعتها</p>
+
+  <div class="info-box" style="margin-top:.15cm">
+    <p><b>ملخص التسلسل:</b> يبدأ بجلب البيانات وتدريب XGBoost ← بثّ الأسعار كل ثانية في الخلفية ← عند طلب الإشارة يُدمَج 19 ميزة في النموذج الهجين ← النتيجة تُحفَظ pending في Firestore ← بعد مرور horizon شمعة يُحلّ تلقائياً ويُحدَّث isCorrect في Firestore.</p>
+  </div>
+  <div class="pnum">58</div>
+</div>
+
+</body>
+</html>

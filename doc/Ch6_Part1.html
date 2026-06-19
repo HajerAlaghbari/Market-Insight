@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الفصل السادس — الجزء الأول</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Fira+Mono&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4;direction:rtl}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.pg{margin:0!important;width:21cm!important;min-height:29.7cm!important;page-break-after:always;border:4px double #7B3F00!important;box-shadow:none!important}}
+.pg{width:21cm;min-height:29.7cm;background:#fff;margin:1cm auto;padding:1.4cm 1.7cm;border:4px double #7B3F00;box-shadow:0 4px 20px rgba(0,0,0,.17);position:relative}
+.ctr{display:flex;align-items:center;justify-content:center;min-height:25cm;flex-direction:column;gap:.4cm}
+h1{font-size:15pt;color:#fff;background:#7B3F00;padding:.18cm .4cm;margin-bottom:.28cm;text-align:center;border-radius:2px}
+h2{font-size:13pt;font-weight:700;color:#7B3F00;border-right:5px solid #7B3F00;padding-right:.28cm;margin:.28cm 0 .18cm}
+h3{font-size:11.5pt;font-weight:700;color:#5a2e00;margin:.15cm 0 .08cm}
+p{font-size:11.5pt;line-height:1.85;text-align:justify;color:#222;margin-bottom:.1cm}
+ul{font-size:11.5pt;line-height:1.85;color:#222;padding-right:.4cm}
+li{margin-bottom:.04cm}
+.cap{text-align:center;font-size:10pt;color:#555;margin:.06cm 0 .12cm;font-style:italic}
+.pn{position:absolute;bottom:.45cm;left:50%;transform:translateX(-50%);font-size:11pt;color:#7B3F00;font-weight:700;border-top:1px solid #7B3F00;padding-top:.06cm;width:1.4cm;text-align:center}
+.ln{width:6cm;height:3px;background:linear-gradient(90deg,transparent,#7B3F00,transparent)}
+.sep{border:none;border-top:1px dashed #d4a870;margin:.2cm 0}
+.ib{background:#fdf5ec;border-right:4px solid #7B3F00;padding:.15cm .25cm;border-radius:2px;margin:.1cm 0}
+.tb{width:100%;border-collapse:collapse;font-size:10.5pt;margin:.12cm 0}
+.tb th{background:#7B3F00;color:#fff;padding:.09cm .18cm;border:1px solid #7B3F00;text-align:center}
+.tb td{padding:.08cm .16cm;border:1px solid #ddd}
+.tb tr:nth-child(even){background:#fdf5ec}
+/* Phone */
+.sw{display:flex;gap:.45cm;align-items:flex-start;margin:.1cm 0}
+.ph{width:5.5cm;flex-shrink:0;background:#0d1117;border-radius:.32cm;border:2px solid #374151;overflow:hidden;direction:ltr;box-shadow:0 4px 18px rgba(0,0,0,.3)}
+.pab{background:#111827;padding:.08cm .14cm;display:flex;align-items:center;gap:.1cm;border-bottom:1px solid #1f2937}
+.pat{color:#f9fafb;font-size:7.5pt;font-weight:700;font-family:'Fira Mono',monospace;flex:1}
+.pal{width:.45cm;height:.45cm;border-radius:.05cm;background:linear-gradient(135deg,#312e81,#1e40af);display:flex;align-items:center;justify-content:center;font-size:7pt;color:#fff;font-weight:700;font-family:'Fira Mono',monospace}
+.pai{width:.28cm;height:.28cm;border-radius:.03cm;border:1px solid #374151;background:#1f2937;display:flex;align-items:center;justify-content:center;font-size:5.5pt;color:#9ca3af}
+.pc{padding:.1cm}
+.pst{color:#f9fafb;font-size:9.5pt;font-weight:700;padding:.06cm 0 .03cm;font-family:'Fira Mono',monospace;display:flex;align-items:center;justify-content:space-between}
+.pgr{color:#6b7280;font-size:7.5pt}
+.sc{background:#1f2937;border-radius:.18cm;padding:.09cm .11cm;margin:.06cm 0}
+.sct{font-size:6pt;color:#9ca3af;font-family:'Fira Mono',monospace}
+.scn{font-size:8.5pt;font-weight:700;color:#f9fafb;font-family:'Fira Mono',monospace}
+.sck{font-size:5pt;color:#6b7280;font-family:'Fira Mono',monospace}
+.ba{text-align:right}
+.bl{font-size:5pt;color:#9ca3af;font-family:'Fira Mono',monospace}
+.bv{font-size:8pt;font-weight:700;font-family:'Fira Mono',monospace}
+.bu{color:#4ade80}.bd{color:#f87171}.bn{color:#e5e7eb}
+.pnv{background:#111827;display:flex;border-top:1px solid #1f2937}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;padding:.07cm .04cm;gap:.02cm}
+.ni.ac{color:#3b82f6}
+.nio{font-size:8.5pt}
+.nil{font-size:4.5pt;font-family:'Fira Mono',monospace;color:#6b7280}
+.ni.ac .nil{color:#3b82f6}
+.ip{flex:1;direction:rtl}
+/* Login */
+.lw{color:#f9fafb;font-size:8.5pt;font-weight:700;text-align:center;padding:.08cm 0;font-family:'Fira Mono',monospace}
+.lc{background:#1f2937;border-radius:.13cm;padding:.1cm}
+.ir{display:flex;align-items:center;gap:.07cm;border-bottom:1px solid #374151;padding:.06cm 0;margin:.03cm 0}
+.it{font-size:6.5pt;color:#6b7280;font-family:'Fira Mono',monospace;flex:1}
+.lb{background:#1e3a8a;border-radius:.07cm;padding:.07cm;text-align:center;color:#fff;font-size:7pt;font-weight:700;margin:.05cm 0;font-family:'Fira Mono',monospace}
+/* Chart */
+.ctb{display:flex;gap:.07cm;padding:.05cm 0;border-bottom:1px solid #1f2937;margin-bottom:.05cm}
+.ct{font-size:6pt;color:#6b7280;padding:.03cm .08cm;font-family:'Fira Mono',monospace}
+.ct.ac{color:#f9fafb;border-bottom:1.5px solid #3b82f6}
+.prb{font-size:13pt;font-weight:700;color:#f9fafb;font-family:'Fira Mono',monospace}
+.prc{background:#7f1d1d;color:#f87171;font-size:5.5pt;padding:.02cm .05cm;border-radius:.03cm;display:inline-block;margin-top:.02cm;font-family:'Fira Mono',monospace}
+.ca{background:#162032;border-radius:.08cm;height:2cm;margin:.05cm 0;padding:.06cm;display:flex;align-items:flex-end;gap:.025cm;overflow:hidden}
+.cb{width:.055cm;border-radius:1px;flex-shrink:0}
+.tf{display:flex;gap:.03cm;overflow:hidden;padding:.03cm 0;flex-wrap:nowrap}
+.tfb{font-size:5pt;color:#6b7280;padding:.025cm .04cm;border-radius:.03cm;font-family:'Fira Mono',monospace;white-space:nowrap}
+.tfb.ac{background:#3b82f6;color:#fff}
+</style>
+</head>
+<body>
+
+<!-- ═══ غلاف ═══ -->
+<div class="pg">
+  <div class="ctr">
+    <div class="ln"></div>
+    <div style="font-size:10.5pt;color:#888">الفصل السادس</div>
+    <div style="font-size:25pt;font-weight:700;color:#3d1f00;text-align:center;line-height:1.5">الاختبار والتقييم</div>
+    <div class="ln"></div>
+    <div style="margin-top:.45cm;text-align:center;font-size:11pt;color:#888;line-height:2.4">
+      <div>6.1 — متطلبات تشغيل النظام</div>
+      <div>6.2 — التنفيذ</div>
+      <div>6.2.1 — واجهات تنفيذ التطبيق (11 واجهة)</div>
+    </div>
+  </div>
+  <div class="pn">85</div>
+</div>
+
+<!-- ═══ 6.1 متطلبات تشغيل النظام ═══ -->
+<div class="pg">
+  <h1>6.1 — متطلبات تشغيل النظام</h1>
+  <p>يتطلب تشغيل نظام Market Insight توافر مجموعة من المتطلبات التقنية على جانبَي الخادم والعميل لضمان عمل جميع الوظائف بشكل صحيح:</p>
+
+  <h2>أولاً: متطلبات الخادم الخلفي (Backend)</h2>
+  <table class="tb">
+    <tr><th>المكوّن</th><th>الإصدار</th><th>الغرض</th></tr>
+    <tr><td>Python</td><td>3.10+</td><td>لغة البرمجة الأساسية للخادم</td></tr>
+    <tr><td>FastAPI + uvicorn</td><td>0.110+ / 0.29+</td><td>إطار الـ API والـ WebSocket</td></tr>
+    <tr><td>XGBoost</td><td>2.0+</td><td>نموذج التعلم الآلي للإشارات</td></tr>
+    <tr><td>scikit-learn</td><td>1.3+</td><td>معالجة البيانات (StandardScaler)</td></tr>
+    <tr><td>ccxt</td><td>4.0+</td><td>جلب بيانات Binance للكريبتو</td></tr>
+    <tr><td>yfinance</td><td>0.2+</td><td>جلب بيانات الأسهم والمعادن والعملات</td></tr>
+    <tr><td>pandas / numpy</td><td>أحدث مستقر</td><td>معالجة البيانات الجدولية</td></tr>
+  </table>
+
+  <h2>ثانياً: متطلبات تطبيق Flutter (Frontend)</h2>
+  <table class="tb">
+    <tr><th>المكوّن</th><th>الإصدار</th><th>الغرض</th></tr>
+    <tr><td>Flutter SDK / Dart</td><td>3.19+ / 3.3+</td><td>إطار العمل الرئيسي للتطبيق</td></tr>
+    <tr><td>Android SDK</td><td>API 21+ (Android 5.0)</td><td>الحد الأدنى لنظام Android</td></tr>
+    <tr><td>iOS</td><td>12.0+</td><td>الحد الأدنى لنظام iOS</td></tr>
+    <tr><td>firebase_core / auth / firestore</td><td>أحدث مستقر</td><td>المصادقة وقاعدة البيانات السحابية</td></tr>
+    <tr><td>flutter_riverpod</td><td>2.5+</td><td>إدارة الحالة في التطبيق</td></tr>
+    <tr><td>go_router</td><td>13.0+</td><td>نظام التنقل بين الصفحات</td></tr>
+  </table>
+
+  <h2>ثالثاً: متطلبات الشبكة وFirebase</h2>
+  <div class="ib">
+    <ul>
+      <li>اتصال إنترنت مستقر (LTE/5G أو WiFi) لجلب الأسعار اللحظية والأخبار وتشغيل النماذج.</li>
+      <li>إمكانية الوصول إلى Binance API وYahoo Finance API (قد تتطلب VPN في بعض المناطق).</li>
+      <li>يتواصل التطبيق مع الخادم عبر HTTP على المنفذ <strong>8000</strong> مع آلية fallback بين عناوين IP متعددة.</li>
+      <li>مشروع Firebase نشط مع تفعيل Authentication وFirestore، وملفات التكوين المناسبة لكل منصة.</li>
+    </ul>
+  </div>
+  <div class="pn">86</div>
+</div>
+
+<!-- ═══ 6.2 التنفيذ ═══ -->
+<div class="pg">
+  <h1>6.2 — التنفيذ</h1>
+  <p>يتناول هذا القسم عرضاً شاملاً لمراحل تنفيذ نظام Market Insight الفعلية، من خلال توثيق الواجهات الحقيقية للتطبيق كما تظهر على الجهاز المحمول، مُرفقةً بشرح وظيفي مفصَّل لكل شاشة.</p>
+  <p>يتكوّن التطبيق المُنفَّذ من <strong>11 واجهة رئيسية</strong> تغطي جميع وظائف النظام.</p>
+
+  <h2>بيئة التنفيذ والاختبار:</h2>
+  <table class="tb">
+    <tr><th>العنصر</th><th>التفاصيل</th></tr>
+    <tr><td>جهاز الاختبار</td><td>هاتف Android — شاشة 6.1 بوصة، دقة 1080×2400</td></tr>
+    <tr><td>نظام التشغيل</td><td>Android 13</td></tr>
+    <tr><td>الخادم الخلفي</td><td>Python FastAPI مُشغَّل على المنفذ 8000</td></tr>
+    <tr><td>قاعدة البيانات</td><td>Firebase Firestore (Cloud)</td></tr>
+    <tr><td>مصدر بيانات الكريبتو</td><td>Binance عبر مكتبة ccxt</td></tr>
+    <tr><td>مصدر بيانات الأسهم/المعادن/العملات</td><td>Yahoo Finance عبر مكتبة yfinance</td></tr>
+  </table>
+
+  <div class="sep"></div>
+  <h2>6.2.1 — واجهات تنفيذ التطبيق</h2>
+  <ul>
+    <li><strong>الواجهة 1:</strong> شاشة تسجيل الدخول — Login Screen</li>
+    <li><strong>الواجهة 2:</strong> شاشة قائمة العملات الأجنبية — FX Market</li>
+    <li><strong>الواجهة 3:</strong> شاشة قائمة المعادن — Metals Market</li>
+    <li><strong>الواجهة 4:</strong> شاشة قائمة الأسهم — Stocks Market</li>
+    <li><strong>الواجهة 5:</strong> شاشة تفاصيل الرمز — الرسم البياني</li>
+    <li><strong>الواجهة 6:</strong> شاشة تفاصيل الرمز — الإشارة الذكية</li>
+    <li><strong>الواجهة 7:</strong> شاشة تفاصيل الرمز — تبويب الأخبار</li>
+    <li><strong>الواجهة 8:</strong> شاشة الأخبار الرئيسية</li>
+    <li><strong>الواجهة 9:</strong> شاشة سجل مراجعة الإشارات</li>
+    <li><strong>الواجهة 10:</strong> شاشة قائمة FX (عرض ثانٍ)</li>
+    <li><strong>الواجهة 11:</strong> شاشة الإعدادات</li>
+  </ul>
+  <div class="pn">87</div>
+</div>
+
+<!-- ═══ واجهة 1: Login ═══ -->
+<div class="pg">
+  <h1>6.2.1 — الواجهة 1: شاشة تسجيل الدخول</h1>
+  <div class="sw">
+    <div class="ph">
+      <div class="pab">
+        <div class="pal">MI</div>
+        <div class="pat">Login</div>
+      </div>
+      <div class="pc">
+        <div style="text-align:center;padding:.15cm 0 .08cm">
+          <div style="width:1.7cm;height:1.2cm;background:linear-gradient(135deg,#312e81,#1e40af);border-radius:.1cm;display:inline-flex;align-items:center;justify-content:center;flex-direction:column;gap:.02cm">
+            <div style="font-size:12pt;font-weight:900;color:#60a5fa;font-family:'Fira Mono',monospace">M</div>
+            <div style="font-size:5.5pt;color:#fff;font-family:'Fira Mono',monospace">Market Insight</div>
+          </div>
+        </div>
+        <div class="lw">Welcome back</div>
+        <div class="lc">
+          <div class="ir"><span style="font-size:7pt;color:#6b7280;width:.18cm">✉</span><div class="it">Email</div></div>
+          <div class="ir"><span style="font-size:7pt;color:#6b7280;width:.18cm">🔒</span><div class="it">Password</div><span style="font-size:6.5pt;color:#6b7280">👁</span></div>
+          <div style="color:#8b5cf6;font-size:5.5pt;text-align:right;padding:.03cm 0;font-family:'Fira Mono',monospace">Forgot password?</div>
+          <div class="lb">Login</div>
+        </div>
+        <div style="color:#8b5cf6;font-size:6pt;text-align:center;padding:.07cm 0;font-family:'Fira Mono',monospace">Create account</div>
+      </div>
+    </div>
+    <div class="ip">
+      <h2>وصف الواجهة</h2>
+      <div class="ib"><p>شاشة تسجيل الدخول هي البوابة الرئيسية لنظام Market Insight، تُعرَض تلقائياً عند عدم وجود جلسة مستخدم نشطة.</p></div>
+      <h3>العناصر الرئيسية:</h3>
+      <ul>
+        <li><strong>شعار التطبيق:</strong> يُعرَض في الأعلى لتعزيز الهوية البصرية للنظام.</li>
+        <li><strong>حقل البريد الإلكتروني:</strong> مُزوَّد بأيقونة بريد وتحقق من صحة التنسيق.</li>
+        <li><strong>حقل كلمة المرور:</strong> يدعم إظهار/إخفاء النص عبر أيقونة العين.</li>
+        <li><strong>رابط "نسيت كلمة المرور":</strong> يُوجّه لعملية الاسترداد عبر Firebase Auth.</li>
+        <li><strong>زر Login:</strong> يُرسِل طلب المصادقة، وعند النجاح يُعيد التوجيه للرئيسية.</li>
+        <li><strong>رابط إنشاء حساب:</strong> للمستخدمين الجدد غير المُسجَّلين.</li>
+      </ul>
+      <h3>الوظيفة التقنية:</h3>
+      <p>تستخدم <code style="font-family:'Fira Mono',monospace;direction:ltr">FirebaseAuth.signInWithEmailAndPassword()</code>. عند الفشل تُعرَض رسالة خطأ واضحة للمستخدم.</p>
+    </div>
+  </div>
+  <p class="cap">شكل 6.1 — شاشة تسجيل الدخول الفعلية لتطبيق Market Insight</p>
+  <div class="pn">88</div>
+</div>
+
+<!-- ═══ واجهة 2: FX ═══ -->
+<div class="pg">
+  <h1>6.2.1 — الواجهة 2: شاشة قائمة العملات الأجنبية (FX)</h1>
+  <div class="sw">
+    <div class="ph">
+      <div class="pab"><div class="pal">MI</div><div class="pat">Market Insight</div><div class="pai">☑</div><div class="pai" style="margin-right:.03cm">🌐</div></div>
+      <div class="pc">
+        <div class="pst">FX <span class="pgr">⚙</span></div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">EUR / USD</div><div class="scn">EURUSD</div><div class="sck">20. 11:48:05</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bu">1.17973</div><div class="bl">Ask</div><div class="bv bn">1.17979</div></div></div></div></div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">GBP / USD</div><div class="scn">GBPUSD</div><div class="sck">20. 11:48:05</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bu">1.34868</div><div class="bl">Ask</div><div class="bv bn">1.34879</div></div></div></div></div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">EUR / GBP</div><div class="scn">EURGBP</div><div class="sck">20. 11:48:05</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bd">0.87300</div><div class="bl">Ask</div><div class="bv bn">0.87320</div></div></div></div></div>
+      </div>
+      <div class="pnv">
+        <div class="ni"><div class="nio">🪙</div><div class="nil">Metals</div></div>
+        <div class="ni ac"><div class="nio" style="color:#3b82f6">⇄</div><div class="nil">FX</div></div>
+        <div class="ni"><div class="nio">📰</div><div class="nil">News</div></div>
+        <div class="ni"><div class="nio">₿</div><div class="nil">Crypto</div></div>
+        <div class="ni"><div class="nio">📊</div><div class="nil">Stocks</div></div>
+      </div>
+    </div>
+    <div class="ip">
+      <h2>وصف الواجهة</h2>
+      <div class="ib"><p>تعرض هذه الشاشة قائمة أزواج العملات الأجنبية مع أسعارها اللحظية مُحدَّثة كل ثانية عبر Yahoo Finance.</p></div>
+      <h3>العناصر الرئيسية:</h3>
+      <ul>
+        <li><strong>شريط التطبيق العلوي:</strong> شعار Market Insight مع أيقونة سجل الإشارات وتبديل اللغة.</li>
+        <li><strong>بطاقة كل رمز:</strong> اسم الزوج، السعر الكامل، وقت التحديث، ونجمة المفضلة.</li>
+        <li><strong>Bid / Ask:</strong> أخضر للارتفاع، أحمر للانخفاض، مع رسوم متحركة للتغيرات.</li>
+        <li><strong>شريط التنقل السفلي:</strong> 5 تبويبات: Metals | FX | News | Crypto | Stocks.</li>
+      </ul>
+      <h3>الوظيفة التقنية:</h3>
+      <p>تُحدَّث عبر <code style="font-family:'Fira Mono',monospace;direction:ltr">liveMarketProvider</code> (Riverpod) كل ثانية دون إعادة بناء الواجهة كاملاً.</p>
+    </div>
+  </div>
+  <p class="cap">شكل 6.2 — شاشة قائمة سوق العملات الأجنبية FX بأسعار لحظية</p>
+  <div class="pn">89</div>
+</div>
+
+<!-- ═══ واجهة 3: Metals ═══ -->
+<div class="pg">
+  <h1>6.2.1 — الواجهة 3: شاشة قائمة المعادن (Metals)</h1>
+  <div class="sw">
+    <div class="ph">
+      <div class="pab"><div class="pal">MI</div><div class="pat">Market Insight</div><div class="pai">☑</div><div class="pai" style="margin-right:.03cm">🌐</div></div>
+      <div class="pc">
+        <div class="pst">Metals <span class="pgr">⚙</span></div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">Gold (USD)</div><div class="scn">XAUUSD</div><div class="sck">20. 11:49:28</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bu">5194.01</div><div class="bl">Ask</div><div class="bv bn">5195.08</div></div></div></div></div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">Silver (USD)</div><div class="scn">XAGUSD</div><div class="sck">20. 11:49:28</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bu">58.12</div><div class="bl">Ask</div><div class="bv bn">58.20</div></div></div></div></div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">Platinum (USD)</div><div class="scn">XPTUSD</div><div class="sck">20. 11:49:28</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bd">982.50</div><div class="bl">Ask</div><div class="bv bn">983.10</div></div></div></div></div>
+      </div>
+      <div class="pnv">
+        <div class="ni ac"><div class="nio" style="color:#3b82f6">🪙</div><div class="nil">Metals</div></div>
+        <div class="ni"><div class="nio">⇄</div><div class="nil">FX</div></div>
+        <div class="ni"><div class="nio">📰</div><div class="nil">News</div></div>
+        <div class="ni"><div class="nio">₿</div><div class="nil">Crypto</div></div>
+        <div class="ni"><div class="nio">📊</div><div class="nil">Stocks</div></div>
+      </div>
+    </div>
+    <div class="ip">
+      <h2>وصف الواجهة</h2>
+      <div class="ib"><p>تعرض شاشة المعادن أسعار الذهب والفضة والبلاتين اللحظية المُجلَبة من Yahoo Finance كل 3 ثوانٍ.</p></div>
+      <h3>الأصول المعروضة:</h3>
+      <ul>
+        <li><strong>XAUUSD — الذهب:</strong> أكثر الأصول تتبُّعاً في التطبيق، يُعرَض بالدولار الأمريكي.</li>
+        <li><strong>XAGUSD — الفضة:</strong> تُظهر السعر الفوري مع تمييز الاتجاه بالألوان.</li>
+        <li><strong>XPTUSD — البلاتين:</strong> Bid باللون الأحمر يشير لانخفاض السعر الأخير.</li>
+      </ul>
+      <h3>ميزات الواجهة:</h3>
+      <ul>
+        <li>رسوم متحركة: أخضر للارتفاع وأحمر للانخفاض للحظة التغيّر.</li>
+        <li>عرض Bid وAsk لكل أصل مع تحديث لحظي.</li>
+        <li>الضغط على أي بطاقة ينقل لصفحة الرسم البياني والتحليل.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="cap">شكل 6.3 — شاشة قائمة سوق المعادن (Metals) بأسعار لحظية</p>
+  <div class="pn">90</div>
+</div>
+
+<!-- ═══ واجهة 4: Stocks ═══ -->
+<div class="pg">
+  <h1>6.2.1 — الواجهة 4: شاشة قائمة الأسهم (Stocks)</h1>
+  <div class="sw">
+    <div class="ph">
+      <div class="pab"><div class="pal">MI</div><div class="pat">Market Insight</div><div class="pai">☑</div><div class="pai" style="margin-right:.03cm">🌐</div></div>
+      <div class="pc">
+        <div class="pst">Stocks <span class="pgr">⚙</span></div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">Apple Inc.</div><div class="scn">AAPL</div><div class="sck">20. 11:49:35</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bu">178.50</div><div class="bl">Ask</div><div class="bv bn">178.65</div></div></div></div></div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">Amazon.com</div><div class="scn">AMZN</div><div class="sck">20. 11:49:35</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bu">182.30</div><div class="bl">Ask</div><div class="bv bn">182.45</div></div></div></div></div>
+        <div class="sc"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sct">Tesla Inc.</div><div class="scn">TSLA</div><div class="sck">20. 11:49:35</div></div><div style="display:flex;align-items:flex-start;gap:.1cm"><span style="color:#6b7280;font-size:7.5pt">☆</span><div class="ba"><div class="bl">Bid</div><div class="bv bd">245.80</div><div class="bl">Ask</div><div class="bv bn">246.10</div></div></div></div></div>
+      </div>
+      <div class="pnv">
+        <div class="ni"><div class="nio">🪙</div><div class="nil">Metals</div></div>
+        <div class="ni"><div class="nio">⇄</div><div class="nil">FX</div></div>
+        <div class="ni"><div class="nio">📰</div><div class="nil">News</div></div>
+        <div class="ni"><div class="nio">₿</div><div class="nil">Crypto</div></div>
+        <div class="ni ac"><div class="nio" style="color:#3b82f6">📊</div><div class="nil">Stocks</div></div>
+      </div>
+    </div>
+    <div class="ip">
+      <h2>وصف الواجهة</h2>
+      <div class="ib"><p>تعرض شاشة الأسهم أسعار ثلاثة أسهم أمريكية كبرى مُجلَبة من Yahoo Finance مع تحديث تلقائي.</p></div>
+      <h3>الأسهم المعروضة:</h3>
+      <ul>
+        <li><strong>AAPL — Apple Inc.:</strong> سهم أبل، أضخم شركات التقنية في العالم بالقيمة السوقية.</li>
+        <li><strong>AMZN — Amazon.com:</strong> رائد التجارة الإلكترونية والحوسبة السحابية AWS.</li>
+        <li><strong>TSLA — Tesla Inc.:</strong> Bid بالأحمر يشير لانخفاض سعر الشراء عن آخر قيمة.</li>
+      </ul>
+      <h3>ملاحظة تقنية:</h3>
+      <p>بيانات الأسهم تعتمد على ساعات تداول NYSE/NASDAQ الأمريكية، لذا قد تكون ثابتة خارج أوقات التداول الرسمية (9:30 صباحاً — 4 مساءً بتوقيت نيويورك).</p>
+    </div>
+  </div>
+  <p class="cap">شكل 6.4 — شاشة قائمة الأسهم الأمريكية (Stocks) بأسعار لحظية</p>
+  <div class="pn">91</div>
+</div>
+
+<!-- ═══ واجهة 5: Chart Overview ═══ -->
+<div class="pg">
+  <h1>6.2.1 — الواجهة 5: شاشة تفاصيل الرمز — الرسم البياني</h1>
+  <div class="sw">
+    <div class="ph">
+      <div class="pab"><span style="color:#f9fafb;font-size:7pt">←</span><div class="pat" style="padding-right:.08cm">EUR / USD</div><div class="pai">☑</div></div>
+      <div class="pc">
+        <div class="ctb"><div class="ct ac">📊 Overview</div><div class="ct">📰 News</div></div>
+        <div style="background:#1e2a3a;border-radius:.1cm;padding:.08cm .1cm;margin:.04cm 0">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between">
+            <div>
+              <div class="prb">1.18</div>
+              <div class="prc">↓ -0.00 (-0.04%)</div>
+            </div>
+            <div style="background:#3b82f6;color:#fff;font-size:6pt;padding:.04cm .1cm;border-radius:2cm;font-family:'Fira Mono',monospace">✨ Analyze</div>
+          </div>
+        </div>
+        <div class="ca">
+          <div class="cb" style="height:55%;background:#4ade80"></div><div class="cb" style="height:44%;background:#f87171"></div>
+          <div class="cb" style="height:70%;background:#4ade80"></div><div class="cb" style="height:60%;background:#4ade80"></div>
+          <div class="cb" style="height:82%;background:#f87171"></div><div class="cb" style="height:95%;background:#f87171"></div>
+          <div class="cb" style="height:74%;background:#f87171"></div><div class="cb" style="height:54%;background:#4ade80"></div>
+          <div class="cb" style="height:66%;background:#4ade80"></div><div class="cb" style="height:50%;background:#f87171"></div>
+          <div class="cb" style="height:40%;background:#4ade80"></div><div class="cb" style="height:58%;background:#f87171"></div>
+          <div class="cb" style="height:47%;background:#4ade80"></div><div class="cb" style="height:53%;background:#f87171"></div>
+          <div class="cb" style="height:44%;background:#4ade80"></div><div class="cb" style="height:62%;background:#f87171"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:4.5pt;color:#6b7280;font-family:'Fira Mono',monospace;margin-bottom:.04cm"><span>04-16 05:00</span><span>04-17 11:00</span></div>
+        <div class="tf">
+          <div class="tfb">1 Min</div><div class="tfb">5 Min</div><div class="tfb">15 Mi</div>
+          <div class="tfb">30 Mi</div><div class="tfb ac">1 Hour</div>
+          <div class="tfb">4 Hrs</div><div class="tfb">1 Day</div><div class="tfb">1 Wk</div>
+        </div>
+      </div>
+    </div>
+    <div class="ip">
+      <h2>وصف الواجهة</h2>
+      <div class="ib"><p>شاشة التفاصيل هي أهم شاشات التطبيق، تُعرَض عند الضغط على أي رمز مالي وتحتوي الرسم البياني التفاعلي.</p></div>
+      <h3>العناصر الرئيسية:</h3>
+      <ul>
+        <li><strong>تبويبان:</strong> Overview (نظرة عامة + رسم بياني) وNews (أخبار الرمز).</li>
+        <li><strong>بطاقة السعر:</strong> القيمة الحالية مع نسبة التغيّر ولونه الدلالي.</li>
+        <li><strong>زر Analyze:</strong> يُطلِق توليد الإشارة يدوياً في وضع Manual.</li>
+        <li><strong>الرسم البياني:</strong> شموع يابانية تفاعلية تدعم التكبير والتمرير.</li>
+        <li><strong>شريط الإطارات الزمنية:</strong> 8 خيارات من دقيقة حتى أسبوع كامل.</li>
+      </ul>
+      <h3>الوظيفة التقنية:</h3>
+      <p>تُجلَب الشموع عبر <code style="font-family:'Fira Mono',monospace;direction:ltr">candlesProvider</code> كل 5 ثوانٍ من <code style="font-family:'Fira Mono',monospace;direction:ltr">GET /candles</code> وتُرسَم بمكتبة <code style="font-family:'Fira Mono',monospace;direction:ltr">interactive_chart</code>.</p>
+    </div>
+  </div>
+  <p class="cap">شكل 6.5 — شاشة تفاصيل EUR/USD (تبويب Overview) مع الرسم البياني التفاعلي</p>
+  <div class="pn">92</div>
+</div>
+
+</body>
+</html>

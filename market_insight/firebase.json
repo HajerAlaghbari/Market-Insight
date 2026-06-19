@@ -1,0 +1,25 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "market-insight-300c0",
+          "appId": "1:156244906325:android:6a4b9a7d369239a9e39fdc",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "market-insight-300c0",
+          "configurations": {
+            "android": "1:156244906325:android:6a4b9a7d369239a9e39fdc",
+            "ios": "1:156244906325:ios:84ff4314d45fd844e39fdc"
+          }
+        }
+      }
+    }
+  }
+}

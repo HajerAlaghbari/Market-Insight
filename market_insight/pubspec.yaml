@@ -1,0 +1,76 @@
+name: market_insight
+description: "Market Insight Trading App"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  http: ^0.13.6
+  cupertino_icons: ^1.0.8
+
+  # Navigation
+  go_router: ^14.2.7
+
+  # State Management
+  flutter_riverpod: ^2.5.1
+
+  # Charts (Candlestick)
+  interactive_chart: ^0.3.6
+
+  # Date formatting
+  # intl: ^0.20.2
+  intl: ^0.19.0
+
+  # URL launcher for news links
+  url_launcher: ^6.2.5
+
+  # Cached images for news thumbnails
+  cached_network_image: ^3.3.1
+
+  # Local storage for favorites
+  shared_preferences: ^2.2.2
+
+  # Firebase
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.0
+  cloud_firestore: ^5.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+
+  # App icon
+  flutter_launcher_icons: ^0.13.1
+
+  # Splash screen
+  flutter_native_splash: ^2.4.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/images/logo.png
+
+flutter_native_splash:
+  color: "#080B1A"
+  image: assets/images/logo.png
+  android: true
+  ios: true
+

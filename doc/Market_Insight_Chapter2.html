@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الفصل الثاني — Market Insight</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4;direction:rtl}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .page{margin:0!important;width:21cm!important;min-height:29.7cm!important;
+    page-break-after:always;border:4px double #7B3F00!important;box-shadow:none!important}
+}
+.page{
+  width:21cm;min-height:29.7cm;background:#fff;
+  margin:1cm auto;padding:2cm 2.2cm 2cm 2cm;
+  border:4px double #7B3F00;
+  box-shadow:0 4px 24px rgba(0,0,0,.18);position:relative;
+}
+h1{font-size:18pt;font-weight:700;color:#fff;background:#7B3F00;
+  padding:.25cm .5cm;margin-bottom:.5cm;text-align:center;border-radius:2px}
+h2{font-size:14pt;font-weight:700;color:#7B3F00;border-right:5px solid #7B3F00;
+  padding-right:.3cm;margin:.5cm 0 .3cm}
+h3{font-size:12.5pt;font-weight:700;color:#5a2e00;padding-right:.6cm;
+  margin:.35cm 0 .2cm;position:relative}
+h3::before{content:"◆";position:absolute;right:.1cm;color:#7B3F00;font-size:8pt;top:.1cm}
+p{font-size:13.5pt;line-height:2;text-align:justify;margin-bottom:.25cm;color:#222}
+ul,ol{margin:.1cm .5cm .3cm 0;padding-right:.6cm;font-size:13.5pt;line-height:2;color:#222}
+li{margin-bottom:.1cm;text-align:justify}
+table{width:100%;border-collapse:collapse;margin:.35cm 0;font-size:11.5pt}
+th{background:#7B3F00;color:#fff;padding:.2cm .3cm;border:1px solid #7B3F00;
+  text-align:center;font-size:12pt}
+td{padding:.18cm .3cm;border:1px solid #ccc;text-align:center}
+tr:nth-child(even){background:#fdf5ec}
+.cap{text-align:center;font-size:11pt;color:#555;margin:.08cm 0 .4cm;font-style:italic}
+.pnum{position:absolute;bottom:.6cm;left:50%;transform:translateX(-50%);
+  font-size:11pt;color:#7B3F00;font-weight:700;border-top:1px solid #7B3F00;
+  padding-top:.1cm;width:1.5cm;text-align:center}
+.note-box{background:#fdf5ec;border-right:4px solid #7B3F00;
+  padding:.25cm .4cm;margin:.3cm 0;border-radius:2px}
+.note-box p{margin:0;font-size:12.5pt}
+.ch-page{display:flex;align-items:center;justify-content:center;
+  min-height:25cm;flex-direction:column;gap:.5cm}
+.ch-number{font-size:22pt;color:#7B3F00;font-weight:700;letter-spacing:2px}
+.ch-title-ar{font-size:26pt;font-weight:700;color:#3d1f00;text-align:center;line-height:1.6}
+.ch-line{width:6cm;height:3px;background:linear-gradient(90deg,transparent,#7B3F00,transparent);margin:.2cm 0}
+.sep{border:none;border-top:1px dashed #d4a870;margin:.4cm 0}
+/* بطاقة تقنية */
+.tech-card{background:#fdf5ec;border:1px solid #d4a870;border-radius:4px;
+  padding:.25cm .4cm;margin-bottom:.2cm;display:flex;gap:.25cm;align-items:flex-start}
+.tech-icon{font-size:16pt;flex-shrink:0;margin-top:.1cm}
+.tech-body{}
+.tech-name{font-size:12.5pt;font-weight:700;color:#7B3F00;margin-bottom:.05cm}
+.tech-desc{font-size:12.5pt;color:#333;line-height:1.8}
+/* بطاقة تطبيق مشابه */
+.app-card{background:#fdf5ec;border:1px solid #d4a870;border-radius:4px;
+  padding:.2cm .35cm;margin-bottom:.18cm;border-right:4px solid #7B3F00}
+.app-name{font-size:13pt;font-weight:700;color:#7B3F00;margin-bottom:.06cm}
+.app-desc{font-size:12.5pt;color:#333;line-height:1.8}
+.app-compare{font-size:11.5pt;color:#7B3F00;margin-top:.06cm;font-style:italic}
+/* بطاقة دراسة سابقة */
+.study-card{background:#fff;border:1px solid #d4a870;border-right:5px solid #7B3F00;
+  border-radius:4px;padding:.25cm .4cm;margin-bottom:.25cm}
+.study-title{font-size:12.5pt;font-weight:700;color:#3d1f00;margin-bottom:.08cm}
+.study-meta{font-size:11pt;color:#888;margin-bottom:.08cm}
+.study-body{font-size:12.5pt;color:#333;line-height:1.8}
+.study-gap{font-size:12pt;color:#7B3F00;margin-top:.1cm;font-weight:700}
+/* مؤشر فني */
+.indicator-row{display:flex;gap:.15cm;margin-bottom:.12cm;align-items:flex-start}
+.ind-name{background:#7B3F00;color:#fff;font-size:10pt;padding:.05cm .2cm;
+  border-radius:2px;white-space:nowrap;flex-shrink:0;min-width:2cm;text-align:center;margin-top:.05cm}
+.ind-desc{font-size:12.5pt;color:#333;line-height:1.8}
+</style>
+</head>
+<body>
+
+<!-- ══════════ غلاف الفصل الثاني ══════════ -->
+<div class="page">
+  <div class="ch-page">
+    <div class="ch-line"></div>
+    <div class="ch-number">الفصل الثاني</div>
+    <div class="ch-title-ar">الإطار النظري<br>والدراسات السابقة</div>
+    <div class="ch-line"></div>
+    <div style="margin-top:.5cm;text-align:center;font-size:11.5pt;color:#888;line-height:2.4">
+      <div>2.1 &nbsp; المقدمة</div>
+      <div>2.2 &nbsp; الأسس النظرية لتحليل الأسواق المالية</div>
+      <div>2.3 &nbsp; خوارزميات الذكاء الاصطناعي المستخدمة</div>
+      <div>2.4 &nbsp; التقنيات والأدوات المستخدمة</div>
+      <div>2.5 &nbsp; التطبيقات المشابهة</div>
+      <div>2.6 &nbsp; الدراسات السابقة</div>
+    </div>
+  </div>
+  <div class="pnum">8</div>
+</div>
+
+<!-- ══════════ صفحة 2.1 + 2.2 ══════════ -->
+<div class="page">
+  <h1>الفصل الثاني: الإطار النظري والدراسات السابقة</h1>
+
+  <h2>2.1 المقدمة:</h2>
+  <p>
+    نستعرض في هذا الفصل المنظومة المعرفية والتقنية التي يقوم عليها نظام Market Insight، بدءاً من الأسس النظرية للتحليل الفني للأسواق المالية، مروراً بخوارزميات التعلم الآلي ومعالجة اللغة الطبيعية التي وظّفناها في بناء نماذجنا، وصولاً إلى الأدوات والأطر التقنية التي اعتمدنا عليها في التطوير. كما نستعرض التطبيقات المشابهة الموجودة في السوق ونُبيّن الفجوة التي جاء نظامنا لسدّها، وذلك استناداً إلى دراسات علمية محكّمة.
+  </p>
+
+  <hr class="sep">
+  <h2>2.2 الأسس النظرية لتحليل الأسواق المالية:</h2>
+  <p>
+    تعتمد منهجيتنا في تحليل الأسواق على ركيزتين نظريتين متكاملتين: <b>التحليل الفني</b> الذي يستند إلى بيانات الأسعار والحجم التاريخية لاستشراف الاتجاهات المستقبلية، و<b>تحليل المشاعر الإخبارية</b> الذي يُعالج البيانات النصية لاستخلاص الأثر النفسي للأخبار على السوق.
+  </p>
+
+  <h3>2.2.1 المؤشرات الفنية (التحليل الفني):</h3>
+  <p>
+    يعتمد التحليل الفني على فرضية أن حركة الأسعار تعكس جميع المعلومات المتاحة، وأن الأنماط التاريخية تميل إلى التكرار. استخدمنا في نظامنا المؤشرات الفنية التالية كميزات إدخال لنموذج XGBoost:
+  </p>
+  <div class="indicator-row">
+    <div class="ind-name">EMA</div>
+    <div class="ind-desc"><b>المتوسط المتحرك الأسي (Exponential Moving Average):</b> يُعطي وزناً أكبر للبيانات الحديثة مقارنةً بالمتوسط البسيط. احتسبنا ثلاثة مستويات (EMA-20 / EMA-50 / EMA-200) مع نسبة مسافة السعر الحالي عنها، ما يوفر إشارات عن الاتجاه قصير ومتوسط وبعيد المدى.</div>
+  </div>
+  <div class="indicator-row">
+    <div class="ind-name">RSI-14</div>
+    <div class="ind-desc"><b>مؤشر القوة النسبية (Relative Strength Index):</b> يقيس زخم السعر على مقياس 0-100. القراءات فوق 70 تُشير إلى ذروة شراء، وتحت 30 إلى ذروة بيع. يُستخدم في نموذجنا للكشف عن حالات التشبع.</div>
+  </div>
+  <div class="indicator-row">
+    <div class="ind-name">MACD</div>
+    <div class="ind-desc"><b>تقارب/تباعد المتوسطات المتحركة:</b> يتألف من خط MACD (الفرق بين EMA-12 وEMA-26)، وخط الإشارة (EMA-9 للـ MACD)، والهيستوجرام. أدرجنا الثلاثة كميزات مستقلة في النموذج.</div>
+  </div>
+  <div class="indicator-row">
+    <div class="ind-name">ATR-14</div>
+    <div class="ind-desc"><b>متوسط النطاق الحقيقي (Average True Range):</b> يقيس تذبذب السوق. يُستخدم في نظامنا لتحديد مستويات وقف الخسارة (SL = entry ± ATR×2.0) ونقاط جني الأرباح الثلاث (TP1/TP2/TP3).</div>
+  </div>
+  <div class="indicator-row">
+    <div class="ind-name">Stochastic</div>
+    <div class="ind-desc"><b>المذبذب العشوائي (Stochastic K/D):</b> يُقارن سعر الإغلاق بنطاق التذبذب خلال فترة زمنية محددة. أدرجنا كلاً من خط %K وخط %D كميزتين مستقلتين لالتقاط إشارات الزخم.</div>
+  </div>
+  <div class="indicator-row">
+    <div class="ind-name">Log Return</div>
+    <div class="ind-desc"><b>العائد اللوغاريتمي:</b> يقيس نسبة التغيّر النسبي للسعر بين شمعتين متتاليتين، ويُستخدم كميزة لالتقاط اتجاه الزخم اللحظي.</div>
+  </div>
+  <div class="indicator-row">
+    <div class="ind-name">الوقت</div>
+    <div class="ind-desc"><b>ترميز الوقت الدوري (Hour sin/cos — Day sin/cos):</b> تحويل ساعة اليوم ويوم الأسبوع إلى قيم دورية باستخدام دوال sin/cos، للالتقاط بأنماط التداول المرتبطة بالتوقيت.</div>
+  </div>
+
+  <h3>2.2.2 الطرق التقليدية لتحليل الأسواق:</h3>
+  <p>
+    قبل ظهور نماذج الذكاء الاصطناعي، كان المتداولون يعتمدون على أساليب يدوية في التحليل يمكن تصنيفها في نوعين رئيسيين:
+  </p>
+  <ul>
+    <li><b>التحليل الفني اليدوي:</b> يعتمد على قراءة أنماط الشموع اليابانية (مثل Hammer، Engulfing، Doji) والمستويات السعرية الحرجة (الدعم والمقاومة)، وهو أسلوب يستغرق وقتاً ويخضع لتحيّز المحلل الشخصي.</li>
+    <li><b>التحليل الأساسي:</b> يعتمد على دراسة البيانات الاقتصادية (تقارير الأرباح، أسعار الفائدة، بيانات التضخم) وتأثيرها على الأسعار، وهو يتطلب خبرة عميقة وجهداً كبيراً في جمع البيانات وتفسيرها.</li>
+  </ul>
+  <p>
+    تتمثّل الفجوة التي سدّها نظامنا في أتمتة هذين النوعين من التحليل: فنموذج XGBoost الفني يُحسب المؤشرات ويُولّد الإشارات آلياً، فيما يُعالج نموذج TF-IDF+XGBoost الأخبار النصية بديلاً عن التحليل الأساسي اليدوي.
+  </p>
+  <div class="pnum">9</div>
+</div>
+
+<!-- ══════════ صفحة 2.3 ══════════ -->
+<div class="page">
+  <h2>2.3 خوارزميات الذكاء الاصطناعي المستخدمة:</h2>
+
+  <h3>2.3.1 مفهوم التعلم الآلي (Machine Learning):</h3>
+  <p>
+    التعلم الآلي هو فرع من فروع الذكاء الاصطناعي يُمكّن الأنظمة من التعلم من البيانات وتحسين أدائها دون برمجة صريحة. يندرج تحته ثلاثة أنواع: التعلم الخاضع للإشراف (Supervised)، وغير الخاضع للإشراف (Unsupervised)، والتعلم المعزّز (Reinforcement). اعتمدنا في نظامنا على <b>التعلم الخاضع للإشراف</b> حيث يتعلم النموذج من بيانات مُصنّفة مسبقاً (الإشارة التاريخية الصحيحة لكل شمعة).
+  </p>
+
+  <h3>2.3.2 خوارزمية XGBoost:</h3>
+  <p>
+    <b>XGBoost (Extreme Gradient Boosting)</b> هي خوارزمية تعلم آلي تُبنى على مبدأ التعزيز التدريجي (Gradient Boosting)؛ إذ تُنشئ سلسلة من أشجار القرار حيث يُصحح كل شجرة أخطاء سابقتها. اخترناها في نظامنا لمزاياها المتعددة:
+  </p>
+  <ul>
+    <li>أداء عالٍ على البيانات الجدولية (Tabular Data) مقارنةً بالشبكات العصبية.</li>
+    <li>سرعة تدريب واستنتاج مناسبة للتطبيقات اللحظية.</li>
+    <li>قدرة على التعامل مع القيم المفقودة (Missing Values) بشكل مدمج.</li>
+    <li>دعم التوازي في المعالجة مما يُسرّع التدريب على بيانات كبيرة.</li>
+    <li>متاحة مجاناً وتعمل على معالجات CPU عادية دون الحاجة لـ GPU.</li>
+  </ul>
+  <p>
+    درّبنا في نظامنا <b>نموذجين مستقلين</b> بـ XGBoost: الأول ثلاثي الفئات (BUY=2 / HOLD=1 / SELL=0) للتحليل الفني، والثاني ثنائي الفئات (Bullish=1 / Bearish=0) لتحليل مشاعر الأخبار، ثم نموذج هجين ثالث يدمج مخرجاتهما.
+  </p>
+
+  <h3>2.3.3 معالجة اللغة الطبيعية وتقنية TF-IDF:</h3>
+  <p>
+    <b>معالجة اللغة الطبيعية (NLP)</b> هي مجال في الذكاء الاصطناعي يُعنى بتمكين الحاسوب من فهم النصوص البشرية وتحليلها. وظّفناها في نظامنا لتحليل مشاعر الأخبار المالية الإنجليزية.
+  </p>
+  <p>
+    <b>TF-IDF (Term Frequency – Inverse Document Frequency)</b> هو أسلوب رياضي لتحويل النصوص إلى متجهات رقمية قابلة للإدخال في نماذج التعلم الآلي. يُحسب وفق المعادلة:
+  </p>
+  <div class="note-box">
+    <p style="direction:ltr;text-align:center;font-family:monospace;font-size:12pt">
+      TF-IDF(t, d) = TF(t,d) × log(N / DF(t))
+    </p>
+    <p style="font-size:11.5pt;margin-top:.1cm">
+      حيث TF(t,d) = تكرار الكلمة t في المستند d، وN = إجمالي المستندات، وDF(t) = عدد المستندات التي تحتوي على t.
+    </p>
+  </div>
+  <p>
+    طبّقنا TF-IDF في نظامنا على عناوين وملخصات الأخبار المالية بإنتاج <b>11,000 ميزة نصية</b> (8,000 للعناوين + 3,000 للملخصات) مُدرّبة على أكثر من 100,000 خبر مالي.
+  </p>
+
+  <h3>2.3.4 النمذجة الهجينة (Hybrid Model):</h3>
+  <p>
+    النموذج الهجين هو مقاربة تجمع مخرجات نموذجين أو أكثر لإنتاج تنبؤ أدق من كل منهما منفرداً. بنينا نموذجنا الهجين <b>HybridSignalGenerator</b> وفق آلية دمج الميزات (Feature-level Fusion)، إذ ندمج 15 ميزة فنية مع 4 ميزات إخبارية (sentiment_score، news_confidence، news_impact، article_count) في متجه واحد مكوّن من 19 ميزة يُغذَّى مباشرةً لنموذج XGBoost ثلاثي الفئات، مما يجعل النموذج يتعلم التفاعل بين الإشارات الفنية والإخبارية تلقائياً.
+  </p>
+  <table>
+    <tr><th>النموذج</th><th>المدخلات</th><th>المخرجات</th><th>دقة الاختبار</th></tr>
+    <tr><td>XGBoost الفني</td><td>15 مؤشر فني (5000 شمعة)</td><td>BUY / SELL</td><td>65-72%</td></tr>
+    <tr><td>TF-IDF + XGBoost</td><td>11,000 ميزة نصية</td><td>Bullish / Bearish</td><td>F1 = 0.78</td></tr>
+    <tr><td>النموذج الهجين</td><td>19 ميزة (فنية + إخبارية)</td><td>BUY / SELL / HOLD</td><td>72.1%</td></tr>
+  </table>
+  <p class="cap">جدول 2.1 مقارنة نماذج الذكاء الاصطناعي في النظام</p>
+
+  <div class="pnum">10</div>
+</div>
+
+<!-- ══════════ صفحة 2.4 — التقنيات ══════════ -->
+<div class="page">
+  <h2>2.4 التقنيات والأدوات المستخدمة:</h2>
+
+  <h3>2.4.1 لغة البرمجة Python:</h3>
+  <div class="tech-card">
+    <div class="tech-icon">🐍</div>
+    <div class="tech-body">
+      <div class="tech-name">Python 3.10+</div>
+      <div class="tech-desc">
+        اخترنا Python لغةً أساسية للخادم الخلفي لكونها اللغة الأوسع انتشاراً في مجال الذكاء الاصطناعي والبيانات، وتوفر مكتبات غنية لكل ما احتجناه: تحليل البيانات (pandas، numpy)، التعلم الآلي (scikit-learn، XGBoost)، وبناء APIs (FastAPI). وظّفناها في كل مكونات الواجهة الخلفية بدءاً من هندسة المؤشرات الفنية وصولاً إلى التداول الوهمي.
+      </div>
+    </div>
+  </div>
+
+  <h3>2.4.2 أطر عمل ومكتبات الذكاء الاصطناعي:</h3>
+  <div class="tech-card">
+    <div class="tech-icon">🤖</div>
+    <div class="tech-body">
+      <div class="tech-name">XGBoost 2.x + scikit-learn 1.3+</div>
+      <div class="tech-desc">استخدمنا XGBoost لبناء نماذج التداول والأخبار والهجين، وscikit-learn لمعالجة البيانات (StandardScaler، TfidfVectorizer، train_test_split، classification_report). بلغ إجمالي الميزات المُعالَجة 19 ميزة فنية-إخبارية لكل نقطة بيانات.</div>
+    </div>
+  </div>
+  <div class="tech-card">
+    <div class="tech-icon">📊</div>
+    <div class="tech-body">
+      <div class="tech-name">pandas 2.x + numpy</div>
+      <div class="tech-desc">استخدمنا pandas لمعالجة DataFrames الخاصة ببيانات الشموع وقواعد الأخبار (أكثر من 100,000 سجل)، ونظام حساب المؤشرات الفنية المتراكمة. يعمل numpy للحسابات الرياضية وتهيئة المصفوفات للنماذج.</div>
+    </div>
+  </div>
+
+  <h3>2.4.3 إطار عمل تطوير التطبيقات (Flutter):</h3>
+  <div class="tech-card">
+    <div class="tech-icon">💙</div>
+    <div class="tech-body">
+      <div class="tech-name">Flutter 3.x</div>
+      <div class="tech-desc">اخترنا Flutter إطاراً لتطوير التطبيق لكونه يُنتج تطبيقاً واحداً يعمل على Android وiOS من كود مصدري واحد، مع أداء عالٍ (مُجمَّع لكود native) وواجهات غنية. يُوفّر Widgets قابلة للتخصيص الكامل مما مكّننا من تصميم المخططات والبطاقات بالتفصيل. وظّفنا فيه مكتبة interactive_chart للشموع اليابانية التفاعلية.</div>
+    </div>
+  </div>
+
+  <h3>2.4.4 هندسة النظام وهيكلية API (FastAPI):</h3>
+  <div class="tech-card">
+    <div class="tech-icon">⚡</div>
+    <div class="tech-body">
+      <div class="tech-name">FastAPI + REST API Architecture</div>
+      <div class="tech-desc">
+        بنينا الـ Backend بإطار FastAPI لأنه الأسرع بين أطر Python (مبني على Starlette وPydantic)، ويدعم البرمجة غير المتزامنة (async/await) ضرورياً لتشغيل bots البث في خيوط خلفية. اعتمدنا معمارية REST API حيث يُقدّم الخادم 12+ Endpoint تتواصل معها التطبيق عبر HTTP/JSON. يعمل الخادم على المنفذ 8000 وينشر على Render.com.
+      </div>
+    </div>
+  </div>
+
+  <h3>2.4.5 لغة Dart:</h3>
+  <div class="tech-card">
+    <div class="tech-icon">🎯</div>
+    <div class="tech-body">
+      <div class="tech-name">Dart 3.3+</div>
+      <div class="tech-desc">Dart هي لغة البرمجة التي يعمل عليها Flutter، طوّرتها Google لتكون مُحسَّنة لبناء واجهات المستخدم. تتميز بكتابة صارمة (Strong Typing) ودعم البرمجة غير المتزامنة (Future/async/await) الذي استخدمناه في جميع استدعاءات الـ API والـ Firebase. وظّفنا ميزة Null Safety الكاملة لمنع أخطاء القيم الفارغة في بيانات الأسعار.</div>
+    </div>
+  </div>
+  <div class="pnum">11</div>
+</div>
+
+<!-- ══════════ صفحة 2.4 تتمة ══════════ -->
+<div class="page">
+
+  <h3>2.4.6 Firebase وFirestore:</h3>
+  <div class="tech-card">
+    <div class="tech-icon">🔥</div>
+    <div class="tech-body">
+      <div class="tech-name">Firebase Auth + Cloud Firestore (NoSQL)</div>
+      <div class="tech-desc">
+        اخترنا Firebase منصةً سحابيةً من Google لإدارة المصادقة وقاعدة البيانات. يوفّر <b>Firebase Auth</b> تسجيل الدخول بالبريد وكلمة المرور مع التحقق عبر البريد الإلكتروني وإعادة تعيين كلمة المرور. أما <b>Firestore</b> فهو قاعدة بيانات NoSQL سحابية استخدمناها لحفظ سجلات إشارات التداول (signal_logs)، بيانات المفضلة (favorites)، ومحافظ التداول الوهمي. تتميز بالمزامنة الفورية (real-time sync) والتوسعية العالية.
+      </div>
+    </div>
+  </div>
+
+  <h3>2.4.7 Jupyter Notebook:</h3>
+  <div class="tech-card">
+    <div class="tech-icon">📓</div>
+    <div class="tech-body">
+      <div class="tech-name">Jupyter Notebook</div>
+      <div class="tech-desc">استخدمنا Jupyter Notebook في مراحل البحث والتطوير الأولى لاستكشاف البيانات وتجربة نماذج التعلم الآلي بشكل تفاعلي. أجرينا فيه التجارب الأولية على بيانات الأسعار التاريخية، ضبطنا معاملات XGBoost (n_estimators، max_depth، learning_rate)، وحللنا توزيع بيانات الأخبار قبل دمج الكود في الخادم الرئيسي.</div>
+    </div>
+  </div>
+
+  <h3>2.4.8 مكتبة ccxt (Binance API):</h3>
+  <div class="tech-card">
+    <div class="tech-icon">🪙</div>
+    <div class="tech-body">
+      <div class="tech-name">ccxt (CryptoCurrency eXchange Trading Library)</div>
+      <div class="tech-desc">
+        مكتبة Python مفتوحة المصدر تُوحّد واجهات 100+ منصة تداول عملات رقمية في API واحد. استخدمناها للاتصال بـ Binance لجلب بيانات OHLCV التاريخية (5000 شمعة) وأسعار bid/ask اللحظية. تُوفّر دالة <code>exchange.fetch_ohlcv()</code> لجلب الشموع التاريخية ودالة <code>exchange.fetch_ticker()</code> للسعر اللحظي.
+      </div>
+    </div>
+  </div>
+
+  <h3>2.4.9 مكتبة yfinance (Yahoo Finance):</h3>
+  <div class="tech-card">
+    <div class="tech-icon">📈</div>
+    <div class="tech-body">
+      <div class="tech-name">yfinance</div>
+      <div class="tech-desc">
+        مكتبة Python غير رسمية تُتيح جلب بيانات Yahoo Finance مجاناً. استخدمناها لجلب بيانات الأسعار للمعادن (GC=F، SI=F، PL=F)، العملات الأجنبية (EURUSD=X)، والأسهم (AAPL، AMZN، TSLA). كما استخدمنا <code>yf.Ticker(symbol).news</code> لجلب آخر الأخبار المرتبطة بكل رمز مالي كل 5 دقائق.
+      </div>
+    </div>
+  </div>
+
+  <h3>2.4.10 مكتبة Flutter Riverpod:</h3>
+  <div class="tech-card">
+    <div class="tech-icon">⚙️</div>
+    <div class="tech-body">
+      <div class="tech-name">Flutter Riverpod 2.x</div>
+      <div class="tech-desc">
+        Riverpod هو إطار إدارة الحالة (State Management) الذي اعتمدناه في تطبيق Flutter. يُوفّر نظام Providers يعمل خارج شجرة الـ Widgets مما يُقلّل المشكلات المرتبطة بإعادة البناء غير الضرورية. استخدمناه لإدارة: أسعار السوق اللحظية (تحديث كل ثانية)، بيانات الشموع (كل 5 ثوانٍ)، وحالة المصادقة والمفضلة.
+      </div>
+    </div>
+  </div>
+
+  <h3>2.4.11 مكتبة GoRouter:</h3>
+  <div class="tech-card">
+    <div class="tech-icon">🗺️</div>
+    <div class="tech-body">
+      <div class="tech-name">GoRouter 12.x</div>
+      <div class="tech-desc">
+        GoRouter هو إطار التنقل بين الشاشات في Flutter. اعتمدناه لإدارة 10+ مسارات في التطبيق مع دعم Deep Links ومنطق التوجيه الشرطي (redirect). ننفّذ من خلاله تدفق المصادقة: إذا لم يكن المستخدم مسجلاً يُوجَّه لـ /login، وإن كان بريده غير موثّق يُوجَّه لـ /verify-email، وإن كان موثقاً يدخل ShellRoute الرئيسي.
+      </div>
+    </div>
+  </div>
+
+  <div class="pnum">12</div>
+</div>
+
+<!-- ══════════ صفحة 2.5 — التطبيقات المشابهة ══════════ -->
+<div class="page">
+  <h2>2.5 التطبيقات المشابهة:</h2>
+  <p>
+    استعرضنا خلال مرحلة التحليل أبرز التطبيقات المتاحة في السوق والمشابهة لنظامنا، وحللنا مزاياها وقيودها لاستخلاص الفجوة التي يسدّها Market Insight:
+  </p>
+
+  <div class="app-card">
+    <div class="app-name">📊 TradingView</div>
+    <div class="app-desc">منصة تداول وتحليل فني شهيرة تُوفّر رسوماً بيانية احترافية وأدوات رسم متقدمة ومؤشرات فنية لا حصر لها. تدعم مشاركة الأفكار التحليلية بين المتداولين وتوفر تنبيهات الأسعار.</div>
+    <div class="app-compare">🔍 الفجوة مقارنةً بنظامنا: لا تقدّم إشارات ذكاء اصطناعي تلقائية، ولا تحليل مشاعر أخبار مدمج، ولا تداول وهمي، وتفتقر للدعم الكامل للعربية.</div>
+  </div>
+
+  <div class="app-card">
+    <div class="app-name">🌐 Investing.com</div>
+    <div class="app-desc">منصة مالية شاملة تُوفّر أسعاراً لحظية ورسوماً بيانية وأخباراً مالية وتقويماً اقتصادياً. تدعم اللغة العربية وتغطي مئات الأصول المالية حول العالم.</div>
+    <div class="app-compare">🔍 الفجوة: توفر الأخبار والبيانات لكنها لا تُحلّل المشاعر آلياً، ولا تُولّد إشارات ذكاء اصطناعي، ولا نظام تداول وهمي مدمج.</div>
+  </div>
+
+  <div class="app-card">
+    <div class="app-name">🪙 تطبيق Binance</div>
+    <div class="app-desc">التطبيق الرسمي لأكبر منصة تداول عملات رقمية في العالم. يُوفّر أسعاراً لحظية ورسوماً بيانية وتداولاً فعلياً، مع ميزات متقدمة للمتداولين المحترفين.</div>
+    <div class="app-compare">🔍 الفجوة: مقتصر على العملات الرقمية فقط، لا يدعم المعادن أو الأسهم أو الفوركس، ولا يُوفّر إشارات تحليلية ذكية أو تحليل أخبار.</div>
+  </div>
+
+  <div class="app-card">
+    <div class="app-name">📱 Yahoo Finance</div>
+    <div class="app-desc">تطبيق شامل لأسعار الأسهم والعملات والسلع مع أخبار مالية وبيانات مالية للشركات. يُستخدم على نطاق واسع لمتابعة المحافظ الاستثمارية.</div>
+    <div class="app-compare">🔍 الفجوة: يعرض الأخبار ولكن دون تصنيف مشاعر آلي، لا يُوفّر إشارات تداول ذكية، ولا رسوماً بيانية تفاعلية متقدمة، ولا دعم للعربية.</div>
+  </div>
+
+  <div class="app-card">
+    <div class="app-name">📉 MetaTrader 5 (MT5)</div>
+    <div class="app-desc">منصة تداول احترافية تُستخدم بشكل واسع في الفوركس والسلع. تدعم تداولاً آلياً عبر Expert Advisors (EAs) والاختبار التاريخي للاستراتيجيات (Backtesting).</div>
+    <div class="app-compare">🔍 الفجوة: تتطلب خبرة تقنية عالية، واجهة معقدة لا تناسب المبتدئين، لا تُوفّر تحليل مشاعر أخبار، ولا دعم للغة العربية بشكل فعّال.</div>
+  </div>
+
+  <div class="app-card">
+    <div class="app-name">🤝 eToro</div>
+    <div class="app-desc">منصة تداول اجتماعي تُتيح نسخ صفقات المتداولين المحترفين (CopyTrading). تدعم أسواقاً متعددة مع واجهة بسيطة للمبتدئين.</div>
+    <div class="app-compare">🔍 الفجوة: تعتمد على نسخ صفقات بشرية لا نماذج ذكاء اصطناعي، لا تُوفّر تحليلاً فنياً مفصلاً أو تحليل أخبار مدمج.</div>
+  </div>
+
+  <div class="app-card">
+    <div class="app-name">🇺🇸 Robinhood</div>
+    <div class="app-desc">تطبيق تداول أمريكي يُتيح شراء الأسهم والعملات الرقمية بدون عمولة. يُركّز على البساطة والسهولة في الاستخدام ويستهدف جيل الشباب.</div>
+    <div class="app-compare">🔍 الفجوة: محدود جغرافياً (الولايات المتحدة فقط)، لا يدعم العربية، لا يُوفّر تحليلاً ذكياً أو أخباراً مُصنَّفة بالمشاعر.</div>
+  </div>
+
+  <p style="margin-top:.2cm">
+    يُلخّص الجدول التالي مقارنة شاملة بين هذه التطبيقات ونظام Market Insight:
+  </p>
+  <table style="font-size:10.5pt">
+    <tr>
+      <th>الميزة</th>
+      <th>Market Insight</th>
+      <th>TradingView</th>
+      <th>Investing</th>
+      <th>Binance</th>
+      <th>MT5</th>
+    </tr>
+    <tr><td>إشارات ذكاء اصطناعي</td><td style="color:green;font-weight:700">✅</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️ جزئي</td></tr>
+    <tr><td>تحليل مشاعر الأخبار</td><td style="color:green;font-weight:700">✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+    <tr><td>تداول وهمي مدمج</td><td style="color:green;font-weight:700">✅</td><td>✅ محدود</td><td>❌</td><td>❌</td><td>✅</td></tr>
+    <tr><td>دعم اللغة العربية</td><td style="color:green;font-weight:700">✅</td><td>⚠️ جزئي</td><td>✅</td><td>⚠️ جزئي</td><td>❌</td></tr>
+    <tr><td>4 فئات أصول مالية</td><td style="color:green;font-weight:700">✅</td><td>✅</td><td>✅</td><td>❌</td><td>⚠️ جزئي</td></tr>
+    <tr><td>مراجعة دقة التوصيات</td><td style="color:green;font-weight:700">✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+    <tr><td>بث أسعار لحظي (1 ثانية)</td><td style="color:green;font-weight:700">✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+  </table>
+  <p class="cap">جدول 2.2 مقارنة Market Insight بالتطبيقات المشابهة</p>
+
+  <div class="pnum">13</div>
+</div>
+
+<!-- ══════════ صفحة 2.6 — الدراسات السابقة ══════════ -->
+<div class="page">
+  <h2>2.6 الدراسات السابقة:</h2>
+  <p>
+    استعرضنا عدداً من الدراسات والأبحاث العلمية المحكّمة ذات الصلة بمجالي التنبؤ بأسعار الأصول المالية وتحليل مشاعر الأخبار، واستفدنا منها في توجيه قراراتنا التصميمية:
+  </p>
+
+  <div class="study-card">
+    <div class="study-title">1 — التنبؤ بأسعار الأسهم باستخدام XGBoost والمؤشرات الفنية</div>
+    <div class="study-meta">Chen, J., et al. — Journal of Financial Data Science — 2021</div>
+    <div class="study-body">
+      أجرى الباحثون تجارب على بيانات أسهم S&P 500 باستخدام XGBoost مع 12 مؤشراً فنياً (RSI، MACD، EMA، Bollinger Bands). حققوا دقة تنبؤية بلغت 68.5% وأثبتوا تفوق XGBoost على الشبكات العصبية التقليدية (LSTM، MLP) في البيانات الجدولية من حيث السرعة والدقة.
+    </div>
+    <div class="study-gap">📌 استفادتنا: اعتمدنا نفس النهج مع توسيع قاعدة المؤشرات إلى 15+ مؤشراً وتطبيقها على 4 فئات من الأصول بدلاً من الأسهم فقط.</div>
+  </div>
+
+  <div class="study-card">
+    <div class="study-title">2 — تحليل مشاعر أخبار التمويل وأثره على التنبؤ بالأسواق</div>
+    <div class="study-meta">Zhang, Y. & Liu, M. — IEEE Transactions on Neural Networks — 2022</div>
+    <div class="study-body">
+      استخدم الباحثان TF-IDF مع SVM لتحليل مشاعر أخبار Bloomberg وتحديد اتجاه مؤشر NASDAQ. حققا F1-Score بلغ 72% لكن دون تكامل مع التحليل الفني للأسعار في نموذج موحّد.
+    </div>
+    <div class="study-gap">📌 استفادتنا: استبدلنا SVM بـ XGBoost لتحسين الأداء، ودمجنا مخرجات تحليل الأخبار مع التحليل الفني في النموذج الهجين لتجاوز قيود الدراسة.</div>
+  </div>
+
+  <div class="study-card">
+    <div class="study-title">3 — نماذج هجينة لتوليد إشارات تداول في أسواق العملات الرقمية</div>
+    <div class="study-meta">Kim, S., et al. — Expert Systems with Applications — 2023</div>
+    <div class="study-body">
+      درس الباحثون دمج التحليل الفني مع تحليل مشاعر تويتر لتوليد إشارات تداول في سوق Bitcoin. استخدموا BERT لتحليل التغريدات وXGBoost للتحليل الفني، وحققوا تحسناً في الدقة بمقدار 8% مقارنةً بالنموذج الفني المنفرد.
+    </div>
+    <div class="study-gap">📌 استفادتنا: تبنّينا فكرة الدمج الهجيني لكننا استخدمنا TF-IDF بدلاً من BERT لسرعة الاستنتاج في الوقت الفعلي، ووسّعنا النطاق ليشمل 4 فئات من الأصول لا العملات الرقمية فحسب.</div>
+  </div>
+
+  <div class="study-card">
+    <div class="study-title">4 — تطبيق متنقل لتوليد إشارات تداول بالذكاء الاصطناعي</div>
+    <div class="study-meta">Al-Hassan, R. & Farhan, T. — International Journal of Computer Applications — 2022</div>
+    <div class="study-body">
+      قدّم الباحثان نموذجاً أولياً لتطبيق متنقل يعتمد على LSTM لتوليد إشارات تداول للأسهم السعودية. واجهوا تحديات في زمن الاستنتاج (>3 ثوانٍ) وصعوبة التحديث اللحظي للنموذج على الخادم.
+    </div>
+    <div class="study-gap">📌 استفادتنا: تجنّبنا استخدام LSTM بسبب بطء الاستنتاج واعتمدنا XGBoost الذي يُوفّر استنتاجاً بأقل من 1.5 ثانية، مع بنية الخادم المنفصل التي تُحدَّث فيها النماذج مستقلةً عن التطبيق.</div>
+  </div>
+
+  <div class="study-card">
+    <div class="study-title">5 — نظام تداول وهمي مدمج لتقييم استراتيجيات التداول الخوارزمي</div>
+    <div class="study-meta">Patel, V. & Singh, A. — Journal of Finance and Data Science — 2023</div>
+    <div class="study-body">
+      صمّم الباحثان نظاماً لمحاكاة التداول يأخذ في الحسبان الرسوم والانزلاق السعري والسيولة. أثبتوا أن إضافة رسوم واقعية (0.1%) وانزلاق سعري (0.02-0.05%) يُقلّل التفاؤل المبالغ فيه في تقييم الاستراتيجيات بنسبة تصل إلى 23%.
+    </div>
+    <div class="study-gap">📌 استفادتنا: اعتمدنا نفس هيكل الرسوم (0.1%) والانزلاق السعري (0.02-0.05%) في نظام التداول الوهمي، مما يجعل المحاكاة واقعيةً وذات قيمة تعليمية حقيقية.</div>
+  </div>
+
+  <div class="note-box" style="margin-top:.3cm">
+    <p>
+      <b>الفجوة البحثية الجوهرية:</b> تفتقر جميع الدراسات السابقة إلى نظام متكامل يجمع التحليل الفني وتحليل الأخبار في تطبيق متنقل عربي مع نظام تداول وهمي واقعي وآلية مراجعة تلقائية لدقة التوصيات — وهذه بالضبط المزايا التي يُقدّمها نظامنا Market Insight كمساهمة أصيلة.
+    </p>
+  </div>
+
+  <div class="pnum">14</div>
+</div>
+
+</body>
+</html>

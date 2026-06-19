@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>غلاف المشروع — Market Insight</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Amiri',serif;background:#e8e0d4}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.pg{margin:0!important;width:21cm!important;min-height:29.7cm!important;box-shadow:none!important}}
+.pg{
+  width:21cm;min-height:29.7cm;background:#fff;
+  margin:1cm auto;
+  padding:1cm 1.5cm;
+  box-shadow:0 4px 20px rgba(0,0,0,.15);
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;
+}
+
+/* ─── Header row ─── */
+.header{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:.5cm;
+}
+.header-ar{
+  text-align:right;
+  font-size:12pt;
+  line-height:2;
+  color:#111;
+  direction:rtl;
+}
+.header-en{
+  text-align:left;
+  font-size:11pt;
+  line-height:2;
+  color:#111;
+  direction:ltr;
+  font-weight:700;
+}
+
+/* ─── Logo ─── */
+.logo{
+  width:3.5cm;height:3.5cm;
+  border-radius:50%;
+  border:3px solid #7B3F00;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#f5ede0,#fff);
+  flex-shrink:0;
+  margin:0 .3cm;
+}
+.logo-inner{
+  width:2.6cm;height:2.6cm;border-radius:50%;
+  border:2px solid #a0622a;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:#fff;
+}
+.logo-text{font-size:7.5pt;color:#7B3F00;font-weight:700;text-align:center;line-height:1.4}
+
+/* ─── Divider line ─── */
+.hline{width:100%;border:none;border-top:2px solid #7B3F00;margin:.3cm 0}
+
+/* ─── Decorative ornament ─── */
+.ornament{color:#7B3F00;font-size:30pt;text-align:center;letter-spacing:.2cm;line-height:1}
+
+/* ─── Project title ─── */
+.title-box{
+  text-align:center;
+  margin:.3cm 0;
+  width:100%;
+}
+.title-main{
+  font-size:22pt;font-weight:700;color:#3d1f00;
+  border-bottom:2.5px solid #7B3F00;
+  border-top:2.5px solid #7B3F00;
+  padding:.18cm 1cm;
+  display:inline-block;
+  letter-spacing:.03cm;
+}
+.title-sub{
+  font-size:13pt;color:#7B3F00;margin-top:.15cm;font-style:italic;
+}
+
+/* ─── Students & supervisor ─── */
+.info-box{
+  margin:.25cm 0;
+  text-align:center;
+  font-size:13pt;
+  line-height:2.1;
+  color:#111;
+  direction:rtl;
+}
+.info-label{font-weight:700;font-size:13.5pt;color:#3d1f00}
+.sup-name{font-size:14pt;font-weight:700;color:#3d1f00}
+
+/* ─── Footer ─── */
+.footer{
+  margin-top:auto;
+  text-align:center;
+  font-size:11pt;
+  color:#555;
+  line-height:2;
+  border-top:1px solid #ccc;
+  padding-top:.25cm;
+  width:100%;
+}
+.footer-year{font-size:13pt;font-weight:700;color:#3d1f00}
+</style>
+</head>
+<body>
+<div class="pg">
+
+  <!-- ─── Header ─── -->
+  <div class="header">
+    <div class="header-en">
+      Ministry of Higher Education and<br>
+      Scientific Research<br>
+      Al-Nasser University<br>
+      Faculty of Engineering and Computer<br>
+      Science<br>
+      Department of Computing and<br>
+      Information Technology
+    </div>
+
+    <!-- Logo -->
+    <div class="logo">
+      <div class="logo-inner">
+        <div class="logo-text">جامعة<br>الناصر<br>&#9670;</div>
+      </div>
+    </div>
+
+    <div class="header-ar">
+      وزارة التعليم العالي والبحث العلمي<br>
+      جامعة الناصر<br>
+      كلية الهندسة وعلوم الكمبيوتر<br>
+      قسم الحوسبة وتقنية المعلومات
+    </div>
+  </div>
+
+  <hr class="hline">
+
+  <!-- ─── Ornament ─── -->
+  <div class="ornament">❧ &nbsp; ❦</div>
+
+  <hr class="hline">
+
+  <!-- ─── Title ─── -->
+  <div class="title-box">
+    <div class="title-main">نظام Market Insight للتداول الذكي</div>
+    <div class="title-sub">Smart Trading System — Market Insight</div>
+  </div>
+
+  <!-- ─── Ornament small ─── -->
+  <div style="color:#7B3F00;font-size:22pt;text-align:center;margin:.2cm 0">❧</div>
+
+  <!-- ─── Students ─── -->
+  <div class="info-box">
+    <div class="info-label">إعداد الطالب/ات:</div>
+    دلال الأغبري<br>
+    آلاء الحبابي<br>
+    غيداء الجنيد<br>
+    سارة سراج<br>
+    عبد الرحمن الحاشدي
+  </div>
+
+  <!-- ─── Supervisor ─── -->
+  <div class="info-box">
+    <div class="info-label">تحت إشراف:</div>
+    <div class="sup-name">أ.م. د /إبراهيم البلطة</div>
+  </div>
+
+  <!-- ─── Footer ─── -->
+  <div class="footer">
+    تم تنفيذ هذا المشروع كجزءٍ من متطلبات الحصول على شهادة البكالوريوس في تخصص تقنية المعلومات<br>
+    <div class="footer-year">2025/2026</div>
+    كلية الهندسة وعلوم الحاسب
+  </div>
+
+</div>
+</body>
+</html>
